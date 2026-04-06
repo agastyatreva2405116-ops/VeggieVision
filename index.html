@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deteksi Kesegaran Sayuran AI</title>
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --green: #10b981;
+        --lime: #84cc16;
+        --amber: #f59e0b;
+        --rose: #f43f5e;
+        --blue: #0ea5e9;
+        --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        --radius: 20px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .topbar {
+        background: rgba(255,255,255,0.88);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        animation: slideDown 0.5s ease;
+      }
+
+      .topbar-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        font-size: 20px;
+        font-weight: 800;
+        animation: fadeUp 0.6s ease;
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .nav-btn, button, .file-label {
+        border: 1px solid var(--border);
+        background: white;
+        color: var(--text);
+        border-radius: 14px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease, color 0.2s ease;
+      }
+
+      .nav-btn:hover, button:hover, .file-label:hover {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      }
+
+      .nav-btn.active {
+        background: #0f172a;
+        color: white;
+        border-color: #0f172a;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #059669, #16a34a);
+        color: white;
+        border-radius: 24px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 20px 40px rgba(5, 150, 105, 0.18);
+        animation: fadeUp 0.6s ease;
+      }
+
+      h1, h2, h3 { margin: 0; }
+      h1 { font-size: 34px; line-height: 1.15; }
+
+      .subtext, .section-desc, .small-muted {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .hero .subtext { color: rgba(255,255,255,0.92); margin-top: 10px; }
+      .section-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+      .section-desc { margin: 0 0 14px; }
+      .small-muted { font-size: 13px; }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 20px;
+        animation: fadeUp 0.45s ease;
+      }
+
+      .main-grid {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        gap: 20px;
+      }
+
+      .preview-box {
+        min-height: 360px;
+        border: 2px dashed #cbd5e1;
+        background: #f8fafc;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        transition: all 0.25s ease;
+      }
+
+      .preview-box.has-media {
+        display: block;
+        overflow: hidden;
+        border-style: solid;
+        border-width: 1px;
+        padding: 0;
+        background: #e2e8f0;
+        animation: zoomIn 0.35s ease;
+      }
+
+      .preview-box img, .preview-box video {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .empty-inner { max-width: 420px; animation: fadeUp 0.55s ease; }
+      .emoji-circle {
+        width: 68px; height: 68px; border-radius: 999px; background: #dcfce7;
+        display: inline-flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 12px;
+        animation: pulseSoft 2s infinite;
+      }
+
+      .hidden { display: none !important; }
+
+      .button-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      .btn-primary { background: #0f172a; color: white; border-color: #0f172a; }
+      .btn-light { background: white; color: #047857; border-color: white; }
+      .btn-ghost { background: rgba(255,255,255,0.14); color: white; border-color: rgba(255,255,255,0.2); }
+
+      .status-box, .alert-box, .soft-box, .success-box, .warning-box {
+        border-radius: 16px; padding: 14px 16px; animation: fadeUp 0.35s ease;
+      }
+      .status-box { background: #ecfeff; color: #0f766e; }
+      .alert-box { background: #fff1f2; color: #be123c; }
+      .soft-box { background: #f8fafc; }
+      .success-box { background: #ecfdf5; color: #065f46; }
+      .warning-box { background: #fffbeb; color: #92400e; }
+
+      .result-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .category-name { font-size: 28px; font-weight: 800; margin-top: 4px; }
+      .pill {
+        padding: 10px 16px; color: white; border-radius: 999px; font-weight: 800;
+        animation: zoomIn 0.35s ease;
+      }
+
+      .progress-wrap { display: grid; gap: 8px; }
+      .progress-meta {
+        display: flex; justify-content: space-between; gap: 12px; font-size: 14px;
+      }
+      .progress-track {
+        width: 100%; height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%; width: 0%; border-radius: 999px; transition: width 0.5s ease;
+      }
+
+      .stat-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      }
+      .stat-card {
+        background: #f8fafc; border-radius: 16px; padding: 14px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        animation: fadeUp 0.45s ease;
+      }
+      .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+      }
+      .stat-label { font-size: 12px; color: var(--muted); }
+      .stat-value { margin-top: 6px; font-size: 24px; font-weight: 800; }
+
+      .reason-list, .saved-list {
+        display: grid; gap: 10px;
+      }
+
+      .saved-item {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 14px;
+        animation: fadeUp 0.35s ease;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      .saved-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+      }
+
+      .page { display: block; animation: fadePage 0.35s ease; }
+      .page.hidden { display: none; }
+
+      input, select {
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.18s ease;
+      }
+
+      input:focus, select:focus {
+        outline: none;
+        border-color: #10b981;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+        transform: translateY(-1px);
+      }
+
+      code.inline {
+        background: #eef2ff; padding: 2px 8px; border-radius: 8px; font-size: 13px;
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadePage {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.98); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulseSoft {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.04); }
+      }
+
+      @media (max-width: 900px) {
+        .main-grid, .stat-grid { grid-template-columns: 1fr; }
+        .topbar-inner { align-items: flex-start; flex-direction: column; }
+        h1 { font-size: 28px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">🥬 Deteksi Kesegaran Sayuran</div>
+        <div class="nav-buttons">
+          <button class="nav-btn active" id="navHomeBtn">Beranda</button>
+          <button class="nav-btn" id="navSavedBtn">Data Tersimpan</button>
+          <button class="nav-btn" id="navOrderBtn">Pesan</button>
+          <button class="nav-btn" id="navRecapBtn">Rekap</button>
+          <button class="nav-btn" id="navSuggestionBtn">Saran</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <section id="homePage" class="page">
+        <div class="hero">
+          <h1>Analisis kesegaran sayuran dengan tampilan sederhana</h1>
+          <p class="subtext">
+            Upload gambar atau buka kamera, lalu klik analisis. Hasil tersimpan dipindah ke menu <b>Data Tersimpan</b> di bagian atas.
+          </p>
+          <div class="button-row">
+            <label class="file-label btn-light" for="fileInput">📤 Upload Foto</label>
+            <button class="btn-ghost" id="startCameraBtn">📷 Buka Kamera</button>
+            <button class="btn-ghost hidden" id="stopCameraBtn">✖ Tutup Kamera</button>
+          </div>
+        </div>
+
+        <div class="main-grid">
+          <div class="card">
+            <h3 class="section-title">Gambar</h3>
+            <p class="section-desc">Masukkan nama produk asli, tanggal analisis, lalu foto sayuran untuk dianalisis.</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
+              <input id="analysisProductName" placeholder="Nama produk asli, contoh: Bayam Hijau">
+              <input id="analysisDate" type="date">
+            </div>
+
+            <input type="file" accept="image/*" id="fileInput" class="hidden" />
+
+            <div class="preview-box" id="previewBox">
+              <div class="empty-inner" id="emptyState">
+                <div class="emoji-circle">🥗</div>
+                <h3>Belum ada gambar</h3>
+                <p class="section-desc" style="margin-top: 8px; margin-bottom: 18px;">Pilih upload foto atau buka kamera.</p>
+                <div class="button-row" style="justify-content:center;">
+                  <label class="file-label btn-primary" for="fileInput">Upload Foto</label>
+                  <button id="cameraFromEmptyBtn">Buka Kamera</button>
+                </div>
+              </div>
+              <img id="previewImage" class="hidden" alt="Preview sayuran" />
+              <video id="previewVideo" class="hidden" autoplay playsinline muted></video>
+            </div>
+
+            <div class="button-row" id="actionButtons">
+              <button class="hidden" id="captureBtn">📸 Ambil Foto</button>
+              <button class="hidden" id="analyzeBtn">🧠 Analisis</button>
+              <button class="hidden" id="saveAnalysisBtn">💾 Simpan Analisis</button>
+              <button class="hidden" id="takeImageBtn">📷 Ambil Gambar</button>
+            </div>
+
+            <div class="status-box hidden" id="statusBox"></div>
+            <div class="alert-box hidden" id="errorBox"></div>
+          </div>
+
+          <div class="card">
+            <h3 class="section-title">Hasil Analisis</h3>
+            <p class="section-desc">Hasil tampil di sini setelah gambar diproses.</p>
+
+            <div id="resultEmpty" class="soft-box">Belum ada hasil analisis.</div>
+
+            <div id="resultContent" class="hidden" style="display: grid; gap: 18px;">
+              <div class="result-head">
+                <div>
+                  <div class="small-muted">Kategori</div>
+                  <div class="category-name" id="vegType">-</div>
+                </div>
+                <div class="pill" id="freshnessPill">-</div>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-meta">
+                  <span>Skor Kesegaran</span>
+                  <strong id="freshnessScoreText">0/100</strong>
+                </div>
+                <div class="progress-track"><div class="progress-bar" id="freshnessBar"></div></div>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-meta">
+                  <span>Confidence</span>
+                  <strong id="confidenceText">0%</strong>
+                </div>
+                <div class="progress-track"><div class="progress-bar" id="confidenceBar" style="background: var(--blue);"></div></div>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat-card"><div class="stat-label">Dominasi Hijau</div><div class="stat-value" id="greenValue">0%</div></div>
+                <div class="stat-card"><div class="stat-label">Area Kecokelatan</div><div class="stat-value" id="brownValue">0%</div></div>
+                <div class="stat-card"><div class="stat-label">Skor Tekstur</div><div class="stat-value" id="textureValue">0</div></div>
+              </div>
+
+              <div class="success-box">
+                <strong>Rekomendasi</strong>
+                <div style="margin-top: 6px;" id="recommendationText">-</div>
+              </div>
+
+              <div>
+                <div style="font-weight: 800; margin-bottom: 10px;">Alasan</div>
+                <div class="reason-list" id="reasonList"></div>
+              </div>
+
+              <div class="small-muted" id="analysisMeta">-</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="savedPage" class="page hidden">
+        <div class="card">
+          <h3 class="section-title">Data Tersimpan</h3>
+          <p class="section-desc">Semua hasil yang kamu simpan manual akan muncul di halaman ini.</p>
+          <div id="savedAnalysisEmpty" class="soft-box">Belum ada hasil analisis yang disimpan.</div>
+          <div id="savedAnalysisList" class="saved-list"></div>
+        </div>
+      </section>
+
+      <section id="orderPage" class="page hidden">
+        <div class="card">
+          <h3 class="section-title">Pesan</h3>
+          <p class="section-desc">Fitur sederhana untuk jual beli dari pemilik ke konsumen.</p>
+          <div class="main-grid">
+            <div class="card" style="box-shadow:none; border:1px solid var(--border);">
+              <h3 class="section-title" style="font-size:18px;">Form Pemesanan</h3>
+              <div style="display:grid; gap:12px;">
+                <input id="buyerName" placeholder="Nama pembeli">
+                <input id="productName" placeholder="Nama sayuran">
+                <input id="productDate" type="date" placeholder="Tanggal stok">
+                <input id="orderQty" type="number" placeholder="Jumlah" style="padding:12px; border:1px solid var(--border); border-radius:12px;">
+                <input id="orderPrice" type="number" placeholder="Harga total" style="padding:12px; border:1px solid var(--border); border-radius:12px;">
+                <button id="saveOrderBtn" class="btn-primary">Simpan Pesanan</button>
+              </div>
+            </div>
+            <div class="card" style="box-shadow:none; border:1px solid var(--border);">
+              <h3 class="section-title" style="font-size:18px;">Daftar Pesanan</h3>
+              <div id="orderEmpty" class="soft-box">Belum ada pesanan.</div>
+              <div id="orderList" class="saved-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recapPage" class="page hidden">
+        <div class="card">
+          <h3 class="section-title">Rekap</h3>
+          <p class="section-desc">Ringkasan hasil penjualan dan analisis stok berdasarkan estimasi masa simpan.</p>
+
+          <div class="button-row" style="margin-bottom:16px;">
+            <button class="nav-btn active" id="filter7Btn">7 Hari</button>
+            <button class="nav-btn" id="filter3Btn">3 Hari</button>
+            <button class="nav-btn" id="filter14Btn">14 Hari</button>
+          </div>
+
+          <div class="stat-grid" style="margin-bottom:16px;">
+            <div class="stat-card"><div class="stat-label">Total Pesanan</div><div class="stat-value" id="totalOrdersValue">0</div></div>
+            <div class="stat-card"><div class="stat-label">Total Penjualan</div><div class="stat-value" id="totalSalesValue">0</div></div>
+            <div class="stat-card"><div class="stat-label">Perlu Tindakan</div><div class="stat-value" id="sortNextWeekValue">0</div></div>
+          </div>
+
+          <div class="stat-grid" style="margin-bottom:16px;">
+            <div class="stat-card"><div class="stat-label">Segar</div><div class="stat-value" id="freshCountValue">0</div></div>
+            <div class="stat-card"><div class="stat-label">Jual Cepat</div><div class="stat-value" id="sellFastCountValue">0</div></div>
+            <div class="stat-card"><div class="stat-label">Sortir / Buang</div><div class="stat-value" id="discardCountValue">0</div></div>
+          </div>
+
+          <div class="warning-box" id="recapSummaryBox">Belum ada data untuk direkap.</div>
+          <div style="margin-top:16px;">
+            <h3 class="section-title" style="font-size:18px;">Analisis tindakan berdasarkan filter</h3>
+            <div id="sortAnalysisList" class="saved-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="suggestionPage" class="page hidden"> class="page hidden">
+        <div class="card">
+          <h3 class="section-title">Saran</h3>
+          <p class="section-desc">Analisis keputusan terbaik yang bisa diambil dalam 1 minggu ke depan.</p>
+          <div id="suggestionSummaryBox" class="success-box">Belum ada cukup data untuk memberi saran.</div>
+          <div style="margin-top:16px;">
+            <h3 class="section-title" style="font-size:18px;">Rekomendasi tindakan</h3>
+            <div id="suggestionList" class="saved-list"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const API_URL = "http://127.0.0.1:8000/predict";
+      const STORAGE_KEY = "deteksi_sayuran_autosave_v1";
+      const SAVED_RESULTS_KEY = "deteksi_sayuran_saved_results_v1";
+      const ORDERS_KEY = "deteksi_sayuran_orders_v1";
+
+      const fileInput = document.getElementById("fileInput");
+      const previewBox = document.getElementById("previewBox");
+      const previewImage = document.getElementById("previewImage");
+      const previewVideo = document.getElementById("previewVideo");
+      const emptyState = document.getElementById("emptyState");
+      const startCameraBtn = document.getElementById("startCameraBtn");
+      const stopCameraBtn = document.getElementById("stopCameraBtn");
+      const cameraFromEmptyBtn = document.getElementById("cameraFromEmptyBtn");
+      const captureBtn = document.getElementById("captureBtn");
+      const analyzeBtn = document.getElementById("analyzeBtn");
+      const saveAnalysisBtn = document.getElementById("saveAnalysisBtn");
+      const takeImageBtn = document.getElementById("takeImageBtn");
+      const statusBox = document.getElementById("statusBox");
+      const errorBox = document.getElementById("errorBox");
+
+      const resultEmpty = document.getElementById("resultEmpty");
+      const resultContent = document.getElementById("resultContent");
+      const vegType = document.getElementById("vegType");
+      const freshnessPill = document.getElementById("freshnessPill");
+      const freshnessScoreText = document.getElementById("freshnessScoreText");
+      const freshnessBar = document.getElementById("freshnessBar");
+      const confidenceText = document.getElementById("confidenceText");
+      const confidenceBar = document.getElementById("confidenceBar");
+      const greenValue = document.getElementById("greenValue");
+      const brownValue = document.getElementById("brownValue");
+      const textureValue = document.getElementById("textureValue");
+      const recommendationText = document.getElementById("recommendationText");
+      const reasonList = document.getElementById("reasonList");
+      const analysisMeta = document.getElementById("analysisMeta");
+
+      const savedAnalysisEmpty = document.getElementById("savedAnalysisEmpty");
+      const savedAnalysisList = document.getElementById("savedAnalysisList");
+
+      const navHomeBtn = document.getElementById("navHomeBtn");
+      const navSavedBtn = document.getElementById("navSavedBtn");
+      const navOrderBtn = document.getElementById("navOrderBtn");
+      const navRecapBtn = document.getElementById("navRecapBtn");
+      const navSuggestionBtn = document.getElementById("navSuggestionBtn");
+
+      const homePage = document.getElementById("homePage");
+      const savedPage = document.getElementById("savedPage");
+      const orderPage = document.getElementById("orderPage");
+      const recapPage = document.getElementById("recapPage");
+      const suggestionPage = document.getElementById("suggestionPage");
+
+      const buyerName = document.getElementById("buyerName");
+      const productName = document.getElementById("productName");
+      const productDate = document.getElementById("productDate");
+      const analysisProductName = document.getElementById("analysisProductName");
+      const analysisDate = document.getElementById("analysisDate");
+      const orderQty = document.getElementById("orderQty");
+      const orderPrice = document.getElementById("orderPrice");
+      const saveOrderBtn = document.getElementById("saveOrderBtn");
+      const orderEmpty = document.getElementById("orderEmpty");
+      const orderList = document.getElementById("orderList");
+
+      const totalOrdersValue = document.getElementById("totalOrdersValue");
+      const totalSalesValue = document.getElementById("totalSalesValue");
+      const sortNextWeekValue = document.getElementById("sortNextWeekValue");
+      const recapSummaryBox = document.getElementById("recapSummaryBox");
+      const sortAnalysisList = document.getElementById("sortAnalysisList");
+      const freshCountValue = document.getElementById("freshCountValue");
+      const sellFastCountValue = document.getElementById("sellFastCountValue");
+      const discardCountValue = document.getElementById("discardCountValue");
+      const filter3Btn = document.getElementById("filter3Btn");
+      const filter7Btn = document.getElementById("filter7Btn");
+      const filter14Btn = document.getElementById("filter14Btn");
+
+      const suggestionSummaryBox = document.getElementById("suggestionSummaryBox");
+      const suggestionList = document.getElementById("suggestionList");
+
+      let currentStream = null;
+      let currentFile = null;
+      let currentImageUrl = "";
+      let lastAnalysisResult = null;
+      let recapFilterDays = 7;
+
+      function clamp(v, min, max) {
+        return Math.max(min, Math.min(max, v));
+      }
+
+      function setStatus(message) {
+        statusBox.textContent = message;
+        statusBox.classList.remove("hidden");
+      }
+
+      function clearStatus() {
+        statusBox.textContent = "";
+        statusBox.classList.add("hidden");
+      }
+
+      function setError(message) {
+        errorBox.textContent = message;
+        errorBox.classList.remove("hidden");
+      }
+
+      function clearError() {
+        errorBox.textContent = "";
+        errorBox.classList.add("hidden");
+      }
+
+      function setActiveNav(activeBtn) {
+        [navHomeBtn, navSavedBtn, navOrderBtn, navRecapBtn, navSuggestionBtn].forEach((btn) => btn.classList.remove("active"));
+        activeBtn.classList.add("active");
+      }
+
+      function setRecapFilter(days) {
+        recapFilterDays = days;
+        [filter3Btn, filter7Btn, filter14Btn].forEach((btn) => btn.classList.remove("active"));
+        if (days === 3) filter3Btn.classList.add("active");
+        if (days === 7) filter7Btn.classList.add("active");
+        if (days === 14) filter14Btn.classList.add("active");
+        renderRecap();
+      }
+
+      function showPage(pageName) {
+        [homePage, savedPage, orderPage, recapPage, suggestionPage].forEach((page) => page.classList.add("hidden"));
+
+        if (pageName === "saved") {
+          savedPage.classList.remove("hidden");
+          setActiveNav(navSavedBtn);
+        } else if (pageName === "order") {
+          orderPage.classList.remove("hidden");
+          setActiveNav(navOrderBtn);
+        } else if (pageName === "recap") {
+          recapPage.classList.remove("hidden");
+          setActiveNav(navRecapBtn);
+          renderRecap();
+        } else if (pageName === "suggestion") {
+          suggestionPage.classList.remove("hidden");
+          setActiveNav(navSuggestionBtn);
+          renderSuggestions();
+        } else {
+          homePage.classList.remove("hidden");
+          setActiveNav(navHomeBtn);
+        }
+      }
+
+      function fileToDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function saveToStorage(payload) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+        } catch (err) {
+          console.warn("Gagal menyimpan autosave:", err);
+        }
+      }
+
+      function clearStorage() {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (err) {
+          console.warn("Gagal menghapus autosave:", err);
+        }
+      }
+
+      function getSavedResults() {
+        try {
+          return JSON.parse(localStorage.getItem(SAVED_RESULTS_KEY) || "[]");
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function getOrders() {
+        try {
+          return JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function saveOrder(order) {
+        const items = getOrders();
+        items.unshift(order);
+        localStorage.setItem(ORDERS_KEY, JSON.stringify(items.slice(0, 50)));
+        renderOrders();
+        renderRecap();
+        renderSuggestions();
+      }
+
+      function saveResultToHistory(result) {
+        const items = getSavedResults();
+        items.unshift(result);
+        localStorage.setItem(SAVED_RESULTS_KEY, JSON.stringify(items.slice(0, 25)));
+        renderSavedResults();
+        renderRecap();
+        renderSuggestions();
+      }
+
+      function getFreshnessMeta(score) {
+        if (score >= 80) return { label: "Sangat Segar", color: "#10b981" };
+        if (score >= 60) return { label: "Segar", color: "#84cc16" };
+        if (score >= 40) return { label: "Mulai Menurun", color: "#f59e0b" };
+        return { label: "Kurang Segar", color: "#f43f5e" };
+      }
+
+      function estimateVegetableType(stats) {
+        const { greenRatio, redRatio, orangeRatio, brightness } = stats;
+        if (greenRatio > 0.35) return "Sayuran Hijau";
+        if (redRatio > 0.22) return "Tomat / Cabai";
+        if (orangeRatio > 0.18) return "Wortel / Labu";
+        if (brightness > 170) return "Kubis / Bawang / Sayuran Cerah";
+        return "Sayuran Umum";
+      }
+
+      function getTodayDateInputValue() {
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, "0");
+        const dd = String(now.getDate()).padStart(2, "0");
+        return `${yyyy}-${mm}-${dd}`;
+      }
+
+      function formatDateDisplay(dateValue) {
+        if (!dateValue) return "-";
+        const d = new Date(dateValue);
+        if (Number.isNaN(d.getTime())) return dateValue;
+        return d.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" });
+      }
+
+      function estimateShelfDays(score) {
+        if (score >= 85) return 10;
+        if (score >= 75) return 7;
+        if (score >= 60) return 4;
+        if (score >= 45) return 2;
+        return 1;
+      }
+
+      function getActionPlan(score, shelfDays) {
+        if (score >= 80 && shelfDays >= 7) {
+          return { status: "Segar", action: "Jual normal", color: "#10b981" };
+        }
+        if (score >= 60) {
+          return { status: "Jual Cepat", action: "Promo 3-7 hari", color: "#f59e0b" };
+        }
+        if (score >= 40) {
+          return { status: "Sortir", action: "Cek dan sortir", color: "#fb7185" };
+        }
+        return { status: "Buang", action: "Pisahkan dari stok", color: "#7f1d1d" };
+      }
+
+      function enrichSavedItem(item) {
+        const score = Number(item.freshness_score || 0);
+        const shelfDays = Number(item.estimated_shelf_days || estimateShelfDays(score));
+        const plan = getActionPlan(score, shelfDays);
+        const analysisDateValue = item.analysis_date || getTodayDateInputValue();
+        const analysisDateObj = new Date(analysisDateValue);
+        const expiryDateObj = new Date(analysisDateObj);
+        expiryDateObj.setDate(expiryDateObj.getDate() + shelfDays);
+
+        return {
+          ...item,
+          product_name_real: item.product_name_real || item.vegetable_type || "Sayuran Umum",
+          analysis_date: analysisDateValue,
+          analysis_date_display: formatDateDisplay(analysisDateValue),
+          estimated_shelf_days: shelfDays,
+          estimated_expiry_display: expiryDateObj.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" }),
+          days_left: shelfDays,
+          action_status: plan.status,
+          action_label: plan.action,
+          action_color: plan.color,
+        };
+      }
+
+      function resetResults() {
+        resultEmpty.classList.remove("hidden");
+        resultContent.classList.add("hidden");
+        reasonList.innerHTML = "";
+        lastAnalysisResult = null;
+        saveAnalysisBtn.classList.add("hidden");
+      }
+
+      function showImage(src, shouldAutosave = true) {
+        currentImageUrl = src;
+        previewBox.classList.add("has-media");
+        emptyState.classList.add("hidden");
+        previewVideo.classList.add("hidden");
+        previewImage.classList.remove("hidden");
+        previewImage.src = src;
+
+        analyzeBtn.classList.remove("hidden");
+        takeImageBtn.classList.remove("hidden");
+        captureBtn.classList.add("hidden");
+        stopCameraBtn.classList.add("hidden");
+        startCameraBtn.classList.remove("hidden");
+
+        if (shouldAutosave) {
+          saveToStorage({
+            imageDataUrl: src,
+            result: null,
+            savedAt: new Date().toLocaleString("id-ID"),
+          });
+        }
+      }
+
+      function renderResult(result, savedAtOverride = null) {
+        lastAnalysisResult = result;
+        const freshnessScore = Number(result.freshness_score || 0);
+        const confidence = Number(result.confidence || 0);
+        const stats = result.stats || {};
+        const meta = getFreshnessMeta(freshnessScore);
+        const savedAt = savedAtOverride || new Date().toLocaleString("id-ID");
+        const shelfDays = result.estimated_shelf_days || estimateShelfDays(freshnessScore);
+        const plan = getActionPlan(freshnessScore, shelfDays);
+        const realProductName = result.product_name_real || analysisProductName.value.trim() || result.vegetable_type || "Sayuran Umum";
+        const selectedAnalysisDate = result.analysis_date || analysisDate.value || getTodayDateInputValue();
+
+        vegType.textContent = result.vegetable_type || "Sayuran Umum";
+        freshnessPill.textContent = `${meta.label} • ${plan.status}`;
+        freshnessPill.style.background = plan.color;
+
+        freshnessScoreText.textContent = `${freshnessScore}/100`;
+        freshnessBar.style.width = `${freshnessScore}%`;
+        freshnessBar.style.background = meta.color;
+
+        confidenceText.textContent = `${confidence}%`;
+        confidenceBar.style.width = `${confidence}%`;
+
+        greenValue.textContent = `${Math.round((stats.green_ratio || 0) * 100)}%`;
+        brownValue.textContent = `${Math.round((stats.brown_ratio || 0) * 100)}%`;
+        textureValue.textContent = `${Math.round(stats.texture_score || 0)}`;
+        recommendationText.textContent = `${result.recommendation || "-"} Estimasi tahan: ${shelfDays} hari. Tindakan: ${plan.action}.`;
+
+        reasonList.innerHTML = "";
+        (result.reasons || ["Tidak ada alasan detail."]).forEach((reason) => {
+          const div = document.createElement("div");
+          div.className = "soft-box";
+          div.textContent = reason;
+          reasonList.appendChild(div);
+        });
+
+        analysisMeta.textContent = `Produk: ${realProductName} • Tanggal analisis: ${formatDateDisplay(selectedAnalysisDate)} • Sumber prediksi: ${result.source || "backend-ai"} • ${savedAt}`;
+        resultEmpty.classList.add("hidden");
+        resultContent.classList.remove("hidden");
+        saveAnalysisBtn.classList.remove("hidden");
+        takeImageBtn.classList.remove("hidden");
+
+        saveToStorage({
+          imageDataUrl: previewImage.src,
+          result: {
+            ...result,
+            product_name_real: realProductName,
+            analysis_date: selectedAnalysisDate,
+            estimated_shelf_days: shelfDays,
+          },
+          savedAt,
+        });
+      }
+
+      function renderOrders() {
+        const items = getOrders();
+        orderList.innerHTML = "";
+
+        if (!items.length) {
+          orderEmpty.classList.remove("hidden");
+          return;
+        }
+
+        orderEmpty.classList.add("hidden");
+        items.forEach((item) => {
+          const div = document.createElement("div");
+          div.className = "saved-item";
+          div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px;">
+              <strong>${item.buyer_name}</strong>
+              <span class="small-muted">${item.created_at}</span>
+            </div>
+            <div class="small-muted">${item.product_name} • ${item.qty} pcs/kg • Tanggal stok: ${formatDateDisplay(item.product_date)}</div>
+            <div style="margin-top:6px; font-weight:700;">Rp ${Number(item.total_price || 0).toLocaleString("id-ID")}</div>
+          `;
+          orderList.appendChild(div);
+        });
+      }
+
+      function renderRecap() {
+        const orders = getOrders();
+        const saved = getSavedResults().map(enrichSavedItem);
+        const totalSales = orders.reduce((sum, item) => sum + Number(item.total_price || 0), 0);
+        const filtered = saved.filter((item) => item.estimated_shelf_days <= recapFilterDays);
+        const freshItems = filtered.filter((item) => item.action_status === "Segar");
+        const sellFastItems = filtered.filter((item) => item.action_status === "Jual Cepat");
+        const discardItems = filtered.filter((item) => item.action_status === "Sortir" || item.action_status === "Buang");
+
+        totalOrdersValue.textContent = orders.length;
+        totalSalesValue.textContent = totalSales.toLocaleString("id-ID");
+        sortNextWeekValue.textContent = filtered.length;
+        freshCountValue.textContent = freshItems.length;
+        sellFastCountValue.textContent = sellFastItems.length;
+        discardCountValue.textContent = discardItems.length;
+
+        if (!orders.length && !saved.length) {
+          recapSummaryBox.textContent = "Belum ada data penjualan dan analisis untuk direkap.";
+        } else {
+          recapSummaryBox.textContent = `Dalam ${recapFilterDays} hari ke depan: ${freshItems.length} stok masih aman dijual normal, ${sellFastItems.length} stok perlu dijual cepat, dan ${discardItems.length} stok perlu sortir atau dibuang.`;
+        }
+
+        sortAnalysisList.innerHTML = "";
+        if (!filtered.length) {
+          sortAnalysisList.innerHTML = '<div class="soft-box">Belum ada data yang masuk filter ini.</div>';
+          return;
+        }
+
+        filtered.sort((a, b) => a.estimated_shelf_days - b.estimated_shelf_days);
+        filtered.forEach((item) => {
+          const div = document.createElement("div");
+          div.className = "saved-item";
+          div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+              <strong>${item.vegetable_type || "Sayuran Umum"}</strong>
+              <span style="background:${item.action_color}; color:white; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700;">${item.action_status}</span>
+            </div>
+            <div class="small-muted">Produk: ${item.product_name_real || item.vegetable_type || "Sayuran Umum"} • Skor: ${item.freshness_score || 0}/100 • Estimasi tahan: ${item.estimated_shelf_days} hari</div>
+            <div style="margin-top:6px; font-weight:700;">Tindakan: ${item.action_label}</div>
+            <div class="small-muted" style="margin-top:6px;">Tanggal analisis: ${item.analysis_date_display || "-"} • Estimasi batas: ${item.estimated_expiry_display || "-"}</div>
+            <div style="margin-top:6px;">${item.recommendation || "Perlu pengecekan ulang."}</div>
+          `;
+          sortAnalysisList.appendChild(div);
+        });
+      }
+
+      function renderSuggestions() {
+        const orders = getOrders();
+        const saved = getSavedResults().map(enrichSavedItem);
+        const totalSales = orders.reduce((sum, item) => sum + Number(item.total_price || 0), 0);
+        const freshItems = saved.filter((item) => item.action_status === "Segar");
+        const sellFastItems = saved.filter((item) => item.action_status === "Jual Cepat");
+        const sortItems = saved.filter((item) => item.action_status === "Sortir");
+        const discardItems = saved.filter((item) => item.action_status === "Buang");
+
+        suggestionList.innerHTML = "";
+
+        if (!saved.length && !orders.length) {
+          suggestionSummaryBox.textContent = "Belum ada cukup data analisis dan penjualan untuk memberi saran keputusan 1 minggu ke depan.";
+          suggestionList.innerHTML = '<div class="soft-box">Masukkan data analisis atau pesanan terlebih dahulu.</div>';
+          return;
+        }
+
+        const suggestions = [];
+        if (freshItems.length) suggestions.push(`Pertahankan ${freshItems.length} stok berstatus Segar untuk penjualan normal dan harga optimal.`);
+        if (sellFastItems.length) suggestions.push(`Jual cepat ${sellFastItems.length} stok dalam 3-7 hari ke depan melalui promo, bundling, atau diskon ringan.`);
+        if (sortItems.length) suggestions.push(`Segera sortir ${sortItems.length} stok agar bagian yang masih layak bisa dipisahkan dari yang kualitasnya menurun.`);
+        if (discardItems.length) suggestions.push(`Pisahkan ${discardItems.length} stok berstatus Buang agar tidak bercampur dengan stok jual.`);
+        if (orders.length) suggestions.push(`Gunakan ${orders.length} data pesanan untuk memprioritaskan restok produk yang paling sering dibeli.`);
+        if (totalSales > 0) suggestions.push(`Total penjualan saat ini Rp ${totalSales.toLocaleString("id-ID")}. Fokuskan modal pada stok cepat laku dan tahan lebih lama.`);
+
+        if (sortItems.length || discardItems.length) {
+          suggestionSummaryBox.textContent = "Prioritas minggu ini: sortir stok berisiko, jual cepat stok menengah, lalu pertahankan stok segar untuk margin terbaik.";
+        } else if (sellFastItems.length) {
+          suggestionSummaryBox.textContent = "Prioritas minggu ini: percepat penjualan stok menengah dan atur ulang restok berdasarkan pola pesanan.";
+        } else {
+          suggestionSummaryBox.textContent = "Mayoritas stok masih baik. Fokus pada penjualan normal dan perencanaan restok berbasis data pembelian.";
+        }
+
+        suggestions.forEach((text) => {
+          const div = document.createElement("div");
+          div.className = "saved-item";
+          div.textContent = text;
+          suggestionList.appendChild(div);
+        });
+      }
+
+      function renderSavedResults() {
+        const items = getSavedResults().map(enrichSavedItem);
+        savedAnalysisList.innerHTML = "";
+
+        if (!items.length) {
+          savedAnalysisEmpty.classList.remove("hidden");
+          return;
+        }
+
+        savedAnalysisEmpty.classList.add("hidden");
+
+        items.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = "soft-box";
+          div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:8px;">
+              <strong>${item.vegetable_type || "Sayuran Umum"}</strong>
+              <span class="small-muted">${item.saved_manual_at || "-"}</span>
+            </div>
+            <div class="small-muted" style="margin-bottom:8px;">Produk: ${item.product_name_real || item.vegetable_type || "Sayuran Umum"} • Skor: ${item.freshness_score || 0}/100 • Confidence: ${item.confidence || 0}% • Tahan: ${item.estimated_shelf_days} hari</div>
+            <div style="margin-bottom:8px;">Tanggal analisis: ${item.analysis_date_display || "-"} • Estimasi batas: ${item.estimated_expiry_display || "-"}</div>
+            <div style="margin-bottom:8px;">Status: <strong>${item.action_status}</strong> • ${item.action_label}</div>
+            <div style="margin-bottom:10px;">${item.recommendation || "-"}</div>
+            <div>
+              <button onclick="viewSaved(${index})" style="margin-right:6px;">👁 Lihat</button>
+              <button onclick="deleteSaved(${index})" style="margin-right:6px;">🗑 Hapus</button>
+              <button onclick="downloadSaved(${index})">⬇ Download</button>
+            </div>
+          `;
+          savedAnalysisList.appendChild(div);
+        });
+      }
+
+      function restoreFromStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const saved = JSON.parse(raw);
+          if (!saved || !saved.imageDataUrl) return;
+          currentImageUrl = saved.imageDataUrl;
+          currentFile = null;
+          showImage(saved.imageDataUrl, false);
+          if (saved.result) renderResult(saved.result, saved.savedAt || null);
+          setStatus("Data terakhir berhasil dipulihkan dari penyimpanan otomatis.");
+        } catch (err) {
+          console.warn("Gagal memulihkan autosave:", err);
+        }
+      }
+
+      function stopCamera() {
+        if (currentStream) {
+          currentStream.getTracks().forEach((track) => track.stop());
+          currentStream = null;
+        }
+        previewVideo.srcObject = null;
+        previewVideo.classList.add("hidden");
+        stopCameraBtn.classList.add("hidden");
+        startCameraBtn.classList.remove("hidden");
+        captureBtn.classList.add("hidden");
+      }
+
+      async function startCamera() {
+        try {
+          clearError();
+          clearStatus();
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment" },
+            audio: false,
+          });
+          currentStream = stream;
+          previewBox.classList.add("has-media");
+          emptyState.classList.add("hidden");
+          previewImage.classList.add("hidden");
+          previewVideo.classList.remove("hidden");
+          previewVideo.srcObject = stream;
+          startCameraBtn.classList.add("hidden");
+          stopCameraBtn.classList.remove("hidden");
+          captureBtn.classList.remove("hidden");
+          analyzeBtn.classList.add("hidden");
+          saveAnalysisBtn.classList.add("hidden");
+          takeImageBtn.classList.remove("hidden");
+        } catch (err) {
+          setError("Kamera tidak tersedia atau izin akses ditolak.");
+        }
+      }
+
+      function capturePhoto() {
+        if (!previewVideo.videoWidth || !previewVideo.videoHeight) {
+          setError("Video kamera belum siap.");
+          return;
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = previewVideo.videoWidth;
+        canvas.height = previewVideo.videoHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(previewVideo, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob((blob) => {
+          currentFile = new File([blob], "capture.jpg", { type: "image/jpeg" });
+          const url = URL.createObjectURL(blob);
+          showImage(url, false);
+          fileToDataURL(currentFile).then((dataUrl) => {
+            saveToStorage({ imageDataUrl: dataUrl, result: null, savedAt: new Date().toLocaleString("id-ID") });
+          });
+          stopCamera();
+        }, "image/jpeg", 0.92);
+      }
+
+      async function analyzeWithAPI(file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await fetch(API_URL, { method: "POST", body: formData });
+        if (!response.ok) throw new Error("API gagal merespons.");
+        return response.json();
+      }
+
+      function analyzeImageLocally(imgEl) {
+        const size = 160;
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        ctx.drawImage(imgEl, 0, 0, size, size);
+
+        const { data } = ctx.getImageData(0, 0, size, size);
+        let rSum = 0, gSum = 0, greenRatio = 0, yellowRatio = 0, brownRatio = 0, redRatio = 0, orangeRatio = 0, darkRatio = 0, brightRatio = 0, variance = 0;
+        const luminances = [];
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+          rSum += r;
+          gSum += g;
+          luminances.push(l);
+          if (g > r + 12 && g > b + 8) greenRatio++;
+          if (r > 145 && g > 130 && b < 120) yellowRatio++;
+          if (r > 95 && g > 60 && g < 125 && b < 80) brownRatio++;
+          if (r > 140 && r > g + 20) redRatio++;
+          if (r > 160 && g > 90 && g < 180 && b < 110) orangeRatio++;
+          if (l < 55) darkRatio++;
+          if (l > 190) brightRatio++;
+        }
+
+        const pixels = data.length / 4;
+        const avgR = rSum / pixels;
+        const avgG = gSum / pixels;
+        const brightness = luminances.reduce((a, c) => a + c, 0) / pixels;
+        for (const l of luminances) variance += Math.pow(l - brightness, 2);
+        variance /= pixels;
+
+        const textureScore = clamp((Math.sqrt(variance) / 64) * 100, 0, 100);
+        const stats = {
+          greenRatio: greenRatio / pixels,
+          brownRatio: brownRatio / pixels,
+          yellowRatio: yellowRatio / pixels,
+          redRatio: redRatio / pixels,
+          orangeRatio: orangeRatio / pixels,
+          darkRatio: darkRatio / pixels,
+          brightRatio: brightRatio / pixels,
+          brightness,
+          textureScore,
+        };
+
+        const freshnessScore = clamp(
+          55 + stats.greenRatio * 45 + stats.brightRatio * 10 + (avgG - avgR) * 0.12 - stats.brownRatio * 55 - stats.yellowRatio * 15 - stats.darkRatio * 18 - Math.max(0, stats.textureScore - 65) * 0.25,
+          5,
+          98
+        );
+
+        const confidence = clamp(
+          60 + Math.abs(stats.greenRatio - stats.brownRatio) * 100 + Math.abs(avgG - avgR) * 0.08 + Math.abs(stats.textureScore - 50) * 0.15,
+          58,
+          96
+        );
+
+        let reasons = [];
+        if (stats.greenRatio > 0.28) reasons.push("Dominasi warna hijau masih kuat");
+        if (stats.brownRatio > 0.08) reasons.push("Ada area kecokelatan yang menunjukkan penurunan kualitas");
+        if (stats.yellowRatio > 0.12) reasons.push("Mulai tampak kekuningan pada permukaan");
+        if (stats.textureScore > 70) reasons.push("Tekstur tampak kasar atau tidak merata");
+        if (!reasons.length) reasons = ["Warna dan tekstur berada di rentang menengah"];
+
+        return {
+          source: "demo-lokal",
+          vegetable_type: estimateVegetableType(stats),
+          freshness_score: Math.round(freshnessScore),
+          confidence: Math.round(confidence),
+          estimated_shelf_days: estimateShelfDays(Math.round(freshnessScore)),
+          stats: {
+            green_ratio: stats.greenRatio,
+            brown_ratio: stats.brownRatio,
+            texture_score: stats.textureScore,
+          },
+          reasons: reasons.slice(0, 3),
+          recommendation:
+            freshnessScore >= 80 ? "Layak dijual atau dikonsumsi dalam kondisi segar." :
+            freshnessScore >= 60 ? "Masih cukup baik, sebaiknya segera digunakan." :
+            freshnessScore >= 40 ? "Kualitas mulai turun, cek aroma dan tekstur manual." :
+            "Disarankan sortir ulang sebelum dijual atau dikonsumsi.",
+        };
+      }
+
+      async function analyzeCurrentImage() {
+        if (!previewImage.src) {
+          setError("Pilih gambar atau ambil foto terlebih dahulu.");
+          return;
+        }
+
+        clearError();
+        setStatus("Sedang menganalisis gambar...");
+
+        try {
+          let result;
+          if (currentFile) {
+            try {
+              result = await analyzeWithAPI(currentFile);
+            } catch (err) {
+              setStatus("Backend tidak aktif, memakai mode demo lokal...");
+              await previewImage.decode();
+              result = analyzeImageLocally(previewImage);
+            }
+          } else {
+            await previewImage.decode();
+            result = analyzeImageLocally(previewImage);
+          }
+
+          renderResult(result);
+          setStatus("Analisis selesai.");
+        } catch (err) {
+          clearStatus();
+          setError("Gagal memproses gambar. Coba gambar lain yang lebih jelas.");
+        }
+      }
+
+      function saveCurrentAnalysisManually() {
+        if (!lastAnalysisResult) {
+          setError("Belum ada hasil analisis yang bisa disimpan.");
+          return;
+        }
+        const enriched = enrichSavedItem(lastAnalysisResult);
+        const payload = {
+          ...enriched,
+          product_name_real: analysisProductName.value.trim() || enriched.product_name_real || enriched.vegetable_type || "Sayuran Umum",
+          analysis_date: analysisDate.value || enriched.analysis_date || getTodayDateInputValue(),
+          saved_manual_at: new Date().toLocaleString("id-ID"),
+        };
+        saveResultToHistory(payload);
+        setStatus("Hasil analisis berhasil disimpan.");
+        showPage("saved");
+      }
+
+      function resetAll() {
+        stopCamera();
+        clearError();
+        clearStatus();
+        resetResults();
+
+        if (currentImageUrl && currentImageUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(currentImageUrl);
+        }
+
+        currentImageUrl = "";
+        currentFile = null;
+        fileInput.value = "";
+        previewImage.src = "";
+        previewImage.classList.add("hidden");
+        previewBox.classList.remove("has-media");
+        emptyState.classList.remove("hidden");
+        analyzeBtn.classList.add("hidden");
+        saveAnalysisBtn.classList.add("hidden");
+        takeImageBtn.classList.add("hidden");
+        clearStorage();
+      }
+
+      window.viewSaved = function(index) {
+        const items = getSavedResults();
+        const item = items[index];
+        if (!item) return;
+        renderResult(item, item.saved_manual_at);
+        showPage("home");
+        setStatus("Menampilkan hasil tersimpan.");
+      };
+
+      window.deleteSaved = function(index) {
+        const items = getSavedResults();
+        items.splice(index, 1);
+        localStorage.setItem(SAVED_RESULTS_KEY, JSON.stringify(items));
+        renderSavedResults();
+        renderRecap();
+        renderSuggestions();
+        setStatus("Data berhasil dihapus.");
+      };
+
+      window.downloadSaved = function(index) {
+        const items = getSavedResults();
+        const item = items[index];
+        if (!item) return;
+        const blob = new Blob([JSON.stringify(item, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "hasil_analisis.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      fileInput.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        stopCamera();
+        clearError();
+        clearStatus();
+        resetResults();
+        currentFile = file;
+
+        try {
+          const dataUrl = await fileToDataURL(file);
+          showImage(dataUrl, true);
+        } catch (err) {
+          setError("Gagal membaca file gambar.");
+        }
+      });
+
+      navHomeBtn.addEventListener("click", () => showPage("home"));
+      navSavedBtn.addEventListener("click", () => showPage("saved"));
+      navOrderBtn.addEventListener("click", () => showPage("order"));
+      navRecapBtn.addEventListener("click", () => showPage("recap"));
+      navSuggestionBtn.addEventListener("click", () => showPage("suggestion"));
+
+      filter3Btn.addEventListener("click", () => setRecapFilter(3));
+      filter7Btn.addEventListener("click", () => setRecapFilter(7));
+      filter14Btn.addEventListener("click", () => setRecapFilter(14));
+
+      startCameraBtn.addEventListener("click", startCamera);
+      cameraFromEmptyBtn.addEventListener("click", startCamera);
+      stopCameraBtn.addEventListener("click", stopCamera);
+      captureBtn.addEventListener("click", capturePhoto);
+      analyzeBtn.addEventListener("click", analyzeCurrentImage);
+      saveAnalysisBtn.addEventListener("click", saveCurrentAnalysisManually);
+      takeImageBtn.addEventListener("click", resetAll);
+
+      saveOrderBtn.addEventListener("click", () => {
+        const payload = {
+          buyer_name: buyerName.value.trim(),
+          product_name: productName.value.trim(),
+          product_date: productDate.value || getTodayDateInputValue(),
+          qty: Number(orderQty.value || 0),
+          total_price: Number(orderPrice.value || 0),
+          created_at: new Date().toLocaleString("id-ID"),
+        };
+
+        if (!payload.buyer_name || !payload.product_name || payload.qty <= 0 || payload.total_price <= 0) {
+          setError("Lengkapi data pesanan terlebih dahulu.");
+          return;
+        }
+
+        clearError();
+        saveOrder(payload);
+        buyerName.value = "";
+        productName.value = "";
+        productDate.value = getTodayDateInputValue();
+        orderQty.value = "";
+        orderPrice.value = "";
+        setStatus("Pesanan berhasil disimpan.");
+      });
+
+      analysisDate.value = getTodayDateInputValue();
+      productDate.value = getTodayDateInputValue();
+
+      renderOrders();
+      renderSavedResults();
+      setRecapFilter(7);
+      renderSuggestions();
+      restoreFromStorage();
+    </script>
+  </body>
+</html>
