@@ -550,11 +550,6 @@
       margin-top:14px;
     }
 
-    .cart-total-label{
-      font-size:13px;
-      opacity:.8;
-    }
-
     .cart-total-value{
       margin-top:6px;
       font-size:28px;
@@ -805,7 +800,7 @@
       <div class="card">
         <h3 class="title">Pesan Produk</h3>
         <p class="desc">
-          Pembeli dapat mencari produk, memilih kategori, menambahkan ke keranjang, atau checkout langsung. Total pesanan akan otomatis menghitung ongkir.
+          Pembeli dapat mencari produk, memilih kategori, menambahkan ke keranjang, atau checkout langsung. Semua produk yang stoknya masih ada akan tampil di sini.
         </p>
 
         <div style="display:grid;gap:12px;margin-bottom:18px;">
@@ -977,7 +972,7 @@
             </div>
 
             <div class="form-grid-3" style="margin-bottom:12px;">
-              <input id="analysisQty" class="field" type="number" min="1" placeholder="Jumlah produk">
+              <input id="analysisQty" class="field" type="text" inputmode="numeric" placeholder="Jumlah produk">
               <select id="analysisUnit" class="field">
                 <option value="KG">KG</option>
                 <option value="Buah">Buah</option>
@@ -1104,7 +1099,7 @@
                   </div>
 
                   <div class="form-grid-3" style="margin-bottom:12px;">
-                    <input id="editBeforeSaveQty" class="field" type="number" min="0" placeholder="Jumlah produk">
+                    <input id="editBeforeSaveQty" class="field" type="text" inputmode="numeric" placeholder="Jumlah produk">
                     <select id="editBeforeSaveUnit" class="field">
                       <option value="KG">KG</option>
                       <option value="Buah">Buah</option>
@@ -1152,7 +1147,7 @@
           <div class="toolbar">
             <div>
               <h3 class="title">Data Produk</h3>
-              <p class="desc">Admin dapat edit atau hapus data yang sudah tersimpan.</p>
+              <p class="desc">Admin dapat melihat analisis, edit, atau hapus data yang sudah tersimpan.</p>
             </div>
             <button type="button" id="reloadCloudBtnAdmin" class="btn-info">🔄 Muat Ulang</button>
           </div>
@@ -1167,7 +1162,7 @@
             </div>
 
             <div class="form-grid-3" style="margin-top:12px;">
-              <input id="editQty" class="field" type="number" min="0" placeholder="Jumlah produk">
+              <input id="editQty" class="field" type="text" inputmode="numeric" placeholder="Jumlah produk">
               <select id="editUnit" class="field">
                 <option value="KG">KG</option>
                 <option value="Buah">Buah</option>
@@ -1277,6 +1272,95 @@
     </section>
   </div>
 
+  <div id="analysisModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9999;padding:20px;overflow:auto;">
+    <div style="max-width:900px;margin:30px auto;background:#fff;border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.18);overflow:hidden;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid #e2e8f0;background:#f8fafc;">
+        <div>
+          <div style="font-size:12px;color:#64748b;font-weight:700;">Detail Analisis Produk</div>
+          <div id="modalAnalysisTitle" style="font-size:22px;font-weight:800;">-</div>
+        </div>
+        <button type="button" onclick="closeAnalysisModal()" class="btn-danger">Tutup</button>
+      </div>
+
+      <div style="padding:20px; display:grid; gap:18px;">
+        <div class="grid-2">
+          <div>
+            <div id="modalAnalysisImageWrap" style="width:100%;min-height:280px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+              <div class="small">Tidak ada gambar</div>
+            </div>
+          </div>
+
+          <div style="display:grid; gap:14px;">
+            <div class="stat-grid">
+              <div class="stat">
+                <div class="stat-label">Kategori</div>
+                <div id="modalCategory" class="stat-value">-</div>
+              </div>
+              <div class="stat">
+                <div class="stat-label">Kualitas</div>
+                <div id="modalQuality" class="stat-value">-</div>
+              </div>
+              <div class="stat">
+                <div class="stat-label">Harga Final</div>
+                <div id="modalFinalPrice" class="stat-value">Rp 0</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="toolbar">
+                <span>Skor Kesegaran</span>
+                <strong id="modalFreshnessText">0/100</strong>
+              </div>
+              <div class="progress"><div id="modalFreshnessBar" class="bar"></div></div>
+            </div>
+
+            <div>
+              <div class="toolbar">
+                <span>Confidence</span>
+                <strong id="modalConfidenceText">0%</strong>
+              </div>
+              <div class="progress"><div id="modalConfidenceBar" class="bar" style="background:#0284c7;"></div></div>
+            </div>
+
+            <div class="price-range-box" id="modalPriceRangeBox">
+              Rentang harga AI: Rp 0 - Rp 0
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-label">Harga Tengah AI</div>
+            <div id="modalBasePrice" class="stat-value">Rp 0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Jumlah Stok</div>
+            <div id="modalQty" class="stat-value">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Satuan</div>
+            <div id="modalUnit" class="stat-value">-</div>
+          </div>
+        </div>
+
+        <div class="success">
+          <strong>Rekomendasi</strong>
+          <div id="modalRecommendation" style="margin-top:6px;">-</div>
+        </div>
+
+        <div class="warning">
+          <strong>Alasan Harga</strong>
+          <div id="modalPricingReason" style="margin-top:6px;">-</div>
+        </div>
+
+        <div>
+          <div style="font-weight:800; margin-bottom:8px;">Alasan Visual</div>
+          <div id="modalReasonList" class="list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="footer-inner">
       <div>
@@ -1306,12 +1390,12 @@
     const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrO4WqIOnICGttNAiIz8iqEQrQDNzDZB7GmFExj3IbWZ3S-_Bh_K7K-Cnh93mN7qKE/exec";
 
     const STORAGE_KEYS = {
-      saved: "veggievision_saved_v16",
-      orders: "veggievision_orders_v16",
-      auth: "veggievision_auth_v16",
-      store: "veggievision_store_v16",
-      feedback: "veggievision_feedback_v16",
-      cart: "veggievision_cart_v16"
+      saved: "veggievision_saved_v18",
+      orders: "veggievision_orders_v18",
+      auth: "veggievision_auth_v18",
+      store: "veggievision_store_v18",
+      feedback: "veggievision_feedback_v18",
+      cart: "veggievision_cart_v18"
     };
 
     const DEFAULT_ADMIN_PASSWORD = "admin123";
@@ -1375,6 +1459,13 @@
 
     function clamp(v, min, max){
       return Math.max(min, Math.min(max, v));
+    }
+
+    function parseFreeNumber(value){
+      if(value === null || value === undefined) return 0;
+      const cleaned = String(value).replace(/[^\d.,-]/g, "").replace(/,/g, "");
+      const num = Number(cleaned);
+      return isNaN(num) ? 0 : num;
     }
 
     function getShippingCost(method){
@@ -1883,7 +1974,7 @@
     function fillAdminEditBeforeSave(result){
       el("editBeforeSaveProductName").value = result.product_name_real || "";
       el("editBeforeSaveDate").value = el("analysisDate").value || todayValue();
-      el("editBeforeSaveQty").value = Number(el("analysisQty").value || 0);
+      el("editBeforeSaveQty").value = String(parseFreeNumber(el("analysisQty").value || 0));
       el("editBeforeSaveUnit").value = el("analysisUnit").value || "KG";
       el("editBeforeSaveCategory").value = el("analysisCategory").value || "Sayur";
       el("editBeforeSaveQuality").value = result.quality_label || "";
@@ -1930,7 +2021,7 @@
 
       el("analysisMeta").textContent =
         "Produk: " + (result.product_name_real || "-") +
-        " • Qty: " + (el("analysisQty").value || 0) + " " + (el("analysisUnit").value || "KG") +
+        " • Qty: " + parseFreeNumber(el("analysisQty").value || 0) + " " + (el("analysisUnit").value || "KG") +
         " • Kategori: " + (el("analysisCategory").value || "Sayur") +
         " • Rentang harga AI: " + formatRange(result.price_min || 0, result.price_max || 0);
 
@@ -1945,13 +2036,18 @@
       clearStatus();
 
       const productName = el("analysisProductName").value.trim();
-      const qty = Number(el("analysisQty").value || 0);
+      const qty = parseFreeNumber(el("analysisQty").value || 0);
       const unit = el("analysisUnit").value;
       const category = el("analysisCategory").value;
       const inputPrice = Number(el("analysisBasePrice").value || 0);
 
       if(!currentImageUrl){
         setError("Upload gambar dulu.");
+        return;
+      }
+
+      if(qty < 0){
+        setError("Jumlah produk tidak boleh kurang dari 0.");
         return;
       }
 
@@ -1971,12 +2067,18 @@
           return;
         }
 
+        const qtyValue = parseFreeNumber(el("editBeforeSaveQty").value || 0);
+        if(qtyValue < 0){
+          setError("Jumlah produk tidak boleh kurang dari 0.");
+          return;
+        }
+
         const item = {
           saved_id: "",
           product_name_real: el("editBeforeSaveProductName").value.trim() || "Produk",
           vegetable_type: el("editBeforeSaveCategory").value.trim() || "Sayur",
           analysis_date: el("editBeforeSaveDate").value || todayValue(),
-          qty: Number(el("editBeforeSaveQty").value || 0),
+          qty: qtyValue,
           unit: el("editBeforeSaveUnit").value || "KG",
           price_per_unit: finalPrice,
           base_price_per_unit: Number(el("editBeforeSaveBasePrice").value || 0),
@@ -2055,13 +2157,14 @@
               '<span class="status-pill pay-lunas">' + escapeHtml(item.quality_label || "-") + '</span>' +
             '</div>' +
             '<div class="small">Kategori: ' + escapeHtml(item.vegetable_type || "-") + '</div>' +
-            '<div class="small">Jumlah: ' + item.qty + ' ' + escapeHtml(item.unit || "KG") + '</div>' +
-            '<div class="small">Skor: ' + item.freshness_score + '/100</div>' +
+            '<div class="small">Jumlah: ' + Number(item.qty || 0) + ' ' + escapeHtml(item.unit || "KG") + '</div>' +
+            '<div class="small">Skor: ' + Number(item.freshness_score || 0) + '/100</div>' +
             '<div class="small">Rentang AI: ' + formatRange(item.price_min || 0, item.price_max || 0) + '</div>' +
             '<div class="small">Harga jual final: ' + formatCurrency(item.price_per_unit || 0) + '</div>' +
             '<div class="small">Harga tengah AI: ' + formatCurrency(item.base_price_per_unit || 0) + '</div>' +
             '<div style="margin-top:8px;">' + escapeHtml(item.pricing_reason || "-") + '</div>' +
             '<div class="row" style="margin-top:12px;">' +
+              '<button type="button" class="btn-info" onclick="openAnalysisModal(' + index + ')">Lihat Analisis</button>' +
               '<button type="button" onclick="openEditSaved(' + index + ')">Edit</button>' +
               '<button type="button" class="btn-danger" onclick="deleteSaved(' + index + ')">Hapus</button>' +
             '</div>' +
@@ -2069,6 +2172,77 @@
 
         el("savedList").appendChild(div);
       });
+    }
+
+    function openAnalysisModal(index){
+      const items = getSavedResults();
+      const item = items[index];
+      if(!item) return;
+
+      el("modalAnalysisTitle").textContent = item.product_name_real || "-";
+      el("modalCategory").textContent = item.vegetable_type || "-";
+      el("modalQuality").textContent = item.quality_label || "-";
+      el("modalFinalPrice").textContent = formatCurrency(item.price_per_unit || 0);
+      el("modalBasePrice").textContent = formatCurrency(item.base_price_per_unit || 0);
+      el("modalQty").textContent = Number(item.qty || 0);
+      el("modalUnit").textContent = item.unit || "-";
+      el("modalRecommendation").textContent = item.recommendation || "-";
+      el("modalPricingReason").textContent = item.pricing_reason || "-";
+      el("modalPriceRangeBox").textContent = "Rentang harga AI: " + formatRange(item.price_min || 0, item.price_max || 0);
+
+      const freshness = Number(item.freshness_score || 0);
+      const confidence = Number(item.confidence || 0);
+
+      el("modalFreshnessText").textContent = freshness + "/100";
+      el("modalConfidenceText").textContent = confidence + "%";
+      el("modalFreshnessBar").style.width = freshness + "%";
+      el("modalConfidenceBar").style.width = confidence + "%";
+
+      let pillColor = "#16a34a";
+      if(freshness < 70) pillColor = "#f59e0b";
+      if(freshness < 50) pillColor = "#e11d48";
+      el("modalFreshnessBar").style.background = pillColor;
+
+      const wrap = el("modalAnalysisImageWrap");
+      wrap.innerHTML = item.image_data_url
+        ? '<img src="' + escapeHtml(item.image_data_url) + '" alt="Produk" style="width:100%;height:100%;max-height:420px;object-fit:cover;display:block;">'
+        : '<div class="small">Tidak ada gambar</div>';
+
+      const reasons = [];
+      if(freshness >= 85){
+        reasons.push("Warna terlihat cerah dan menarik.");
+        reasons.push("Indikasi kesegaran visual cukup tinggi.");
+        reasons.push("Permukaan produk terlihat rapi dan minim cacat.");
+      } else if(freshness >= 70){
+        reasons.push("Kondisi visual masih baik untuk penjualan.");
+        reasons.push("Tidak terlihat tanda kerusakan berat.");
+        reasons.push("Kualitas masih menarik untuk pembeli.");
+      } else if(freshness >= 50){
+        reasons.push("Kesegaran terlihat menurun dibanding produk baru.");
+        reasons.push("Perlu diprioritaskan untuk penjualan lebih cepat.");
+        reasons.push("Harga sebaiknya sedikit disesuaikan agar menarik.");
+      } else {
+        reasons.push("Visual menunjukkan indikasi kualitas menurun.");
+        reasons.push("Perlu evaluasi sebelum dijual penuh.");
+        reasons.push("Harga perlu diturunkan agar cepat terserap.");
+      }
+
+      reasons.push("Confidence analisis: " + confidence + "%.");
+      reasons.push("Kategori produk: " + (item.vegetable_type || "-") + ".");
+
+      el("modalReasonList").innerHTML = "";
+      reasons.forEach(reason => {
+        const div = document.createElement("div");
+        div.className = "soft";
+        div.textContent = reason;
+        el("modalReasonList").appendChild(div);
+      });
+
+      el("analysisModal").classList.remove("hidden");
+    }
+
+    function closeAnalysisModal(){
+      el("analysisModal").classList.add("hidden");
     }
 
     function openEditSaved(index){
@@ -2080,7 +2254,7 @@
       el("editSavedIndex").value = index;
       el("editProductName").value = item.product_name_real || "";
       el("editAnalysisDate").value = item.analysis_date || todayValue();
-      el("editQty").value = item.qty || 0;
+      el("editQty").value = String(item.qty || 0);
       el("editUnit").value = item.unit || "KG";
       el("editVegetableType").value = item.vegetable_type || "Sayur";
       el("editQualityLabel").value = item.quality_label || "";
@@ -2107,10 +2281,16 @@
         return;
       }
 
+      const qtyValue = parseFreeNumber(el("editQty").value || 0);
+      if(qtyValue < 0){
+        alert("Jumlah produk tidak boleh kurang dari 0.");
+        return;
+      }
+
       const item = items[index];
       item.product_name_real = el("editProductName").value.trim() || item.product_name_real;
       item.analysis_date = el("editAnalysisDate").value || item.analysis_date;
-      item.qty = Number(el("editQty").value || 0);
+      item.qty = qtyValue;
       item.unit = el("editUnit").value || item.unit;
       item.vegetable_type = el("editVegetableType").value.trim() || item.vegetable_type;
       item.quality_label = el("editQualityLabel").value.trim() || item.quality_label;
@@ -2229,7 +2409,7 @@
               '<span class="status-pill pay-lunas">' + escapeHtml(product.quality_label) + '</span>' +
             '</div>' +
             '<div class="small" style="margin-top:8px;">Kategori: ' + escapeHtml(product.category) + '</div>' +
-            '<div class="small">Stok: ' + product.stock + ' ' + escapeHtml(product.unit) + '</div>' +
+            '<div class="small">Stok tersedia: ' + product.stock + ' ' + escapeHtml(product.unit) + '</div>' +
             '<div class="product-price">' +
               '<div class="product-price-label">Harga Produk</div>' +
               '<div class="product-price-value">' + formatCurrency(product.price) + '</div>' +
@@ -2967,16 +3147,14 @@
       }
     });
 
-    if (el("reloadFeedbackBtn")) {
-      el("reloadFeedbackBtn").addEventListener("click", async () => {
-        try {
-          await fetchFeedbackCloud();
-          renderAdminFeedbacks();
-        } catch (err) {
-          alert("Gagal memuat ulang kritik & saran: " + err.message);
-        }
-      });
-    }
+    el("reloadFeedbackBtn").addEventListener("click", async () => {
+      try {
+        await fetchFeedbackCloud();
+        renderAdminFeedbacks();
+      } catch (err) {
+        alert("Gagal memuat ulang kritik & saran: " + err.message);
+      }
+    });
 
     el("searchProductInput").addEventListener("input", renderProductCatalog);
     el("filterCategoryInput").addEventListener("change", renderProductCatalog);
@@ -3064,6 +3242,8 @@
     window.openEditSaved = openEditSaved;
     window.deleteSaved = deleteSaved;
     window.deleteFeedback = deleteFeedback;
+    window.openAnalysisModal = openAnalysisModal;
+    window.closeAnalysisModal = closeAnalysisModal;
 
     async function syncCloudSilently(){
       if(isSyncing) return;
