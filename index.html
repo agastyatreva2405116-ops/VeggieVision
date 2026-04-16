@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VeggieVision</title>
+  <title>VeggieVision AI</title>
   <style>
     :root{
       --bg:#f6f8fb;
@@ -14,8 +14,8 @@
       --primary:#16a34a;
       --primary-dark:#15803d;
       --danger:#e11d48;
-      --warning:#f59e0b;
       --info:#0284c7;
+      --warning:#f59e0b;
       --shadow:0 10px 25px rgba(15,23,42,.08);
       --radius:18px;
     }
@@ -68,21 +68,21 @@
     .hero{
       background:linear-gradient(135deg, var(--primary-dark), var(--primary));
       color:white;
-      padding:24px;
+      padding:28px;
       border-radius:24px;
       box-shadow:0 18px 35px rgba(22,163,74,.18);
       margin-bottom:20px;
     }
 
     .hero h1{
-      margin:0 0 8px;
+      margin:0 0 10px;
       font-size:34px;
     }
 
     .hero p{
       margin:0;
-      line-height:1.6;
-      opacity:.95;
+      line-height:1.7;
+      opacity:.96;
     }
 
     .grid-2{
@@ -91,9 +91,15 @@
       gap:20px;
     }
 
-    .grid-3{
+    .form-grid-2{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:1fr 220px;
+      gap:12px;
+    }
+
+    .form-grid-3{
+      display:grid;
+      grid-template-columns:1fr 180px 180px;
       gap:12px;
     }
 
@@ -127,14 +133,18 @@
       font:inherit;
     }
 
-    textarea.field{
-      min-height:100px;
-      resize:vertical;
-    }
-
     .field:focus{
       border-color:var(--primary);
       box-shadow:0 0 0 3px rgba(22,163,74,.12);
+    }
+
+    textarea.field{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .textarea-large{
+      min-height:220px !important;
     }
 
     .row{
@@ -197,7 +207,7 @@
     }
 
     .preview{
-      min-height:360px;
+      min-height:340px;
       border:2px dashed var(--line);
       border-radius:20px;
       background:#f8fafc;
@@ -295,7 +305,7 @@
 
     .stat-value{
       margin-top:6px;
-      font-size:24px;
+      font-size:22px;
       font-weight:800;
     }
 
@@ -327,188 +337,6 @@
 
     .page{display:block}
     .page.hidden{display:none}
-
-    .badge{
-      display:inline-flex;
-      padding:6px 10px;
-      border-radius:999px;
-      color:white;
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .invoice{
-      background:white;
-      color:#111827;
-      padding:28px;
-      border-radius:16px;
-      max-width:900px;
-      margin:20px auto;
-      border:1px solid #d1d5db;
-    }
-
-    .invoice h2,.invoice h3,.invoice p{
-      margin:0 0 8px;
-    }
-
-    .invoice table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:14px;
-    }
-
-    .invoice th,.invoice td{
-      border:1px solid #d1d5db;
-      padding:10px;
-      text-align:left;
-    }
-
-    .invoice .line{
-      height:1px;
-      background:#d1d5db;
-      margin:16px 0;
-    }
-
-    .market-layout{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-    }
-
-    .market-toolbar{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-
-    .market-toolbar .field{
-      flex:1;
-      min-width:180px;
-    }
-
-    .product-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:14px;
-    }
-
-    .product-card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      background:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .product-card img{
-      width:100%;
-      height:190px;
-      object-fit:cover;
-      border-radius:14px;
-      margin-bottom:12px;
-      background:#f3f4f6;
-    }
-
-    .product-card h4{
-      margin:0 0 8px;
-      font-size:18px;
-    }
-
-    .product-meta{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.5;
-      margin-bottom:8px;
-    }
-
-    .product-price{
-      font-size:22px;
-      font-weight:800;
-      margin:8px 0 12px;
-    }
-
-    .product-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .qty-box{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:10px;
-    }
-
-    .qty-box input{
-      width:90px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:10px;
-      font:inherit;
-    }
-
-    .cart-box{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      background:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .cart-item{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      margin-bottom:10px;
-      background:#f8fafc;
-    }
-
-    .cart-total{
-      font-size:22px;
-      font-weight:800;
-      margin-top:10px;
-    }
-
-    .checkout-summary{
-      background:#f8fafc;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      margin-top:12px;
-    }
-
-    .order-history-card{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      background:#fff;
-    }
-
-    .status-pill{
-      display:inline-flex;
-      align-items:center;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:800;
-      color:white;
-    }
-
-    .status-menunggu{ background:#f59e0b; }
-    .status-diproses{ background:#0284c7; }
-    .status-selesai{ background:#16a34a; }
-    .status-dibatalkan{ background:#e11d48; }
-
-    .pay-belum{ background:#6b7280; }
-    .pay-lunas{ background:#16a34a; }
-
-    .saved-new-highlight{
-      border:2px solid #16a34a !important;
-      background:#ecfdf5 !important;
-      box-shadow:0 0 0 4px rgba(22,163,74,.08);
-    }
 
     .saved-grid{
       display:grid;
@@ -542,49 +370,123 @@
       display:block;
     }
 
-    .saved-edit-box{
-      margin-bottom:16px;
-      border:2px solid #16a34a;
-      background:#ecfdf5;
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      color:white;
     }
 
-    .edit-image-preview{
-      width:180px;
-      height:140px;
-      object-fit:cover;
-      border-radius:12px;
+    .status-menunggu{ background:#f59e0b; }
+    .status-diproses{ background:#0284c7; }
+    .status-selesai{ background:#16a34a; }
+    .status-dibatalkan{ background:#e11d48; }
+
+    .pay-belum{ background:#6b7280; }
+    .pay-lunas{ background:#16a34a; }
+
+    .product-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+
+    .product-card{
+      background:white;
       border:1px solid var(--line);
-      background:#fff;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .product-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+      background:#f3f4f6;
+    }
+
+    .product-card-body{
+      padding:14px;
+    }
+
+    .section-label{
+      display:inline-block;
+      font-size:12px;
+      font-weight:800;
+      color:#166534;
+      background:#dcfce7;
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+
+    .login-admin-box{
+      margin-top:18px;
+      padding:18px 20px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:18px;
+      background:rgba(255,255,255,.08);
+      width:100%;
       display:block;
     }
 
-    .edit-table-wrap{
-      overflow:auto;
-      border:1px solid #bbf7d0;
-      border-radius:14px;
-      background:white;
-    }
-
-    .edit-table{
+    .login-admin-box .login-admin-inner{
       width:100%;
-      border-collapse:collapse;
-      min-width:700px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
     }
 
-    .edit-table th,
-    .edit-table td{
-      border-bottom:1px solid #dcfce7;
-      padding:12px;
-      vertical-align:top;
-      text-align:left;
+    .edit-panel{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      margin-top:16px;
     }
 
-    .edit-table th{
-      width:220px;
-      background:#f0fdf4;
-      color:#166534;
-      font-size:14px;
+    .admin-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#111827;
+      color:#fff;
+      font-size:12px;
       font-weight:800;
+    }
+
+    .empty-analysis{
+      min-height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .empty-analysis-box{
+      width:100%;
+      border:1px dashed var(--line);
+      border-radius:20px;
+      padding:28px;
+      text-align:center;
+      background:linear-gradient(180deg,#f8fafc 0%,#ffffff 100%);
+    }
+
+    .price-range-box{
+      background:#eff6ff;
+      border:1px solid #bfdbfe;
+      color:#1d4ed8;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
     }
 
     .footer{
@@ -609,12 +511,10 @@
     }
 
     .footer p,
-    .footer li,
-    .footer a{
+    .footer li{
       margin:0;
       color:#cbd5e1;
       line-height:1.8;
-      text-decoration:none;
     }
 
     .footer ul{
@@ -634,38 +534,18 @@
     }
 
     @media (max-width: 950px){
-      .grid-2, .grid-3, .stat-grid, .footer-inner{
+      .grid-2,.stat-grid,.footer-inner,.saved-grid,.product-list,.form-grid-2,.form-grid-3{
         grid-template-columns:1fr;
       }
       .hero h1{
         font-size:28px;
       }
-      .market-layout{
-        grid-template-columns:1fr;
+      .login-admin-box .login-admin-inner{
+        align-items:flex-start;
+        flex-direction:column;
       }
-      .product-grid{
-        grid-template-columns:1fr;
-      }
-      .saved-grid{
-        grid-template-columns:1fr;
-      }
-      .saved-image-wrap{
-        height:220px;
-      }
-      .edit-image-preview{
-        width:100%;
-        height:220px;
-      }
-    }
-
-    @media print{
-      body *{visibility:hidden}
-      #invoiceArea, #invoiceArea *{visibility:visible}
-      #invoiceArea{
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
+      .empty-analysis{
+        min-height:auto;
       }
     }
   </style>
@@ -673,488 +553,648 @@
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">🥬 VeggieVision</div>
+      <div class="brand">🥬 VeggieVision AI</div>
       <div class="nav">
-        <button type="button" class="nav-btn active" data-page="home">Beranda</button>
-        <button type="button" class="nav-btn" data-page="saved">Data</button>
-        <button type="button" class="nav-btn" data-page="order">Pesan</button>
-        <button type="button" class="nav-btn" data-page="recap">Rekap</button>
-        <button type="button" class="nav-btn" data-page="suggestion">Saran</button>
-        <button type="button" class="nav-btn" data-page="admin">Admin</button>
+        <button type="button" class="nav-btn active" data-page="buyerHome">Beranda</button>
+        <button type="button" class="nav-btn" data-page="buyerOrders">Pesan</button>
+        <button type="button" class="nav-btn" data-page="buyerFeedback">Kritik &amp; Saran</button>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <section id="homePage" class="page">
+    <section id="buyerHomePage" class="page">
       <div class="hero">
-        <h1>Analisis kesegaran sayuran dengan tampilan rapi</h1>
-        <p>Upload gambar atau buka kamera, lalu analisis. Hasil bisa disimpan ke pusat, diedit, dihapus, dipakai untuk rekap stok, saran penjualan, dan checkout ke WhatsApp.</p>
+        <h1>Selamat datang di VeggieVision</h1>
+        <p>
+          Pembeli dapat mengunggah foto atau menggunakan kamera untuk menganalisis produk, melihat hasilnya, dan memanfaatkan fitur pembeli tanpa login admin.
+        </p>
+
+        <div class="login-admin-box">
+          <div class="login-admin-inner">
+            <div>
+              <div style="font-weight:800; margin-bottom:6px; font-size:18px;">Khusus Pengelola Toko</div>
+              <div style="opacity:.95; line-height:1.6;">Masuk ke dashboard admin untuk mengelola produk, pesanan, kritik &amp; saran, serta pengaturan toko.</div>
+            </div>
+            <button type="button" class="btn-primary" onclick="showPage('adminLogin')">Login Admin</button>
+          </div>
+        </div>
       </div>
 
       <div class="grid-2">
         <div class="card">
-          <h3 class="title">Input Gambar</h3>
-          <p class="desc">Masukkan data produk, lalu upload foto atau gunakan kamera.</p>
+          <span class="section-label">Analisis Produk</span>
+          <h3 class="title">Cek kualitas sayur dari foto</h3>
+          <p class="desc">
+            Pembeli bisa mencoba analisis produk dari foto, tetapi hasil dari halaman ini tidak dapat disimpan ke database.
+          </p>
 
-          <div class="grid-3" style="margin-bottom:12px;">
-            <input id="analysisProductName" class="field" placeholder="Nama produk, contoh: Bayam Hijau">
-            <input id="analysisDate" class="field" type="date">
-            <div class="row">
-              <input id="analysisQty" class="field" type="number" min="1" placeholder="Jumlah" style="flex:1;">
-              <select id="analysisUnit" class="field" style="max-width:120px;">
-                <option value="KG">KG</option>
-                <option value="Buah">Buah</option>
-                <option value="Ikat">Ikat</option>
-              </select>
-            </div>
-          </div>
+          <input id="buyerFileInput" type="file" accept="image/*" class="hidden">
 
-          <div class="grid-2" style="margin-bottom:12px;">
-            <input id="analysisPricePerUnit" class="field" type="number" min="0" placeholder="Harga per satuan, contoh 15000">
-            <input id="analysisRecommendationManual" class="field" placeholder="Catatan tambahan / rekomendasi">
-          </div>
-
-          <input id="fileInput" type="file" accept="image/*" class="hidden">
-
-          <div id="previewBox" class="preview">
-            <div id="emptyState">
-              <div class="circle">🥗</div>
+          <div id="buyerPreviewBox" class="preview">
+            <div id="buyerEmptyState">
+              <div class="circle">📷</div>
               <h3>Belum ada gambar</h3>
-              <p class="desc">Pilih upload atau buka kamera.</p>
+              <p class="desc">Upload foto atau buka kamera untuk analisis.</p>
               <div class="row" style="justify-content:center;">
-                <label for="fileInput" class="btn-label btn-primary">📤 Upload Foto</label>
-                <button type="button" id="openCameraFromEmpty">📷 Buka Kamera</button>
+                <label for="buyerFileInput" class="btn-label btn-primary">📤 Upload Foto</label>
+                <button type="button" id="buyerOpenCameraBtn">📷 Buka Kamera</button>
               </div>
             </div>
-            <img id="previewImage" class="hidden" alt="Preview">
-            <video id="previewVideo" class="hidden" autoplay playsinline muted></video>
+            <img id="buyerPreviewImage" class="hidden" alt="Preview pembeli">
+            <video id="buyerPreviewVideo" class="hidden" autoplay playsinline muted></video>
           </div>
 
           <div class="row" style="margin-top:12px;">
-            <label for="fileInput" class="btn-label">📤 Upload</label>
-            <button type="button" id="startCameraBtn">📷 Kamera</button>
-            <button type="button" id="stopCameraBtn" class="hidden">✖ Tutup Kamera</button>
-            <button type="button" id="captureBtn" class="hidden">📸 Ambil Foto</button>
-            <button type="button" id="analyzeBtn" class="hidden btn-success">🧠 Analisis</button>
-            <button type="button" id="saveAnalysisBtn" class="hidden btn-primary">💾 Simpan ke Pusat</button>
-            <button type="button" id="resetBtn">↺ Reset</button>
+            <label for="buyerFileInput" class="btn-label">📤 Upload</label>
+            <button type="button" id="buyerStartCameraBtn">📷 Kamera</button>
+            <button type="button" id="buyerStopCameraBtn" class="hidden">✖ Tutup Kamera</button>
+            <button type="button" id="buyerCaptureBtn" class="hidden">📸 Ambil Foto</button>
+            <button type="button" id="buyerAnalyzeBtn" class="btn-success hidden">🤖 Analisis</button>
+            <button type="button" id="buyerResetBtn">↺ Reset</button>
           </div>
 
-          <div id="statusBox" class="status hidden"></div>
-          <div id="errorBox" class="error hidden"></div>
+          <div id="buyerStatusBox" class="status hidden"></div>
+          <div id="buyerErrorBox" class="error hidden"></div>
+          <div class="warning">Versi ini memakai simulasi lokal, jadi analisis berjalan langsung di browser tanpa backend.</div>
         </div>
 
         <div class="card">
-          <h3 class="title">Hasil Analisis</h3>
-          <p class="desc">Hasil akan tampil di sini setelah gambar diproses.</p>
+          <span class="section-label">Hasil Analisis</span>
+          <h3 class="title">Preview hasil</h3>
+          <p class="desc">Hasil AI simulasi akan tampil di sini setelah gambar dianalisis.</p>
 
-          <div id="resultEmpty" class="soft">Belum ada hasil analisis.</div>
+          <div id="buyerResultEmpty" class="soft">Belum ada hasil analisis.</div>
 
-          <div id="resultContent" class="hidden">
+          <div id="buyerResultContent" class="hidden">
             <div class="toolbar" style="margin-bottom:14px;">
               <div>
                 <div class="small">Kategori</div>
-                <div id="vegType" style="font-size:28px;font-weight:800;">-</div>
+                <div id="buyerVegType" style="font-size:28px;font-weight:800;">-</div>
               </div>
-              <div id="freshnessPill" class="pill">-</div>
+              <div id="buyerFreshnessPill" class="pill">-</div>
             </div>
 
             <div style="display:grid;gap:14px;">
               <div>
                 <div class="toolbar">
                   <span>Skor Kesegaran</span>
-                  <strong id="freshnessScoreText">0/100</strong>
+                  <strong id="buyerFreshnessScoreText">0/100</strong>
                 </div>
-                <div class="progress"><div id="freshnessBar" class="bar"></div></div>
+                <div class="progress"><div id="buyerFreshnessBar" class="bar"></div></div>
               </div>
 
               <div>
                 <div class="toolbar">
                   <span>Confidence</span>
-                  <strong id="confidenceText">0%</strong>
+                  <strong id="buyerConfidenceText">0%</strong>
                 </div>
-                <div class="progress"><div id="confidenceBar" class="bar" style="background:#0284c7;"></div></div>
+                <div class="progress"><div id="buyerConfidenceBar" class="bar" style="background:#0284c7;"></div></div>
               </div>
 
               <div class="stat-grid">
                 <div class="stat">
-                  <div class="stat-label">Dominasi Hijau</div>
-                  <div id="greenValue" class="stat-value">0%</div>
+                  <div class="stat-label">Harga Tengah AI</div>
+                  <div id="buyerBasePriceValue" class="stat-value">Rp 0</div>
                 </div>
                 <div class="stat">
-                  <div class="stat-label">Area Kecokelatan</div>
-                  <div id="brownValue" class="stat-value">0%</div>
+                  <div class="stat-label">Rentang Harga</div>
+                  <div id="buyerSuggestedPriceValue" class="stat-value">Rp 0 - Rp 0</div>
                 </div>
                 <div class="stat">
-                  <div class="stat-label">Skor Tekstur</div>
-                  <div id="textureValue" class="stat-value">0</div>
+                  <div class="stat-label">Kualitas</div>
+                  <div id="buyerQualityValue" class="stat-value">-</div>
                 </div>
               </div>
 
               <div class="success">
                 <strong>Rekomendasi</strong>
-                <div id="recommendationText" style="margin-top:6px;">-</div>
+                <div id="buyerRecommendationText" style="margin-top:6px;">-</div>
+              </div>
+
+              <div class="warning">
+                <strong>Alasan Harga</strong>
+                <div id="buyerPricingReasonText" style="margin-top:6px;">-</div>
               </div>
 
               <div>
-                <div style="font-weight:800;margin-bottom:8px;">Alasan</div>
-                <div id="reasonList" class="list"></div>
+                <div style="font-weight:800;margin-bottom:8px;">Alasan Visual</div>
+                <div id="buyerReasonList" class="list"></div>
               </div>
-
-              <div id="analysisMeta" class="small">-</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="savedPage" class="page hidden">
+    <section id="buyerOrdersPage" class="page hidden">
       <div class="card">
-        <div class="toolbar">
-          <div>
-            <h3 class="title">Data Tersimpan</h3>
-            <p class="desc">Semua hasil analisis yang tersimpan di pusat akan tampil di sini.</p>
+        <h3 class="title">Pesan Produk</h3>
+        <p class="desc">
+          Pembeli dapat langsung memesan produk yang tersedia. Harga yang tampil di sini berasal dari harga final yang diisi admin saat menyimpan data.
+        </p>
+
+        <div style="display:grid;gap:12px;margin-bottom:16px;">
+          <input id="buyerName" class="field" placeholder="Nama pembeli">
+          <input id="buyerPhone" class="field" placeholder="Nomor WhatsApp pembeli">
+          <textarea id="buyerAddress" class="field" placeholder="Alamat pembeli"></textarea>
+        </div>
+
+        <div class="toolbar" style="margin-bottom:12px;">
+          <h4 class="title" style="font-size:18px;margin:0;">Daftar Produk</h4>
+          <button type="button" id="reloadCloudBtn" class="btn-info">🔄 Muat Ulang</button>
+        </div>
+
+        <div id="productCatalogEmpty" class="soft">Belum ada produk tersedia.</div>
+        <div id="productCatalogList" class="product-list"></div>
+
+        <div class="toolbar" style="margin-top:24px;margin-bottom:12px;">
+          <h4 class="title" style="font-size:18px;margin:0;">Riwayat Pesanan</h4>
+          <button type="button" id="clearOrdersBtn" class="btn-danger">Hapus Semua</button>
+        </div>
+        <div id="orderEmpty" class="soft">Belum ada pesanan.</div>
+        <div id="orderList" class="list"></div>
+      </div>
+    </section>
+
+    <section id="buyerFeedbackPage" class="page hidden">
+      <div class="card">
+        <span class="section-label">Kritik &amp; Saran</span>
+        <h3 class="title">Kirim masukan untuk admin</h3>
+        <p class="desc">
+          Tulis kritik atau saran Anda pada kolom di bawah ini. Setelah tombol kirim ditekan,
+          pesan akan langsung masuk ke dashboard admin dan tersimpan ke database pusat.
+        </p>
+
+        <div style="display:grid; gap:12px; max-width:900px;">
+          <textarea
+            id="feedbackMessage"
+            class="field textarea-large"
+            placeholder="Tuliskan kritik dan saran Anda di sini..."
+          ></textarea>
+        </div>
+
+        <div class="row" style="margin-top:14px;">
+          <button type="button" id="sendFeedbackBtn" class="btn-primary">Kirim</button>
+          <button type="button" id="resetFeedbackBtn">Reset</button>
+        </div>
+
+        <div id="feedbackStatusBox" class="success hidden"></div>
+        <div id="feedbackErrorBox" class="error hidden"></div>
+      </div>
+    </section>
+
+    <section id="adminLoginPage" class="page hidden">
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="title">Login Admin</h3>
+          <p class="desc">Masukkan kata sandi untuk masuk ke dashboard admin.</p>
+
+          <div id="adminLoginBox">
+            <div style="display:grid;gap:12px;">
+              <input id="adminPinInput" class="field" type="password" placeholder="Masukkan kata sandi">
+              <button type="button" id="loginAdminBtn" class="btn-primary">Login</button>
+            </div>
           </div>
-          <div class="row">
-            <button type="button" id="reloadCloudBtn" class="btn-info">🔄 Muat Ulang dari Pusat</button>
+
+          <div id="adminPanel" class="hidden" style="margin-top:14px;">
+            <div class="success">Login berhasil.</div>
+            <div style="margin-top:10px;">
+              <span class="admin-badge">ADMIN</span>
+            </div>
+            <div class="row" style="margin-top:12px;">
+              <button type="button" class="btn-primary" onclick="showPage('adminDashboard')">Buka Dashboard</button>
+              <button type="button" id="logoutAdminBtn">Logout</button>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:14px;">
+            <button type="button" onclick="showPage('buyerHome')">← Kembali ke Beranda</button>
           </div>
         </div>
 
-        <div id="savedEditBox" class="card saved-edit-box hidden">
-          <div class="toolbar" style="margin-bottom:12px;">
-            <div>
-              <h4 class="title" style="font-size:18px;margin:0;">Edit Produk</h4>
-              <div class="small">Perubahan di sini langsung update ke Google Sheets pusat.</div>
+        <div class="card">
+          <h3 class="title">Dashboard Admin</h3>
+          <div class="item">
+            <div class="small">Versi ini memakai analisis simulasi lokal. Harga rekomendasi ditentukan AI sebagai rentang harga, lalu admin wajib mengisi harga final sebelum simpan.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="adminDashboardPage" class="page hidden">
+      <div class="hero">
+        <h1>Dashboard Admin</h1>
+        <p>Semua fitur pengelolaan tersedia di sini.</p>
+      </div>
+
+      <div class="row" style="margin-bottom:18px;">
+        <button type="button" class="nav-btn active" data-admin-tab="analysis">Analisis AI</button>
+        <button type="button" class="nav-btn" data-admin-tab="saved">Data Produk</button>
+        <button type="button" class="nav-btn" data-admin-tab="orders">Kelola Pesanan</button>
+        <button type="button" class="nav-btn" data-admin-tab="feedback">Kritik &amp; Saran</button>
+        <button type="button" class="nav-btn" data-admin-tab="recap">Rekap</button>
+        <button type="button" class="nav-btn" data-admin-tab="settings">Pengaturan</button>
+        <button type="button" onclick="showPage('buyerHome')">← Kembali ke Beranda</button>
+      </div>
+
+      <section id="adminTabAnalysis" class="admin-tab">
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="title">Input Data Produk</h3>
+            <p class="desc">Upload foto, analisis, lalu isi harga final di hasil analisis sebelum simpan ke database.</p>
+
+            <div class="form-grid-2" style="margin-bottom:12px;">
+              <input id="analysisProductName" class="field" placeholder="Nama produk">
+              <input id="analysisDate" class="field" type="date">
             </div>
+
+            <div class="form-grid-3" style="margin-bottom:12px;">
+              <input id="analysisQty" class="field" type="number" min="1" placeholder="Jumlah produk">
+              <select id="analysisUnit" class="field">
+                <option value="KG">KG</option>
+                <option value="Buah">Buah</option>
+                <option value="Ikat">Ikat</option>
+              </select>
+              <select id="analysisCategory" class="field">
+                <option value="Sayur">Sayur</option>
+                <option value="Buah">Buah</option>
+              </select>
+            </div>
+
+            <div class="form-grid-2" style="margin-bottom:12px;">
+              <input id="analysisBasePrice" class="field" type="number" min="0" placeholder="Harga dasar opsional (boleh kosong)">
+              <input id="analysisRecommendationManual" class="field" placeholder="Catatan tambahan">
+            </div>
+
+            <input id="fileInput" type="file" accept="image/*" class="hidden">
+
+            <div id="previewBox" class="preview">
+              <div id="emptyState">
+                <div class="circle">🥗</div>
+                <h3>Belum ada gambar</h3>
+                <p class="desc">Upload foto produk untuk dianalisis AI.</p>
+                <div class="row" style="justify-content:center;">
+                  <label for="fileInput" class="btn-label btn-primary">📤 Upload Foto</label>
+                </div>
+              </div>
+              <img id="previewImage" class="hidden" alt="Preview">
+            </div>
+
+            <div class="row" style="margin-top:12px;">
+              <label for="fileInput" class="btn-label">📤 Upload</label>
+              <button type="button" id="analyzeBtn" class="btn-success hidden">🤖 Analisis AI</button>
+              <button type="button" id="resetBtn">↺ Reset</button>
+            </div>
+
+            <div id="statusBox" class="status hidden"></div>
+            <div id="errorBox" class="error hidden"></div>
           </div>
 
-          <input type="hidden" id="editSavedIndex">
+          <div class="card">
+            <h3 class="title">Hasil Analisis</h3>
+            <p class="desc">Admin wajib mengisi harga final sebelum menyimpan ke database.</p>
 
-          <div class="grid-2" style="margin-bottom:12px;">
-            <div>
-              <img id="editImagePreview" class="edit-image-preview" alt="Preview gambar edit">
+            <div id="resultEmpty" class="empty-analysis">
+              <div class="empty-analysis-box">
+                <div class="circle">🤖</div>
+                <h3 style="margin:0 0 10px;">Belum ada hasil analisis</h3>
+                <p class="desc" style="margin-bottom:0;">
+                  Upload foto produk di panel kiri, lalu tekan tombol analisis.
+                  Hasil simulasi AI akan muncul lengkap di sini.
+                </p>
+              </div>
             </div>
-            <div style="display:grid;gap:12px;align-content:start;">
-              <label class="small"><strong>Ganti gambar produk</strong></label>
-              <input id="editImageFile" class="field" type="file" accept="image/*">
-              <div class="small">Kalau tidak diganti, gambar lama tetap dipakai.</div>
-            </div>
-          </div>
 
-          <div class="edit-table-wrap">
-            <table class="edit-table">
-              <tr>
-                <th>Nama produk</th>
-                <td><input id="editProductName" class="field" placeholder="Nama produk"></td>
-              </tr>
-              <tr>
-                <th>Kategori</th>
-                <td><input id="editVegetableType" class="field" placeholder="Kategori / jenis sayuran"></td>
-              </tr>
-              <tr>
-                <th>Tanggal data masuk</th>
-                <td><input id="editAnalysisDate" class="field" type="date"></td>
-              </tr>
-              <tr>
-                <th>Jumlah stok</th>
-                <td>
-                  <div class="row">
-                    <input id="editQty" class="field" type="number" min="0" placeholder="Jumlah stok" style="flex:1;">
-                    <select id="editUnit" class="field" style="max-width:120px;">
+            <div id="resultContent" class="hidden">
+              <div class="toolbar" style="margin-bottom:14px;">
+                <div>
+                  <div class="small">Kategori</div>
+                  <div id="vegType" style="font-size:28px;font-weight:800;">-</div>
+                </div>
+                <div id="freshnessPill" class="pill">-</div>
+              </div>
+
+              <div style="display:grid;gap:14px;">
+                <div>
+                  <div class="toolbar">
+                    <span>Skor Kesegaran</span>
+                    <strong id="freshnessScoreText">0/100</strong>
+                  </div>
+                  <div class="progress"><div id="freshnessBar" class="bar"></div></div>
+                </div>
+
+                <div>
+                  <div class="toolbar">
+                    <span>Confidence</span>
+                    <strong id="confidenceText">0%</strong>
+                  </div>
+                  <div class="progress"><div id="confidenceBar" class="bar" style="background:#0284c7;"></div></div>
+                </div>
+
+                <div class="stat-grid">
+                  <div class="stat">
+                    <div class="stat-label">Harga Tengah AI</div>
+                    <div id="basePriceValue" class="stat-value">Rp 0</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Rentang Harga AI</div>
+                    <div id="suggestedPriceValue" class="stat-value">Rp 0 - Rp 0</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Kualitas</div>
+                    <div id="qualityValue" class="stat-value">-</div>
+                  </div>
+                </div>
+
+                <div id="priceRangeBox" class="price-range-box">
+                  Rekomendasi harga AI: Rp 0 - Rp 0
+                </div>
+
+                <div class="success">
+                  <strong>Rekomendasi</strong>
+                  <div id="recommendationText" style="margin-top:6px;">-</div>
+                </div>
+
+                <div class="warning">
+                  <strong>Alasan Harga</strong>
+                  <div id="pricingReasonText" style="margin-top:6px;">-</div>
+                </div>
+
+                <div>
+                  <div style="font-weight:800;margin-bottom:8px;">Alasan Visual</div>
+                  <div id="reasonList" class="list"></div>
+                </div>
+
+                <div id="analysisMeta" class="small">-</div>
+
+                <div class="edit-panel">
+                  <h4 style="margin-top:0;">Edit Hasil Sebelum Simpan</h4>
+
+                  <div class="form-grid-2" style="margin-bottom:12px;">
+                    <input id="editBeforeSaveProductName" class="field" placeholder="Nama produk">
+                    <input id="editBeforeSaveDate" class="field" type="date">
+                  </div>
+
+                  <div class="form-grid-3" style="margin-bottom:12px;">
+                    <input id="editBeforeSaveQty" class="field" type="number" min="0" placeholder="Jumlah produk">
+                    <select id="editBeforeSaveUnit" class="field">
                       <option value="KG">KG</option>
                       <option value="Buah">Buah</option>
                       <option value="Ikat">Ikat</option>
                     </select>
+                    <select id="editBeforeSaveCategory" class="field">
+                      <option value="Sayur">Sayur</option>
+                      <option value="Buah">Buah</option>
+                    </select>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <th>Harga per satuan</th>
-                <td><input id="editPricePerUnit" class="field" type="number" min="0" placeholder="Harga per satuan"></td>
-              </tr>
-              <tr>
-                <th>Catatan</th>
-                <td><textarea id="editRecommendation" class="field" placeholder="Catatan produk"></textarea></td>
-              </tr>
-            </table>
-          </div>
 
-          <div class="row" style="margin-top:12px;">
-            <button type="button" id="saveEditSavedBtn" class="btn-primary">Simpan Perubahan ke Pusat</button>
-            <button type="button" id="cancelEditSavedBtn">Batal</button>
+                  <div class="form-grid-2" style="margin-bottom:12px;">
+                    <input id="editBeforeSaveQuality" class="field" placeholder="Label kualitas">
+                    <input id="editBeforeSavePricingReason" class="field" placeholder="Alasan harga">
+                  </div>
+
+                  <div class="form-grid-2" style="margin-bottom:12px;">
+                    <input id="editBeforeSavePriceMin" class="field" type="number" readonly placeholder="Harga minimum AI">
+                    <input id="editBeforeSavePriceMax" class="field" type="number" readonly placeholder="Harga maksimum AI">
+                  </div>
+
+                  <div class="form-grid-2" style="margin-bottom:12px;">
+                    <input id="editBeforeSaveBasePrice" class="field" type="number" readonly placeholder="Harga tengah AI">
+                    <input id="editBeforeSaveSellPrice" class="field" type="number" min="0" placeholder="Harga jual final (wajib diisi)">
+                  </div>
+
+                  <textarea id="editBeforeSaveRecommendation" class="field" placeholder="Rekomendasi / catatan"></textarea>
+
+                  <div class="warning">
+                    Harga jual final wajib diisi. Harga inilah yang nanti tampil pada menu pesanan pembeli.
+                  </div>
+
+                  <div class="row" style="margin-top:12px;">
+                    <button type="button" id="saveAnalysisBtn" class="btn-primary">💾 Simpan ke Database</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div id="savedEmpty" class="soft">Belum ada data tersimpan.</div>
-        <div id="savedList" class="saved-grid"></div>
-      </div>
-    </section>
+      <section id="adminTabSaved" class="admin-tab hidden">
+        <div class="card">
+          <div class="toolbar">
+            <div>
+              <h3 class="title">Data Produk</h3>
+              <p class="desc">Admin dapat edit atau hapus data yang sudah tersimpan.</p>
+            </div>
+            <button type="button" id="reloadCloudBtnAdmin" class="btn-info">🔄 Muat Ulang</button>
+          </div>
 
-    <section id="orderPage" class="page hidden">
-      <div class="card">
-        <h3 class="title">Toko Online</h3>
-        <p class="desc">Belanja produk dari stok hasil analisis. Checkout langsung ke WhatsApp toko.</p>
+          <div id="savedEditBox" class="warning hidden" style="margin-bottom:16px;">
+            <strong>Edit Data Produk</strong>
+            <input type="hidden" id="editSavedIndex">
 
-        <div class="market-layout">
-          <div>
-            <div class="market-toolbar">
-              <input id="productSearchInput" class="field" placeholder="Cari produk...">
-              <select id="productFilterSelect" class="field" style="max-width:220px;">
-                <option value="all">Semua Produk</option>
-                <option value="fresh">Sangat Segar / Segar</option>
-                <option value="fast">Jual Cepat</option>
-                <option value="sort">Sortir / Risiko</option>
+            <div class="form-grid-2" style="margin-top:12px;">
+              <input id="editProductName" class="field" placeholder="Nama produk">
+              <input id="editAnalysisDate" class="field" type="date">
+            </div>
+
+            <div class="form-grid-3" style="margin-top:12px;">
+              <input id="editQty" class="field" type="number" min="0" placeholder="Jumlah produk">
+              <select id="editUnit" class="field">
+                <option value="KG">KG</option>
+                <option value="Buah">Buah</option>
+                <option value="Ikat">Ikat</option>
               </select>
-              <button type="button" id="reloadCatalogBtn">Muat Ulang</button>
+              <select id="editVegetableType" class="field">
+                <option value="Sayur">Sayur</option>
+                <option value="Buah">Buah</option>
+              </select>
             </div>
 
-            <div id="productCatalogEmpty" class="soft">Belum ada produk. Simpan hasil analisis dulu di menu Beranda agar produk muncul di katalog.</div>
-            <div id="productCatalogList" class="product-grid"></div>
-          </div>
+            <div class="form-grid-2" style="margin-top:12px;">
+              <input id="editQualityLabel" class="field" placeholder="Label kualitas">
+              <input id="editPricingReason" class="field" placeholder="Alasan harga">
+            </div>
 
-          <div>
-            <div class="cart-box">
-              <h4 class="title" style="font-size:18px;">Keranjang</h4>
-              <div id="cartEmpty" class="soft">Keranjang masih kosong.</div>
-              <div id="cartList"></div>
+            <div class="form-grid-2" style="margin-top:12px;">
+              <input id="editBasePricePerUnit" class="field" type="number" min="0" placeholder="Harga tengah AI">
+              <input id="editPricePerUnit" class="field" type="number" min="0" placeholder="Harga jual final">
+            </div>
 
-              <div class="cart-total">Subtotal: <span id="cartSubtotalValue">Rp 0</span></div>
+            <textarea id="editRecommendation" class="field" placeholder="Catatan / rekomendasi" style="margin-top:12px;"></textarea>
 
-              <div class="checkout-summary">
-                <div class="small">Diskon Voucher: <strong id="discountValue">Rp 0</strong></div>
-                <div class="small" style="margin-top:6px;">Ongkir: <strong id="shippingValue">Rp 0</strong></div>
-                <div class="cart-total" style="margin-top:10px;">Total Bayar: <span id="cartTotalValue">Rp 0</span></div>
-              </div>
-
-              <hr style="border:none;border-top:1px solid var(--line);margin:16px 0;">
-
-              <h4 class="title" style="font-size:18px;">Checkout</h4>
-              <div style="display:grid;gap:12px;">
-                <input id="buyerName" class="field" placeholder="Nama pembeli">
-                <input id="buyerPhone" class="field" placeholder="Nomor WhatsApp pembeli">
-                <textarea id="buyerAddress" class="field" placeholder="Alamat pengiriman"></textarea>
-
-                <select id="paymentMethod" class="field">
-                  <option value="Transfer Bank">Transfer Bank</option>
-                  <option value="COD">COD</option>
-                  <option value="E-Wallet">E-Wallet</option>
-                </select>
-
-                <select id="shippingMethod" class="field">
-                  <option value="regular">Regular - Rp 10.000</option>
-                  <option value="express">Express - Rp 20.000</option>
-                  <option value="pickup">Ambil Sendiri - Rp 0</option>
-                </select>
-
-                <input id="voucherInput" class="field" placeholder="Kode voucher, contoh: HEMAT10">
-
-                <div class="row">
-                  <button type="button" id="applyVoucherBtn">Pakai Voucher</button>
-                  <button type="button" id="checkoutBtn" class="btn-primary">Checkout Sekarang</button>
-                </div>
-
-                <div class="small">
-                  Checkout akan membuka WhatsApp ke nomor toko yang diatur di menu Admin.
-                </div>
-              </div>
+            <div class="row" style="margin-top:12px;">
+              <button type="button" id="saveEditSavedBtn" class="btn-primary">Simpan Perubahan</button>
+              <button type="button" id="cancelEditSavedBtn">Batal</button>
             </div>
           </div>
+
+          <div id="savedEmpty" class="soft">Belum ada data tersimpan.</div>
+          <div id="savedList" class="saved-grid"></div>
         </div>
+      </section>
 
-        <div style="margin-top:22px;">
-          <div class="toolbar" style="margin-bottom:12px;">
-            <h4 class="title" style="font-size:18px;margin:0;">Riwayat Pesanan</h4>
-            <button type="button" id="clearOrdersBtn" class="btn-danger">Hapus Semua</button>
-          </div>
-          <div id="orderEmpty" class="soft">Belum ada pesanan.</div>
-          <div id="orderList" class="list"></div>
+      <section id="adminTabOrders" class="admin-tab hidden">
+        <div class="card">
+          <h3 class="title">Kelola Pesanan</h3>
+          <p class="desc">Admin dapat mengubah status dan pembayaran.</p>
+          <div id="adminOrderList" class="list"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="recapPage" class="page hidden">
-      <div class="card">
-        <h3 class="title">Rekap</h3>
-        <p class="desc">Ringkasan analisis stok dan penjualan.</p>
-
-        <div class="stat-grid" style="margin-bottom:16px;">
-          <div class="stat">
-            <div class="stat-label">Total Pesanan</div>
-            <div id="totalOrdersValue" class="stat-value">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Total Penjualan</div>
-            <div id="totalSalesValue" class="stat-value">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Stok Masuk</div>
-            <div id="stockInValue" class="stat-value">0</div>
-          </div>
-        </div>
-
-        <div class="stat-grid" style="margin-bottom:16px;">
-          <div class="stat">
-            <div class="stat-label">Stok Sisa</div>
-            <div id="stockLeftValue" class="stat-value">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Segar</div>
-            <div id="freshCountValue" class="stat-value">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Jual Cepat / Sortir</div>
-            <div id="actionCountValue" class="stat-value">0</div>
-          </div>
-        </div>
-
-        <div id="recapSummaryBox" class="warning">Belum ada data untuk direkap.</div>
-
-        <div style="margin-top:18px;">
-          <h4 class="title" style="font-size:18px;">Rekap stok per produk</h4>
-          <div id="stockPerProductList" class="list"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="suggestionPage" class="page hidden">
-      <div class="card">
-        <h3 class="title">Saran</h3>
-        <p class="desc">Analisis keputusan terbaik berdasarkan data yang ada.</p>
-        <div id="suggestionSummaryBox" class="success">Belum ada cukup data untuk memberi saran.</div>
-        <div style="margin-top:16px;">
-          <h4 class="title" style="font-size:18px;">Rekomendasi tindakan</h4>
-          <div id="suggestionList" class="list"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="adminPage" class="page hidden">
-      <div class="card">
-        <div class="toolbar">
-          <div>
-            <h3 class="title">Admin</h3>
-            <p class="desc">Login PIN sederhana untuk profil toko.</p>
-          </div>
-          <div class="small" id="adminStatus">Status: Belum login</div>
-        </div>
-
-        <div id="adminLoginBox" class="card" style="box-shadow:none;">
-          <h4 class="title" style="font-size:18px;">Login Admin</h4>
-          <div class="row">
-            <input id="adminPinInput" class="field" type="password" placeholder="Masukkan PIN admin" style="flex:1;">
-            <button type="button" id="loginAdminBtn" class="btn-primary">Login</button>
-          </div>
-          <div class="small" style="margin-top:8px;">PIN default: <b>123456</b></div>
-        </div>
-
-        <div id="adminPanel" class="hidden" style="margin-top:16px;">
-          <div class="grid-2">
-            <div style="display:grid;gap:12px;">
-              <input id="storeName" class="field" placeholder="Nama toko">
-              <input id="storeOwner" class="field" placeholder="Nama pemilik">
-              <input id="storePhone" class="field" placeholder="Nomor WhatsApp toko, contoh 08123456789 atau 628123456789">
+      <section id="adminTabFeedback" class="admin-tab hidden">
+        <div class="card">
+          <div class="toolbar">
+            <div>
+              <h3 class="title">Kritik &amp; Saran Pembeli</h3>
+              <p class="desc">Semua pesan yang dikirim pembeli akan masuk ke sini secara otomatis dan tersimpan di database pusat.</p>
             </div>
-            <div style="display:grid;gap:12px;">
-              <input id="storeEmail" class="field" placeholder="Email">
-              <input id="storeAddress" class="field" placeholder="Alamat toko">
-              <input id="adminPinNew" class="field" type="password" placeholder="Ganti PIN admin">
+            <div class="row">
+              <button type="button" id="reloadFeedbackBtn" class="btn-info">🔄 Muat Ulang</button>
+              <button type="button" id="clearFeedbackBtn" class="btn-danger">Hapus Semua</button>
             </div>
+          </div>
+
+          <div id="adminFeedbackEmpty" class="soft">Belum ada kritik &amp; saran masuk.</div>
+          <div id="adminFeedbackList" class="list"></div>
+        </div>
+      </section>
+
+      <section id="adminTabRecap" class="admin-tab hidden">
+        <div class="card">
+          <h3 class="title">Rekap</h3>
+          <div class="stat-grid" style="margin-bottom:16px;">
+            <div class="stat">
+              <div class="stat-label">Total Pesanan</div>
+              <div id="totalOrdersValue" class="stat-value">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Penjualan Lunas</div>
+              <div id="totalSalesValue" class="stat-value">0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Stok Sisa</div>
+              <div id="stockLeftValue" class="stat-value">0</div>
+            </div>
+          </div>
+          <div id="recapSummaryBox" class="warning">Belum ada data untuk direkap.</div>
+        </div>
+      </section>
+
+      <section id="adminTabSettings" class="admin-tab hidden">
+        <div class="card">
+          <h3 class="title">Pengaturan</h3>
+          <p class="desc">Admin dapat mengubah profil toko dan password admin.</p>
+
+          <div class="form-grid-2" style="margin-bottom:12px;">
+            <input id="storeName" class="field" placeholder="Nama toko">
+            <input id="storeOwner" class="field" placeholder="Nama pemilik">
+          </div>
+
+          <div class="form-grid-2" style="margin-bottom:12px;">
+            <input id="storePhone" class="field" placeholder="Nomor WhatsApp toko">
+            <input id="storeEmail" class="field" placeholder="Email">
+          </div>
+
+          <div class="form-grid-2" style="margin-bottom:12px;">
+            <input id="storeAddress" class="field" placeholder="Alamat toko">
+            <input id="adminPasswordNew" class="field" type="password" placeholder="Ganti password admin">
           </div>
 
           <div class="row" style="margin-top:12px;">
-            <button type="button" id="saveStoreProfileBtn" class="btn-primary">Simpan Profil</button>
-            <button type="button" id="logoutAdminBtn">Logout</button>
+            <button type="button" id="saveStoreProfileBtn" class="btn-primary">Simpan Pengaturan</button>
           </div>
         </div>
-      </div>
+      </section>
     </section>
-
-    <div id="invoiceArea" class="hidden"></div>
   </div>
 
   <footer class="footer">
     <div class="footer-inner">
       <div>
-        <h4>VeggieVision</h4>
-        <p>
-          Platform sederhana untuk membantu analisis kesegaran sayuran, pengelolaan stok,
-          pencatatan data produk, dan pemesanan langsung ke WhatsApp.
-        </p>
+        <h4>VeggieVision AI</h4>
+        <p>Analisis kualitas sayur, saran harga, dan pemesanan sederhana untuk pembeli maupun admin.</p>
       </div>
-
       <div>
         <h4>Kontak</h4>
         <ul>
-          <li>📍 Jl. Raya Candi VI C No.303</li>
-          <li>📞 +62 813 9393 7262</li>
-          <li>✉️ hello@veggiesvision.id</li>
+          <li id="footerAddress">📍 Jl. Raya Candi VI C No.303</li>
+          <li id="footerPhone">📞 +62 813 9393 7262</li>
+          <li id="footerEmail">✉️ hello@veggiesvision.id</li>
         </ul>
       </div>
-
       <div>
         <h4>Jam Operasional</h4>
         <ul>
-          <li>Senin - Jum'at: 07.00 - 17.00 WIB</li>
-          <li>Sabtu: Libur</li>
-          <li>Minggu & Hari Libur Nasional: Tutup</li>
+          <li id="footerHour1">Senin - Jum'at: 07.00 - 17.00 WIB</li>
+          <li id="footerHour2">Sabtu - Minggu: Libur</li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      © 2026 VeggieVision. Semua hak dilindungi.
-    </div>
+    <div class="footer-bottom">© 2026 VeggieVision AI</div>
   </footer>
 
   <script>
-    const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0fpaeoZqN1tb7z6yaPygT3ewlW0QsKy4pI2El6Noy1uaTo89im9d906bxrTj34VOC/exec";
+    const APP_SCRIPT_URL = "Yhttps://script.google.com/macros/s/AKfycbx0fpaeoZqN1tb7z6yaPygT3ewlW0QsKy4pI2El6Noy1uaTo89im9d906bxrTj34VOC/exec";
 
     const STORAGE_KEYS = {
-      saved: "sayur_saved_cloudsync_v3",
-      orders: "sayur_orders_cloudsync_v4",
-      admin: "sayur_admin_cloudsync_v3",
-      store: "sayur_store_cloudsync_v3",
-      last_saved_id: "sayur_last_saved_id_cloudsync_v3"
+      saved: "veggievision_saved_v13",
+      orders: "veggievision_orders_v13",
+      auth: "veggievision_auth_v13",
+      store: "veggievision_store_v13",
+      feedback: "veggievision_feedback_v13"
     };
 
-    const DEFAULT_ADMIN_PIN = "123456";
+    const DEFAULT_ADMIN_PASSWORD = "admin123";
     const AUTO_SYNC_INTERVAL_MS = 10000;
 
-    let currentStream = null;
     let currentImageUrl = "";
-    let lastAnalysisResult = null;
-    let cartItems = [];
-    let activeVoucher = null;
-    let editImageDataUrl = "";
     let allSavedResults = [];
+    let allFeedbacks = [];
     let autoSyncTimer = null;
-    let isSyncingCloud = false;
+    let isSyncing = false;
 
-    function el(id){
-      return document.getElementById(id);
-    }
+    let buyerCurrentStream = null;
+    let buyerCurrentImageUrl = "";
 
-    function saveLS(key, value){
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-
+    function el(id){ return document.getElementById(id); }
+    function saveLS(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
     function getLS(key, fallback){
       try {
         const val = JSON.parse(localStorage.getItem(key));
         return val == null ? fallback : val;
-      } catch (e) {
+      } catch {
         return fallback;
       }
     }
 
     function escapeHtml(str){
-      str = String(str || "");
-      return str
+      return String(str || "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+    }
+
+    function formatCurrency(v){
+      return "Rp " + Number(v || 0).toLocaleString("id-ID");
+    }
+
+    function formatRange(min, max){
+      return formatCurrency(min) + " - " + formatCurrency(max);
+    }
+
+    function todayValue(){
+      const d = new Date();
+      return d.getFullYear() + "-" +
+        String(d.getMonth() + 1).padStart(2, "0") + "-" +
+        String(d.getDate()).padStart(2, "0");
+    }
+
+    function dateTimeNow(){
+      return new Date().toLocaleString("id-ID");
     }
 
     function normalizeWhatsAppNumber(phone){
@@ -1165,37 +1205,8 @@
       return raw;
     }
 
-    function showPage(name){
-      el("homePage").classList.add("hidden");
-      el("savedPage").classList.add("hidden");
-      el("orderPage").classList.add("hidden");
-      el("recapPage").classList.add("hidden");
-      el("suggestionPage").classList.add("hidden");
-      el("adminPage").classList.add("hidden");
-
-      document.querySelectorAll(".nav-btn").forEach(function(btn){
-        btn.classList.remove("active");
-      });
-
-      if(name === "home") el("homePage").classList.remove("hidden");
-      if(name === "saved") el("savedPage").classList.remove("hidden");
-      if(name === "order") el("orderPage").classList.remove("hidden");
-      if(name === "recap") el("recapPage").classList.remove("hidden");
-      if(name === "suggestion") el("suggestionPage").classList.remove("hidden");
-      if(name === "admin") el("adminPage").classList.remove("hidden");
-
-      const activeBtn = document.querySelector('[data-page="' + name + '"]');
-      if(activeBtn) activeBtn.classList.add("active");
-
-      if(name === "saved") renderSavedResults();
-      if(name === "order"){
-        renderProductCatalog();
-        renderCart();
-        renderOrders();
-      }
-      if(name === "recap") renderRecap();
-      if(name === "suggestion") renderSuggestions();
-      if(name === "admin") renderAdmin();
+    function clamp(v, min, max){
+      return Math.max(min, Math.min(max, v));
     }
 
     function setStatus(msg){
@@ -1218,57 +1229,89 @@
       el("errorBox").classList.add("hidden");
     }
 
-    function todayValue(){
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return y + "-" + m + "-" + day;
+    function setBuyerStatus(msg){
+      el("buyerStatusBox").textContent = msg;
+      el("buyerStatusBox").classList.remove("hidden");
     }
 
-    function formatDateDisplay(v){
-      if(!v) return "-";
-      const d = new Date(v);
-      if(isNaN(d.getTime())) return v;
-      return d.toLocaleDateString("id-ID", { year:"numeric", month:"long", day:"numeric" });
+    function clearBuyerStatus(){
+      el("buyerStatusBox").textContent = "";
+      el("buyerStatusBox").classList.add("hidden");
     }
 
-    function formatCurrency(v){
-      return "Rp " + Number(v || 0).toLocaleString("id-ID");
+    function setBuyerError(msg){
+      el("buyerErrorBox").textContent = msg;
+      el("buyerErrorBox").classList.remove("hidden");
     }
 
-    function getSavedResults(){
-      return allSavedResults;
+    function clearBuyerError(){
+      el("buyerErrorBox").textContent = "";
+      el("buyerErrorBox").classList.add("hidden");
     }
 
+    function setFeedbackStatus(msg){
+      el("feedbackStatusBox").textContent = msg;
+      el("feedbackStatusBox").classList.remove("hidden");
+    }
+
+    function clearFeedbackStatus(){
+      el("feedbackStatusBox").textContent = "";
+      el("feedbackStatusBox").classList.add("hidden");
+    }
+
+    function setFeedbackError(msg){
+      el("feedbackErrorBox").textContent = msg;
+      el("feedbackErrorBox").classList.remove("hidden");
+    }
+
+    function clearFeedbackError(){
+      el("feedbackErrorBox").textContent = "";
+      el("feedbackErrorBox").classList.add("hidden");
+    }
+
+    function getSavedResults(){ return allSavedResults; }
     function setSavedResults(items){
       allSavedResults = Array.isArray(items) ? items : [];
       saveLS(STORAGE_KEYS.saved, allSavedResults);
     }
 
-    function getOrders(){
-      return getLS(STORAGE_KEYS.orders, []);
+    function getOrders(){ return getLS(STORAGE_KEYS.orders, []); }
+    function setOrders(items){ saveLS(STORAGE_KEYS.orders, items); }
+
+    function getFeedbacks(){ return allFeedbacks; }
+    function setFeedbacks(items){
+      allFeedbacks = Array.isArray(items) ? items : [];
+      saveLS(STORAGE_KEYS.feedback, allFeedbacks);
     }
 
-    function setOrders(items){
-      saveLS(STORAGE_KEYS.orders, items);
+    function getPaidOrders(){
+      return getOrders().filter(order => (order.payment_status || "") === "Lunas");
     }
 
-    function getAdmin(){
-      return getLS(STORAGE_KEYS.admin, { pin: DEFAULT_ADMIN_PIN, loggedIn: false });
+    function getAuth(){
+      return getLS(STORAGE_KEYS.auth, {
+        role: "guest",
+        loggedIn: false,
+        adminPassword: DEFAULT_ADMIN_PASSWORD
+      });
     }
 
-    function setAdmin(admin){
-      saveLS(STORAGE_KEYS.admin, admin);
+    function setAuth(auth){
+      saveLS(STORAGE_KEYS.auth, auth);
+    }
+
+    function isAdmin(){
+      const auth = getAuth();
+      return auth.loggedIn && auth.role === "admin";
     }
 
     function getStore(){
       return getLS(STORAGE_KEYS.store, {
-        name: "Toko Sayur Segar",
+        name: "VeggieVision",
         owner: "Pemilik",
-        phone: "",
-        email: "-",
-        address: "-"
+        phone: "+62 813 9393 7262",
+        email: "hello@veggiesvision.id",
+        address: "Jl. Raya Candi VI C No.303"
       });
     }
 
@@ -1276,360 +1319,173 @@
       saveLS(STORAGE_KEYS.store, store);
     }
 
-    function fileToDataURL(file){
-      return new Promise(function(resolve, reject){
+    function renderStorePublicInfo(){
+      const store = getStore();
+      el("footerAddress").textContent = "📍 " + (store.address || "-");
+      el("footerPhone").textContent = "📞 " + (store.phone || "-");
+      el("footerEmail").textContent = "✉️ " + (store.email || "-");
+    }
+
+    function showPage(name){
+      ["buyerHome","buyerOrders","buyerFeedback","adminLogin","adminDashboard"].forEach(page => {
+        const node = el(page + "Page");
+        if(node) node.classList.add("hidden");
+      });
+
+      document.querySelectorAll(".nav-btn[data-page]").forEach(btn => btn.classList.remove("active"));
+
+      if(name === "adminDashboard" && !isAdmin()){
+        alert("Silakan login admin dulu.");
+        name = "adminLogin";
+      }
+
+      const page = el(name + "Page");
+      if(page) page.classList.remove("hidden");
+
+      const navBtn = document.querySelector('.nav-btn[data-page="' + name + '"]');
+      if(navBtn) navBtn.classList.add("active");
+
+      if(name === "buyerOrders"){
+        renderProductCatalog();
+        renderOrders();
+      }
+      if(name === "buyerFeedback"){
+        clearFeedbackStatus();
+        clearFeedbackError();
+      }
+      if(name === "adminLogin"){
+        renderAdminLogin();
+      }
+      if(name === "adminDashboard"){
+        showAdminTab("analysis");
+        renderSavedResults();
+        renderRecap();
+        renderAdminSettings();
+        renderAdminOrders();
+        renderAdminFeedbacks();
+      }
+
+      renderStorePublicInfo();
+    }
+
+    function showAdminTab(tab){
+      document.querySelectorAll(".admin-tab").forEach(elm => elm.classList.add("hidden"));
+      document.querySelectorAll(".nav-btn[data-admin-tab]").forEach(btn => btn.classList.remove("active"));
+
+      const sectionMap = {
+        analysis: "adminTabAnalysis",
+        saved: "adminTabSaved",
+        orders: "adminTabOrders",
+        feedback: "adminTabFeedback",
+        recap: "adminTabRecap",
+        settings: "adminTabSettings"
+      };
+
+      const target = el(sectionMap[tab]);
+      if(target) target.classList.remove("hidden");
+
+      const btn = document.querySelector('.nav-btn[data-admin-tab="' + tab + '"]');
+      if(btn) btn.classList.add("active");
+
+      if(tab === "saved") renderSavedResults();
+      if(tab === "orders") renderAdminOrders();
+      if(tab === "feedback") renderAdminFeedbacks();
+      if(tab === "recap") renderRecap();
+      if(tab === "settings") renderAdminSettings();
+    }
+
+    function renderAdminLogin(){
+      const auth = getAuth();
+      el("adminLoginBox").classList.toggle("hidden", auth.loggedIn);
+      el("adminPanel").classList.toggle("hidden", !auth.loggedIn);
+    }
+
+    function renderAdminSettings(){
+      const store = getStore();
+      el("storeName").value = store.name || "";
+      el("storeOwner").value = store.owner || "";
+      el("storePhone").value = store.phone || "";
+      el("storeEmail").value = store.email || "";
+      el("storeAddress").value = store.address || "";
+      el("adminPasswordNew").value = "";
+    }
+
+    async function fileToDataURL(file){
+      return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = function(){ resolve(reader.result); };
+        reader.onload = () => resolve(reader.result);
         reader.onerror = reject;
         reader.readAsDataURL(file);
       });
     }
 
-    function guessPricePerUnit(score){
-      score = Number(score || 0);
-      if(score >= 85) return 18000;
-      if(score >= 75) return 15000;
-      if(score >= 60) return 12000;
-      return 8000;
-    }
-
-    function showImage(src){
-      currentImageUrl = src;
-      el("previewBox").classList.add("has-media");
-      el("emptyState").classList.add("hidden");
-      el("previewVideo").classList.add("hidden");
-      el("previewImage").classList.remove("hidden");
-      el("previewImage").src = src;
-      el("analyzeBtn").classList.remove("hidden");
-      el("saveAnalysisBtn").classList.add("hidden");
-    }
-
-    function resetApp(){
-      stopCamera();
-      currentImageUrl = "";
-      lastAnalysisResult = null;
-      el("previewImage").src = "";
-      el("previewImage").classList.add("hidden");
-      el("previewVideo").classList.add("hidden");
-      el("emptyState").classList.remove("hidden");
-      el("previewBox").classList.remove("has-media");
-      el("analyzeBtn").classList.add("hidden");
-      el("saveAnalysisBtn").classList.add("hidden");
-      el("captureBtn").classList.add("hidden");
-      el("analysisProductName").value = "";
-      el("analysisDate").value = todayValue();
-      el("analysisQty").value = "";
-      el("analysisUnit").value = "KG";
-      el("analysisPricePerUnit").value = "";
-      el("analysisRecommendationManual").value = "";
-      el("fileInput").value = "";
-      clearStatus();
-      clearError();
-      el("resultEmpty").classList.remove("hidden");
-      el("resultContent").classList.add("hidden");
-      el("reasonList").innerHTML = "";
-      el("analysisMeta").textContent = "-";
-    }
-
-    function startCamera(){
-      clearError();
-      if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-        setError("Browser ini tidak mendukung kamera.");
-        return;
-      }
-
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false })
-        .then(function(stream){
-          currentStream = stream;
-          el("previewBox").classList.add("has-media");
-          el("emptyState").classList.add("hidden");
-          el("previewImage").classList.add("hidden");
-          el("previewVideo").classList.remove("hidden");
-          el("previewVideo").srcObject = stream;
-          el("startCameraBtn").classList.add("hidden");
-          el("stopCameraBtn").classList.remove("hidden");
-          el("captureBtn").classList.remove("hidden");
-          el("analyzeBtn").classList.add("hidden");
-        })
-        .catch(function(){
-          setError("Kamera tidak tersedia atau izin ditolak.");
-        });
-    }
-
-    function stopCamera(){
-      if(currentStream){
-        currentStream.getTracks().forEach(function(track){
-          track.stop();
-        });
-        currentStream = null;
-      }
-      el("previewVideo").srcObject = null;
-      el("previewVideo").classList.add("hidden");
-      el("captureBtn").classList.add("hidden");
-      el("stopCameraBtn").classList.add("hidden");
-      el("startCameraBtn").classList.remove("hidden");
-    }
-
-    function capturePhoto(){
-      const video = el("previewVideo");
-      if(!video.videoWidth || !video.videoHeight){
-        setError("Video belum siap.");
-        return;
-      }
-
-      const canvas = document.createElement("canvas");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      canvas.toBlob(function(blob){
-        const url = URL.createObjectURL(blob);
-        showImage(url);
-        stopCamera();
-      }, "image/jpeg", 0.92);
-    }
-
-    function getFreshnessMeta(score){
-      if(score >= 80) return { label:"Sangat Segar", color:"#16a34a" };
-      if(score >= 60) return { label:"Segar", color:"#65a30d" };
-      if(score >= 40) return { label:"Mulai Menurun", color:"#f59e0b" };
-      return { label:"Kurang Segar", color:"#e11d48" };
-    }
-
-    function estimateShelfDays(score){
-      if(score >= 85) return 10;
-      if(score >= 75) return 7;
-      if(score >= 60) return 4;
-      if(score >= 45) return 2;
-      return 1;
-    }
-
-    function getActionPlan(score){
-      if(score >= 80) return { status:"Segar", action:"Jual normal", color:"#16a34a" };
-      if(score >= 60) return { status:"Jual Cepat", action:"Promo ringan", color:"#f59e0b" };
-      if(score >= 40) return { status:"Sortir", action:"Cek dan sortir", color:"#fb7185" };
-      return { status:"Buang", action:"Pisahkan dari stok", color:"#7f1d1d" };
-    }
-
-    function analyzeImageLocally(imgEl){
-      const size = 160;
-      const canvas = document.createElement("canvas");
-      canvas.width = size;
-      canvas.height = size;
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-      ctx.drawImage(imgEl, 0, 0, size, size);
-
-      const imageData = ctx.getImageData(0, 0, size, size);
-      const data = imageData.data;
-
-      let greenCount = 0;
-      let brownCount = 0;
-      let redCount = 0;
-      let orangeCount = 0;
-      let totalBrightness = 0;
-      let total = 0;
-      let textureSum = 0;
-
-      for(let y = 1; y < size - 1; y++){
-        for(let x = 1; x < size - 1; x++){
-          const idx = (y * size + x) * 4;
-          const r = data[idx];
-          const g = data[idx + 1];
-          const b = data[idx + 2];
-          const bright = (r + g + b) / 3;
-
-          totalBrightness += bright;
-          total++;
-
-          if(g > r + 10 && g > b + 10) greenCount++;
-          if(r > 100 && g > 60 && b < 80) brownCount++;
-          if(r > g + 20 && r > b + 20) redCount++;
-          if(r > 150 && g > 90 && g > b + 15) orangeCount++;
-
-          const idx2 = (y * size + (x + 1)) * 4;
-          const idx3 = ((y + 1) * size + x) * 4;
-          const diff =
-            Math.abs(data[idx] - data[idx2]) +
-            Math.abs(data[idx + 1] - data[idx2 + 1]) +
-            Math.abs(data[idx + 2] - data[idx2 + 2]) +
-            Math.abs(data[idx] - data[idx3]) +
-            Math.abs(data[idx + 1] - data[idx3 + 1]) +
-            Math.abs(data[idx + 2] - data[idx3 + 2]);
-
-          textureSum += diff / 6;
-        }
-      }
-
-      const pixels = total || 1;
-      const greenRatio = greenCount / pixels;
-      const brownRatio = brownCount / pixels;
-      const redRatio = redCount / pixels;
-      const orangeRatio = orangeCount / pixels;
-      const brightness = totalBrightness / pixels;
-      const textureScore = Math.min(100, Math.round(textureSum / pixels * 4));
-
-      let vegType = "Sayuran Umum";
-      if(greenRatio > 0.35) vegType = "Sayuran Hijau";
-      else if(redRatio > 0.22) vegType = "Tomat / Cabai";
-      else if(orangeRatio > 0.18) vegType = "Wortel / Labu";
-      else if(brightness > 170) vegType = "Kubis / Bawang";
-
-      let freshness = Math.round(
-        65 + greenRatio * 60 - brownRatio * 90 + Math.min(12, textureScore * 0.08) + Math.min(10, Math.max(0, (brightness - 100) * 0.08))
-      );
-
-      freshness = Math.max(10, Math.min(99, freshness));
-      const confidence = Math.max(55, Math.min(98, Math.round(65 + greenRatio * 25 + Math.min(10, textureScore * 0.1))));
-
-      const reasons = [];
-      if(greenRatio > 0.35) reasons.push("Warna hijau cukup dominan.");
-      if(brownRatio > 0.08) reasons.push("Ada area kecokelatan yang menurunkan kesegaran.");
-      if(textureScore > 40) reasons.push("Tekstur visual masih cukup baik.");
-      if(brightness < 95) reasons.push("Tampilan cukup gelap dan kualitas bisa mulai turun.");
-      if(reasons.length === 0) reasons.push("Ciri visual umum menunjukkan kondisi menengah.");
-
-      const plan = getActionPlan(freshness);
-      let recommendation = "Jual normal.";
-      if(plan.status === "Jual Cepat") recommendation = "Sebaiknya dijual cepat dengan promo ringan.";
-      if(plan.status === "Sortir") recommendation = "Perlu sortir sebelum dijual.";
-      if(plan.status === "Buang") recommendation = "Pisahkan dari stok jual.";
-
-      return {
-        vegetable_type: vegType,
-        freshness_score: freshness,
-        confidence: confidence,
-        recommendation: recommendation,
-        reasons: reasons,
-        source: "local-analysis",
-        estimated_shelf_days: estimateShelfDays(freshness),
-        stats: {
-          green_ratio: greenRatio,
-          brown_ratio: brownRatio,
-          texture_score: textureScore,
-          red_ratio: redRatio,
-          orange_ratio: orangeRatio,
-          brightness: brightness
-        }
-      };
-    }
-
-    function renderResult(result){
-      const freshnessScore = Number(result.freshness_score || 0);
-      const confidence = Number(result.confidence || 0);
-      const stats = result.stats || {};
-      const meta = getFreshnessMeta(freshnessScore);
-      const plan = getActionPlan(freshnessScore);
-
-      const productName = result.product_name_real || el("analysisProductName").value.trim() || result.vegetable_type || "Sayuran";
-      const analysisDate = result.analysis_date || el("analysisDate").value || todayValue();
-      const qty = Number(result.qty || el("analysisQty").value || 0);
-      const unit = result.unit || el("analysisUnit").value || "KG";
-      const pricePerUnit = Number(result.price_per_unit || el("analysisPricePerUnit").value || guessPricePerUnit(freshnessScore));
-      const manualRecommendation = el("analysisRecommendationManual").value.trim();
-
-      el("vegType").textContent = result.vegetable_type || "-";
-      el("freshnessPill").textContent = meta.label + " • " + plan.status;
-      el("freshnessPill").style.background = plan.color;
-
-      el("freshnessScoreText").textContent = freshnessScore + "/100";
-      el("freshnessBar").style.width = freshnessScore + "%";
-      el("freshnessBar").style.background = meta.color;
-
-      el("confidenceText").textContent = confidence + "%";
-      el("confidenceBar").style.width = confidence + "%";
-
-      el("greenValue").textContent = Math.round((stats.green_ratio || 0) * 100) + "%";
-      el("brownValue").textContent = Math.round((stats.brown_ratio || 0) * 100) + "%";
-      el("textureValue").textContent = Math.round(stats.texture_score || 0);
-
-      const finalRecommendation = manualRecommendation || result.recommendation || "-";
-      el("recommendationText").textContent = finalRecommendation + " Estimasi tahan: " + (result.estimated_shelf_days || 0) + " hari.";
-
-      el("reasonList").innerHTML = "";
-      (result.reasons || []).forEach(function(reason){
-        const div = document.createElement("div");
-        div.className = "soft";
-        div.textContent = reason;
-        el("reasonList").appendChild(div);
-      });
-
-      el("analysisMeta").textContent =
-        "Produk: " + productName +
-        " • Jumlah: " + qty + " " + unit +
-        " • Harga/satuan: " + formatCurrency(pricePerUnit) +
-        " • Tanggal analisis: " + formatDateDisplay(analysisDate) +
-        " • Sumber: " + (result.source || "-");
-
-      el("resultEmpty").classList.add("hidden");
-      el("resultContent").classList.remove("hidden");
-      el("saveAnalysisBtn").classList.remove("hidden");
-
-      lastAnalysisResult = {
-        vegetable_type: result.vegetable_type,
-        freshness_score: result.freshness_score,
-        confidence: result.confidence,
-        recommendation: finalRecommendation,
-        reasons: result.reasons,
-        source: result.source,
-        estimated_shelf_days: result.estimated_shelf_days,
-        stats: result.stats || {},
-        product_name_real: productName,
-        analysis_date: analysisDate,
-        qty: qty,
-        unit: unit,
-        price_per_unit: pricePerUnit,
-        image_data_url: currentImageUrl
-      };
-    }
-
     async function fetchCloudData(){
       if(!APP_SCRIPT_URL || APP_SCRIPT_URL.includes("YOUR_APPS_SCRIPT_WEB_APP_URL")){
-        throw new Error("URL Apps Script belum diisi.");
+        throw new Error("APP_SCRIPT_URL belum diisi.");
       }
 
       const response = await fetch(APP_SCRIPT_URL + "?action=read&_ts=" + Date.now(), {
         method: "GET",
         cache: "no-store"
       });
-
       const json = await response.json();
       if(!json.success) throw new Error(json.message || "Gagal membaca data pusat.");
 
-      const mapped = (json.data || []).map(function(row){
-        return {
-          saved_id: row.id || ("row-" + Math.random().toString(36).slice(2)),
-          product_name_real: row.nama_produk || "Sayuran",
-          vegetable_type: row.kategori || "Sayuran Umum",
-          analysis_date: row.tanggal_masuk || "",
-          qty: Number(row.jumlah_stok || 0),
-          unit: row.satuan || "KG",
-          price_per_unit: Number(row.harga_satuan || 0),
-          recommendation: row.catatan || "-",
-          image_data_url: row.image_data_url || "",
-          freshness_score: Number(row.freshness_score || 0),
-          confidence: Number(row.confidence || 0),
-          created_at: row.created_at || ""
-        };
-      });
+      const mapped = (json.data || []).map(row => ({
+        saved_id: row.id,
+        product_name_real: row.nama_produk || "Produk",
+        vegetable_type: row.kategori || "Sayur",
+        analysis_date: row.tanggal_masuk || "",
+        qty: Number(row.jumlah_stok || 0),
+        unit: row.satuan || "KG",
+        price_per_unit: Number(row.harga_satuan || 0),
+        recommendation: row.catatan || "-",
+        image_data_url: row.image_data_url || "",
+        freshness_score: Number(row.freshness_score || 0),
+        confidence: Number(row.confidence || 0),
+        quality_label: row.quality_label || "-",
+        base_price_per_unit: Number(row.base_price_per_unit || 0),
+        pricing_reason: row.pricing_reason || "-",
+        created_at: row.created_at || "",
+        price_min: Number(row.price_min || 0),
+        price_max: Number(row.price_max || 0)
+      }));
 
       setSavedResults(mapped);
       return mapped;
     }
 
-    async function cloudRequest(payload){
+    async function fetchFeedbackCloud(){
       if(!APP_SCRIPT_URL || APP_SCRIPT_URL.includes("YOUR_APPS_SCRIPT_WEB_APP_URL")){
-        throw new Error("URL Apps Script belum diisi.");
+        const localFeedback = getLS(STORAGE_KEYS.feedback, []);
+        setFeedbacks(localFeedback);
+        return localFeedback;
       }
 
-      const response = await fetch(APP_SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
+      const response = await fetch(APP_SCRIPT_URL + "?action=feedback_read&_ts=" + Date.now(), {
+        method: "GET",
+        cache: "no-store"
       });
 
+      const json = await response.json();
+      if(!json.success) throw new Error(json.message || "Gagal membaca kritik & saran.");
+
+      const mapped = (json.data || []).map(row => ({
+        id: row.id || "",
+        message: row.pesan || "",
+        created_at: row.created_at || ""
+      }));
+
+      setFeedbacks(mapped);
+      return mapped;
+    }
+
+    async function cloudRequest(payload){
+      const response = await fetch(APP_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
       const json = await response.json();
       if(!json.success) throw new Error(json.message || "Proses ke pusat gagal.");
       return json;
@@ -1648,7 +1504,12 @@
         catatan: item.recommendation || "",
         image_data_url: item.image_data_url || "",
         freshness_score: Number(item.freshness_score || 0),
-        confidence: Number(item.confidence || 0)
+        confidence: Number(item.confidence || 0),
+        quality_label: item.quality_label || "",
+        base_price_per_unit: Number(item.base_price_per_unit || 0),
+        pricing_reason: item.pricing_reason || "",
+        price_min: Number(item.price_min || 0),
+        price_max: Number(item.price_max || 0)
       });
     }
 
@@ -1666,7 +1527,12 @@
         image_data_url: item.image_data_url || "",
         freshness_score: Number(item.freshness_score || 0),
         confidence: Number(item.confidence || 0),
-        created_at: item.created_at || new Date().toISOString()
+        quality_label: item.quality_label || "",
+        base_price_per_unit: Number(item.base_price_per_unit || 0),
+        pricing_reason: item.pricing_reason || "",
+        created_at: item.created_at || new Date().toISOString(),
+        price_min: Number(item.price_min || 0),
+        price_max: Number(item.price_max || 0)
       });
     }
 
@@ -1677,172 +1543,297 @@
       });
     }
 
-    async function saveCurrentAnalysis(){
-      if(!lastAnalysisResult){
-        setError("Belum ada hasil analisis.");
+    async function saveFeedbackToCloud(message){
+      return await cloudRequest({
+        action: "feedback_create",
+        id: "fb-" + Date.now(),
+        pesan: message,
+        created_at: new Date().toISOString()
+      });
+    }
+
+    async function deleteFeedbackFromCloud(id){
+      return await cloudRequest({
+        action: "feedback_delete",
+        id: id
+      });
+    }
+
+    async function clearFeedbackCloud(){
+      return await cloudRequest({
+        action: "feedback_clear"
+      });
+    }
+
+    function seededScoreFromText(text){
+      let sum = 0;
+      for(let i = 0; i < text.length; i++){
+        sum += text.charCodeAt(i) * (i + 1);
+      }
+      return sum;
+    }
+
+    function buildSimulatedAnalysis(imageDataUrl, productName, qty, unit, inputPrice, category){
+      const baseName = (productName || "").trim();
+      const lower = baseName.toLowerCase();
+      let detectedName = baseName || (category === "Buah" ? "Buah Segar" : "Sayur Segar");
+
+      const seed = seededScoreFromText((imageDataUrl || "").slice(0, 120) + "|" + detectedName + "|" + category);
+      let freshness = 55 + (seed % 41);
+      let confidence = 72 + (seed % 25);
+
+      if(lower.includes("cabai") || lower.includes("tomat") || lower.includes("apel") || lower.includes("jeruk")){
+        freshness += 4;
+      }
+      if(lower.includes("layu") || lower.includes("busuk")){
+        freshness -= 25;
+      }
+
+      freshness = clamp(freshness, 18, 98);
+      confidence = clamp(confidence, 68, 98);
+
+      let qualityLabel = "Sangat Segar";
+      let recommendation = "Produk sangat layak dijual dengan harga premium.";
+      let reasons = [];
+      let pricingReason = "";
+
+      if(freshness >= 85){
+        qualityLabel = "Sangat Segar";
+        recommendation = "Kondisi visual sangat baik. Cocok dijual normal hingga premium.";
+        reasons = [
+          "Warna terlihat cerah dan menarik.",
+          "Indikasi kesegaran visual cukup tinggi.",
+          "Permukaan produk terlihat rapi dan minim cacat."
+        ];
+        pricingReason = "Harga bisa dipasang di level atas karena kualitas visual sangat baik.";
+      } else if(freshness >= 70){
+        qualityLabel = "Segar";
+        recommendation = "Produk masih segar dan cocok dijual dengan harga normal.";
+        reasons = [
+          "Kondisi visual masih baik untuk penjualan.",
+          "Tidak terlihat tanda kerusakan berat.",
+          "Kualitas masih menarik untuk pembeli."
+        ];
+        pricingReason = "Harga cocok di kisaran normal karena produk masih segar.";
+      } else if(freshness >= 50){
+        qualityLabel = "Cukup";
+        recommendation = "Produk masih bisa dijual, tetapi lebih baik diprioritaskan agar cepat habis.";
+        reasons = [
+          "Kesegaran terlihat menurun dibanding produk baru.",
+          "Perlu diprioritaskan untuk penjualan lebih cepat.",
+          "Harga sebaiknya sedikit disesuaikan agar menarik."
+        ];
+        pricingReason = "Harga sebaiknya sedikit diturunkan agar produk cepat terjual.";
+      } else {
+        qualityLabel = "Kurang Segar";
+        recommendation = "Produk sebaiknya segera disortir, didiskon, atau dipisahkan dari stok utama.";
+        reasons = [
+          "Visual menunjukkan indikasi kualitas menurun.",
+          "Perlu evaluasi sebelum dijual penuh.",
+          "Harga perlu diturunkan agar cepat terserap."
+        ];
+        pricingReason = "Harga perlu diturunkan karena kualitas visual menurun.";
+      }
+
+      reasons.push("Kategori terpilih: " + (category || "Sayur") + ".");
+
+      let centerPrice = Number(inputPrice || 0);
+      if(!centerPrice || centerPrice <= 0){
+        if(category === "Buah"){
+          centerPrice = 12000 + (seed % 9000);
+        } else {
+          centerPrice = 5000 + (seed % 7000);
+        }
+      }
+
+      let minFactor = 0.9;
+      let maxFactor = 1.1;
+
+      if(freshness >= 85){
+        minFactor = 1.0;
+        maxFactor = 1.25;
+      } else if(freshness >= 70){
+        minFactor = 0.95;
+        maxFactor = 1.12;
+      } else if(freshness >= 50){
+        minFactor = 0.82;
+        maxFactor = 0.96;
+      } else {
+        minFactor = 0.65;
+        maxFactor = 0.82;
+      }
+
+      const priceMin = Math.round(centerPrice * minFactor);
+      const priceMax = Math.round(centerPrice * maxFactor);
+      const priceCenter = Math.round((priceMin + priceMax) / 2);
+
+      return {
+        detected_name: detectedName,
+        product_name_real: detectedName,
+        vegetable_type: category || "Sayur",
+        freshness_score: freshness,
+        confidence: confidence,
+        quality_label: qualityLabel,
+        recommendation: recommendation,
+        pricing_reason: pricingReason,
+        base_price_per_unit: priceCenter,
+        suggested_price_per_unit: priceCenter,
+        price_min: priceMin,
+        price_max: priceMax,
+        reasons: reasons
+      };
+    }
+
+    function fillAdminEditBeforeSave(result){
+      el("editBeforeSaveProductName").value = result.product_name_real || "";
+      el("editBeforeSaveDate").value = el("analysisDate").value || todayValue();
+      el("editBeforeSaveQty").value = Number(el("analysisQty").value || 0);
+      el("editBeforeSaveUnit").value = el("analysisUnit").value || "KG";
+      el("editBeforeSaveCategory").value = el("analysisCategory").value || "Sayur";
+      el("editBeforeSaveQuality").value = result.quality_label || "";
+      el("editBeforeSaveBasePrice").value = Number(result.base_price_per_unit || 0);
+      el("editBeforeSavePriceMin").value = Number(result.price_min || 0);
+      el("editBeforeSavePriceMax").value = Number(result.price_max || 0);
+      el("editBeforeSaveSellPrice").value = "";
+      el("editBeforeSavePricingReason").value = result.pricing_reason || "";
+      el("editBeforeSaveRecommendation").value = result.recommendation || "";
+    }
+
+    function renderAIResult(result){
+      const score = Number(result.freshness_score || 0);
+      const confidence = Number(result.confidence || 0);
+
+      let pillText = result.quality_label || "Baik";
+      let pillColor = "#16a34a";
+      if(score < 70) pillColor = "#f59e0b";
+      if(score < 50) pillColor = "#e11d48";
+
+      el("vegType").textContent = result.detected_name || result.vegetable_type || "-";
+      el("freshnessPill").textContent = pillText;
+      el("freshnessPill").style.background = pillColor;
+      el("freshnessScoreText").textContent = score + "/100";
+      el("confidenceText").textContent = confidence + "%";
+      el("freshnessBar").style.width = score + "%";
+      el("freshnessBar").style.background = pillColor;
+      el("confidenceBar").style.width = confidence + "%";
+
+      el("basePriceValue").textContent = formatCurrency(result.base_price_per_unit || 0);
+      el("suggestedPriceValue").textContent = formatRange(result.price_min || 0, result.price_max || 0);
+      el("qualityValue").textContent = result.quality_label || "-";
+      el("recommendationText").textContent = result.recommendation || "-";
+      el("pricingReasonText").textContent = result.pricing_reason || "-";
+      el("priceRangeBox").textContent = "Rekomendasi harga AI: " + formatRange(result.price_min || 0, result.price_max || 0);
+
+      el("reasonList").innerHTML = "";
+      (result.reasons || []).forEach(reason => {
+        const div = document.createElement("div");
+        div.className = "soft";
+        div.textContent = reason;
+        el("reasonList").appendChild(div);
+      });
+
+      el("analysisMeta").textContent =
+        "Produk: " + (result.product_name_real || "-") +
+        " • Qty: " + (el("analysisQty").value || 0) + " " + (el("analysisUnit").value || "KG") +
+        " • Kategori: " + (el("analysisCategory").value || "Sayur") +
+        " • Rentang harga AI: " + formatRange(result.price_min || 0, result.price_max || 0);
+
+      el("resultEmpty").classList.add("hidden");
+      el("resultContent").classList.remove("hidden");
+
+      fillAdminEditBeforeSave(result);
+    }
+
+    function analyzeWithAI(){
+      clearError();
+      clearStatus();
+
+      const productName = el("analysisProductName").value.trim();
+      const qty = Number(el("analysisQty").value || 0);
+      const unit = el("analysisUnit").value;
+      const category = el("analysisCategory").value;
+      const inputPrice = Number(el("analysisBasePrice").value || 0);
+
+      if(!currentImageUrl){
+        setError("Upload gambar dulu.");
         return;
       }
 
-      try {
-        clearError();
-        setStatus("Menyimpan ke pusat...");
-
-        const itemToSave = JSON.parse(JSON.stringify(lastAnalysisResult));
-        itemToSave.saved_manual_at = new Date().toLocaleString("id-ID");
-        itemToSave.saved_id = "saved-" + Date.now();
-
-        const result = await saveToCloud(itemToSave);
-        itemToSave.saved_id = result.id || itemToSave.saved_id;
-
-        saveLS(STORAGE_KEYS.last_saved_id, itemToSave.saved_id);
-
-        await fetchCloudData();
-        renderSavedResults();
-        renderRecap();
-        renderSuggestions();
-        renderProductCatalog();
-
+      setStatus("Menganalisis gambar dengan simulasi lokal...");
+      setTimeout(() => {
+        const result = buildSimulatedAnalysis(currentImageUrl, productName, qty, unit, inputPrice, category);
+        renderAIResult(result);
         clearStatus();
-        alert("Data berhasil disimpan ke pusat.");
-
-        resetApp();
-        showPage("saved");
-      } catch (err) {
-        console.error(err);
-        clearStatus();
-        setError("Gagal menyimpan ke pusat: " + err.message);
-      }
+      }, 650);
     }
 
-    function openEditSaved(index){
-      const items = getSavedResults();
-      const item = items[index];
-      if(!item) return;
-
-      el("editSavedIndex").value = index;
-      el("editProductName").value = item.product_name_real || "";
-      el("editVegetableType").value = item.vegetable_type || "";
-      el("editAnalysisDate").value = item.analysis_date || todayValue();
-      el("editQty").value = Number(item.qty || 0);
-      el("editUnit").value = item.unit || "KG";
-      el("editPricePerUnit").value = Number(item.price_per_unit || 0);
-      el("editRecommendation").value = item.recommendation || "";
-      editImageDataUrl = item.image_data_url || "";
-      el("editImagePreview").src = editImageDataUrl || "";
-      el("editImageFile").value = "";
-
-      el("savedEditBox").classList.remove("hidden");
-      el("savedEditBox").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    function cancelEditSaved(){
-      el("savedEditBox").classList.add("hidden");
-      el("editSavedIndex").value = "";
-      el("editProductName").value = "";
-      el("editVegetableType").value = "";
-      el("editAnalysisDate").value = todayValue();
-      el("editQty").value = "";
-      el("editUnit").value = "KG";
-      el("editPricePerUnit").value = "";
-      el("editRecommendation").value = "";
-      el("editImageFile").value = "";
-      el("editImagePreview").src = "";
-      editImageDataUrl = "";
-    }
-
-    async function saveEditSaved(){
-      const index = Number(el("editSavedIndex").value);
-      const items = getSavedResults();
-      if(!items[index]) return;
-
+    async function saveCurrentAnalysis(){
       try {
-        setStatus("Menyimpan perubahan ke pusat...");
-
-        const imageFile = el("editImageFile").files[0];
-        if(imageFile){
-          editImageDataUrl = await fileToDataURL(imageFile);
+        const finalPrice = Number(el("editBeforeSaveSellPrice").value || 0);
+        if(!finalPrice || finalPrice <= 0){
+          setError("Harga jual final wajib diisi sebelum menyimpan data.");
+          return;
         }
 
-        items[index].product_name_real = el("editProductName").value.trim() || items[index].product_name_real || "Sayuran";
-        items[index].vegetable_type = el("editVegetableType").value.trim() || items[index].vegetable_type || "Sayuran";
-        items[index].analysis_date = el("editAnalysisDate").value || items[index].analysis_date || todayValue();
-        items[index].qty = Number(el("editQty").value || 0);
-        items[index].unit = el("editUnit").value || "KG";
-        items[index].price_per_unit = Number(el("editPricePerUnit").value || 0);
-        items[index].recommendation = el("editRecommendation").value.trim() || items[index].recommendation || "-";
-        items[index].image_data_url = editImageDataUrl || items[index].image_data_url || "";
+        const item = {
+          saved_id: "",
+          product_name_real: el("editBeforeSaveProductName").value.trim() || "Produk",
+          vegetable_type: el("editBeforeSaveCategory").value.trim() || "Sayur",
+          analysis_date: el("editBeforeSaveDate").value || todayValue(),
+          qty: Number(el("editBeforeSaveQty").value || 0),
+          unit: el("editBeforeSaveUnit").value || "KG",
+          price_per_unit: finalPrice,
+          base_price_per_unit: Number(el("editBeforeSaveBasePrice").value || 0),
+          quality_label: el("editBeforeSaveQuality").value.trim() || "Baik",
+          recommendation: el("editBeforeSaveRecommendation").value.trim() || "-",
+          pricing_reason: el("editBeforeSavePricingReason").value.trim() || "-",
+          image_data_url: currentImageUrl,
+          freshness_score: Number((el("freshnessScoreText").textContent || "0").split("/")[0] || 0),
+          confidence: Number((el("confidenceText").textContent || "0").replace("%","") || 0),
+          price_min: Number(el("editBeforeSavePriceMin").value || 0),
+          price_max: Number(el("editBeforeSavePriceMax").value || 0)
+        };
 
-        await updateToCloud(items[index]);
+        setStatus("Menyimpan ke database...");
+        await saveToCloud(item);
         await fetchCloudData();
-
-        cancelEditSaved();
         renderSavedResults();
-        renderRecap();
-        renderSuggestions();
         renderProductCatalog();
-
+        renderRecap();
         clearStatus();
-        alert("Data berhasil diperbarui di pusat.");
+        alert("Data berhasil disimpan ke database.");
+        resetApp();
+        showAdminTab("saved");
       } catch (err) {
         console.error(err);
         clearStatus();
-        setError("Gagal update data pusat: " + err.message);
+        setError("Gagal menyimpan: " + err.message);
       }
     }
 
-    async function deleteSaved(index){
-      const items = getSavedResults();
-      const item = items[index];
-      if(!item) return;
-
-      if(!confirm("Hapus data ini dari pusat?")) return;
-
-      try {
-        setStatus("Menghapus data dari pusat...");
-        await deleteFromCloud(item.saved_id);
-        await fetchCloudData();
-        renderSavedResults();
-        renderRecap();
-        renderSuggestions();
-        renderProductCatalog();
-        cancelEditSaved();
-        clearStatus();
-        alert("Data berhasil dihapus dari pusat.");
-      } catch (err) {
-        console.error(err);
-        clearStatus();
-        setError("Gagal menghapus data pusat: " + err.message);
-      }
-    }
-
-    function viewSaved(index){
-      const items = getSavedResults();
-      const item = items[index];
-      if(!item) return;
-      showPage("home");
-      if(item.image_data_url){
-        showImage(item.image_data_url);
-      }
-      renderResult(item);
-    }
-
-    function downloadSaved(index){
-      const items = getSavedResults();
-      const item = items[index];
-      if(!item) return;
-
-      const blob = new Blob([JSON.stringify(item, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "hasil-analisis.json";
-      a.click();
-      URL.revokeObjectURL(url);
+    function resetApp(){
+      currentImageUrl = "";
+      el("previewImage").src = "";
+      el("previewImage").classList.add("hidden");
+      el("emptyState").classList.remove("hidden");
+      el("previewBox").classList.remove("has-media");
+      el("analysisProductName").value = "";
+      el("analysisDate").value = todayValue();
+      el("analysisQty").value = "";
+      el("analysisUnit").value = "KG";
+      el("analysisCategory").value = "Sayur";
+      el("analysisBasePrice").value = "";
+      el("analysisRecommendationManual").value = "";
+      el("fileInput").value = "";
+      el("analyzeBtn").classList.add("hidden");
+      el("resultEmpty").classList.remove("hidden");
+      el("resultContent").classList.add("hidden");
+      clearStatus();
+      clearError();
     }
 
     function renderSavedResults(){
       const items = getSavedResults();
-      const lastSavedId = getLS(STORAGE_KEYS.last_saved_id, "");
       el("savedList").innerHTML = "";
 
       if(!items.length){
@@ -1852,45 +1843,31 @@
 
       el("savedEmpty").classList.add("hidden");
 
-      items.forEach(function(item, index){
-        const plan = getActionPlan(Number(item.freshness_score || 0));
-        const isNew = item.saved_id && item.saved_id === lastSavedId;
-
-        let imageHtml = "";
-        if(item.image_data_url){
-          imageHtml =
-            '<div class="saved-image-wrap">' +
-              '<img src="' + escapeHtml(item.image_data_url) + '" alt="' + escapeHtml(item.product_name_real || item.vegetable_type || "Sayuran") + '" class="saved-image">' +
-            '</div>';
-        } else {
-          imageHtml =
-            '<div class="saved-image-wrap" style="display:flex;align-items:center;justify-content:center;">Tidak ada gambar</div>';
-        }
-
+      items.forEach((item, index) => {
         const div = document.createElement("div");
-        div.className = "saved-card" + (isNew ? " saved-new-highlight" : "");
-        div.id = item.saved_id ? "saved-item-" + item.saved_id : "";
+        div.className = "saved-card";
 
         div.innerHTML =
-          imageHtml +
+          '<div class="saved-image-wrap">' +
+            (item.image_data_url
+              ? '<img src="' + escapeHtml(item.image_data_url) + '" class="saved-image" alt="Produk">'
+              : '<div style="height:100%;display:flex;align-items:center;justify-content:center;">Tidak ada gambar</div>') +
+          '</div>' +
           '<div class="saved-card-body">' +
-            '<div class="toolbar" style="margin-bottom:8px;">' +
-              '<strong>' + escapeHtml(item.product_name_real || item.vegetable_type || "Sayuran") + '</strong>' +
-              '<span class="badge" style="background:' + plan.color + ';">' + escapeHtml(plan.status) + '</span>' +
+            '<div class="toolbar">' +
+              '<strong>' + escapeHtml(item.product_name_real) + '</strong>' +
+              '<span class="status-pill pay-lunas">' + escapeHtml(item.quality_label || "-") + '</span>' +
             '</div>' +
-            '<div class="small">ID: ' + escapeHtml(item.saved_id || "-") + '</div>' +
             '<div class="small">Kategori: ' + escapeHtml(item.vegetable_type || "-") + '</div>' +
-            '<div class="small">Jumlah: ' + escapeHtml(String(item.qty || 0)) + ' ' + escapeHtml(item.unit || "KG") + '</div>' +
-            '<div class="small">Harga/satuan: ' + formatCurrency(item.price_per_unit || 0) + '</div>' +
-            '<div class="small">Skor: ' + escapeHtml(String(item.freshness_score || 0)) + '/100 • Confidence: ' + escapeHtml(String(item.confidence || 0)) + '%</div>' +
-            '<div class="small">Tanggal data masuk: ' + escapeHtml(formatDateDisplay(item.analysis_date)) + '</div>' +
-            '<div style="margin-top:8px;">' + escapeHtml(item.recommendation || "-") + '</div>' +
-            (isNew ? '<div style="margin-top:10px;color:#166534;font-weight:800;">✓ Baru saja disimpan</div>' : '') +
+            '<div class="small">Jumlah: ' + item.qty + ' ' + escapeHtml(item.unit || "KG") + '</div>' +
+            '<div class="small">Skor: ' + item.freshness_score + '/100</div>' +
+            '<div class="small">Rentang AI: ' + formatRange(item.price_min || 0, item.price_max || 0) + '</div>' +
+            '<div class="small">Harga jual final: ' + formatCurrency(item.price_per_unit || 0) + '</div>' +
+            '<div class="small">Harga tengah AI: ' + formatCurrency(item.base_price_per_unit || 0) + '</div>' +
+            '<div style="margin-top:8px;">' + escapeHtml(item.pricing_reason || "-") + '</div>' +
             '<div class="row" style="margin-top:12px;">' +
-              '<button type="button" onclick="openEditSaved(' + index + ')">✏ Edit</button>' +
-              '<button type="button" onclick="viewSaved(' + index + ')">👁 Lihat</button>' +
-              '<button type="button" onclick="downloadSaved(' + index + ')">⬇ Download</button>' +
-              '<button type="button" class="btn-danger" onclick="deleteSaved(' + index + ')">🗑 Hapus</button>' +
+              '<button type="button" onclick="openEditSaved(' + index + ')">Edit</button>' +
+              '<button type="button" class="btn-danger" onclick="deleteSaved(' + index + ')">Hapus</button>' +
             '</div>' +
           '</div>';
 
@@ -1898,539 +1875,273 @@
       });
     }
 
-    function getPaidOrders(){
-      return getOrders().filter(function(order){
-        return (order.payment_status || "") === "Lunas";
-      });
+    function openEditSaved(index){
+      const items = getSavedResults();
+      const item = items[index];
+      if(!item) return;
+
+      el("savedEditBox").classList.remove("hidden");
+      el("editSavedIndex").value = index;
+      el("editProductName").value = item.product_name_real || "";
+      el("editAnalysisDate").value = item.analysis_date || todayValue();
+      el("editQty").value = item.qty || 0;
+      el("editUnit").value = item.unit || "KG";
+      el("editVegetableType").value = item.vegetable_type || "Sayur";
+      el("editQualityLabel").value = item.quality_label || "";
+      el("editPricePerUnit").value = item.price_per_unit || 0;
+      el("editBasePricePerUnit").value = item.base_price_per_unit || 0;
+      el("editPricingReason").value = item.pricing_reason || "";
+      el("editRecommendation").value = item.recommendation || "";
+      el("savedEditBox").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function cancelEditSaved(){
+      el("savedEditBox").classList.add("hidden");
+      el("editSavedIndex").value = "";
+    }
+
+    async function saveEditSaved(){
+      const index = Number(el("editSavedIndex").value);
+      const items = getSavedResults();
+      if(!items[index]) return;
+
+      const finalPrice = Number(el("editPricePerUnit").value || 0);
+      if(!finalPrice || finalPrice <= 0){
+        alert("Harga jual final wajib diisi.");
+        return;
+      }
+
+      const item = items[index];
+      item.product_name_real = el("editProductName").value.trim() || item.product_name_real;
+      item.analysis_date = el("editAnalysisDate").value || item.analysis_date;
+      item.qty = Number(el("editQty").value || 0);
+      item.unit = el("editUnit").value || item.unit;
+      item.vegetable_type = el("editVegetableType").value.trim() || item.vegetable_type;
+      item.quality_label = el("editQualityLabel").value.trim() || item.quality_label;
+      item.price_per_unit = finalPrice;
+      item.base_price_per_unit = Number(el("editBasePricePerUnit").value || 0);
+      item.pricing_reason = el("editPricingReason").value.trim() || item.pricing_reason;
+      item.recommendation = el("editRecommendation").value.trim() || item.recommendation;
+
+      try {
+        await updateToCloud(item);
+        await fetchCloudData();
+        renderSavedResults();
+        renderProductCatalog();
+        renderRecap();
+        cancelEditSaved();
+        alert("Data berhasil diperbarui.");
+      } catch (err) {
+        alert("Gagal menyimpan perubahan: " + err.message);
+      }
+    }
+
+    async function deleteSaved(index){
+      const items = getSavedResults();
+      const item = items[index];
+      if(!item) return;
+      if(!confirm("Hapus data ini?")) return;
+
+      try {
+        await deleteFromCloud(item.saved_id);
+        await fetchCloudData();
+        renderSavedResults();
+        renderProductCatalog();
+        renderRecap();
+        alert("Data berhasil dihapus.");
+      } catch (err) {
+        alert("Gagal menghapus data: " + err.message);
+      }
     }
 
     function getProductCatalog(){
       const saved = getSavedResults();
       const paidOrders = getPaidOrders();
       const soldMap = {};
-      const catalog = [];
+      const products = [];
 
-      paidOrders.forEach(function(order){
-        if(order.products && order.products.length){
-          order.products.forEach(function(prod){
-            const key = (prod.name || "") + "__" + (prod.unit || "KG");
-            if(!soldMap[key]) soldMap[key] = 0;
-            soldMap[key] += Number(prod.qty || 0);
-          });
-        }
+      paidOrders.forEach(order => {
+        (order.products || []).forEach(prod => {
+          const key = (prod.name || "") + "__" + (prod.unit || "KG");
+          if(!soldMap[key]) soldMap[key] = 0;
+          soldMap[key] += Number(prod.qty || 0);
+        });
       });
 
-      saved.forEach(function(item, index){
-        const originalQty = Number(item.qty || 0);
-        const score = Number(item.freshness_score || 0);
-        const unit = item.unit || "KG";
-        const productName = item.product_name_real || item.vegetable_type || "Sayuran";
-        const key = productName + "__" + unit;
+      saved.forEach((item, index) => {
+        const key = (item.product_name_real || "") + "__" + (item.unit || "KG");
         const soldQty = Number(soldMap[key] || 0);
-        const remainingQty = Math.max(0, originalQty - soldQty);
-        const pricePerUnit = Number(item.price_per_unit || guessPricePerUnit(score));
-
-        let qualityStatus = "fresh";
-        if(score >= 85){
-          qualityStatus = "fresh";
-        } else if(score >= 75){
-          qualityStatus = "fresh";
-        } else if(score >= 60){
-          qualityStatus = "fast";
-        } else {
-          qualityStatus = "sort";
-        }
+        const remainingQty = Math.max(0, Number(item.qty || 0) - soldQty);
 
         if(remainingQty > 0){
-          catalog.push({
+          products.push({
             id: "prd-" + index,
-            source_index: index,
-            name: productName,
-            category: item.vegetable_type || "Sayuran",
+            name: item.product_name_real,
+            unit: item.unit,
             stock: remainingQty,
-            original_stock: originalQty,
-            sold_stock: soldQty,
-            unit: unit,
-            freshness_score: score,
-            price: pricePerUnit,
-            quality_status: qualityStatus,
-            image_data_url: item.image_data_url || ""
+            price: Number(item.price_per_unit || 0),
+            image_data_url: item.image_data_url || "",
+            quality_label: item.quality_label || "-",
+            source_index: index
           });
         }
       });
 
-      return catalog;
+      return products;
     }
 
     function renderProductCatalog(){
-      if(!el("productCatalogList")) return;
-
       const list = el("productCatalogList");
       const empty = el("productCatalogEmpty");
-      const search = (el("productSearchInput") ? el("productSearchInput").value : "").toLowerCase();
-      const filter = el("productFilterSelect") ? el("productFilterSelect").value : "all";
       list.innerHTML = "";
 
-      const products = getProductCatalog().filter(function(product){
-        const okSearch = product.name.toLowerCase().includes(search) || product.category.toLowerCase().includes(search);
-        const okFilter = filter === "all" || product.quality_status === filter;
-        return okSearch && okFilter;
-      });
-
+      const products = getProductCatalog();
       window.__catalogProducts = products;
 
       if(!products.length){
         empty.classList.remove("hidden");
-        empty.textContent = "Produk habis atau belum ada data stok yang tersedia.";
         return;
       }
 
       empty.classList.add("hidden");
 
-      products.forEach(function(product, idx){
-        let badgeText = "Segar";
-        let badgeColor = "#16a34a";
-
-        if(product.quality_status === "fast"){
-          badgeText = "Jual Cepat";
-          badgeColor = "#f59e0b";
-        }
-        if(product.quality_status === "sort"){
-          badgeText = "Risiko Tinggi";
-          badgeColor = "#e11d48";
-        }
-
-        let imgHtml = "";
-        if(product.image_data_url){
-          imgHtml = '<img src="' + escapeHtml(product.image_data_url) + '" alt="' + escapeHtml(product.name) + '">';
-        } else {
-          imgHtml = '<div style="height:190px;border-radius:14px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">Tidak ada foto</div>';
-        }
-
+      products.forEach((product, index) => {
         const div = document.createElement("div");
         div.className = "product-card";
         div.innerHTML =
-          imgHtml +
-          '<div class="toolbar" style="margin-bottom:8px;">' +
-            '<h4>' + escapeHtml(product.name) + '</h4>' +
-            '<span class="badge" style="background:' + badgeColor + ';">' + badgeText + '</span>' +
-          '</div>' +
-          '<div class="product-meta">' +
-            'Kategori: ' + escapeHtml(product.category) +
-            '<br>Stok tersedia: ' + product.stock + ' ' + escapeHtml(product.unit) +
-            '<br>Stok awal: ' + product.original_stock + ' ' + escapeHtml(product.unit) +
-            '<br>Terjual (lunas): ' + product.sold_stock + ' ' + escapeHtml(product.unit) +
-            '<br>Skor kesegaran: ' + product.freshness_score + '/100' +
-          '</div>' +
-          '<div class="product-price">' + formatCurrency(product.price) + ' / ' + escapeHtml(product.unit) + '</div>' +
-          '<div class="qty-box">' +
-            '<input type="number" min="1" max="' + product.stock + '" value="1" id="qtyProduct' + idx + '">' +
-          '</div>' +
-          '<div class="product-actions">' +
-            '<button type="button" class="btn-success" onclick="addToCart(' + idx + ')">+ Keranjang</button>' +
-            '<button type="button" onclick="buyNowProduct(' + idx + ')">Beli Sekarang</button>' +
+          (product.image_data_url
+            ? '<img src="' + escapeHtml(product.image_data_url) + '" alt="' + escapeHtml(product.name) + '">'
+            : '<div style="height:220px;display:flex;align-items:center;justify-content:center;background:#f3f4f6;">Tidak ada foto</div>') +
+          '<div class="product-card-body">' +
+            '<div class="toolbar">' +
+              '<strong>' + escapeHtml(product.name) + '</strong>' +
+              '<span class="status-pill pay-lunas">' + escapeHtml(product.quality_label) + '</span>' +
+            '</div>' +
+            '<div class="small" style="margin-top:8px;">Stok: ' + product.stock + ' ' + escapeHtml(product.unit) + '</div>' +
+            '<div class="small">Harga: ' + formatCurrency(product.price) + ' / ' + escapeHtml(product.unit) + '</div>' +
+            '<div class="row" style="margin-top:12px;">' +
+              '<input id="qtyProduct' + index + '" class="field" type="number" min="1" max="' + product.stock + '" value="1" style="max-width:120px;">' +
+              '<button type="button" class="btn-primary" onclick="checkoutSingle(' + index + ')">Checkout</button>' +
+            '</div>' +
           '</div>';
-
         list.appendChild(div);
       });
     }
 
-    function addToCart(index){
+    function checkoutSingle(index){
       const products = window.__catalogProducts || [];
       const product = products[index];
       if(!product) return;
 
-      const qtyInput = el("qtyProduct" + index);
-      const qty = Number(qtyInput.value || 0);
+      const qty = Number(el("qtyProduct" + index).value || 0);
+      const buyerName = el("buyerName").value.trim();
+      const buyerPhone = el("buyerPhone").value.trim();
+      const buyerAddress = el("buyerAddress").value.trim();
 
-      if(qty <= 0){
-        alert("Jumlah harus lebih dari 0.");
+      if(!buyerName || !buyerPhone || !buyerAddress){
+        alert("Lengkapi data pembeli dulu.");
+        showPage("buyerOrders");
         return;
       }
 
-      if(qty > product.stock){
-        alert("Jumlah melebihi stok.");
+      if(qty <= 0 || qty > product.stock){
+        alert("Jumlah tidak valid.");
         return;
       }
-
-      const existing = cartItems.find(function(item){
-        return item.name === product.name && item.unit === product.unit;
-      });
-
-      if(existing){
-        if(existing.qty + qty > product.stock){
-          alert("Jumlah total di keranjang melebihi stok.");
-          return;
-        }
-        existing.qty += qty;
-        existing.subtotal = existing.qty * existing.price;
-      } else {
-        cartItems.push({
-          name: product.name,
-          category: product.category,
-          unit: product.unit,
-          price: product.price,
-          qty: qty,
-          stock: product.stock,
-          subtotal: qty * product.price
-        });
-      }
-
-      renderCart();
-    }
-
-    function buyNowProduct(index){
-      cartItems = [];
-      addToCart(index);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function removeCartItem(index){
-      cartItems.splice(index, 1);
-      renderCart();
-    }
-
-    function getShippingCost(){
-      const method = el("shippingMethod") ? el("shippingMethod").value : "regular";
-      if(method === "express") return 20000;
-      if(method === "pickup") return 0;
-      return 10000;
-    }
-
-    function getDiscountAmount(subtotal){
-      if(!activeVoucher) return 0;
-      if(activeVoucher.type === "percent"){
-        return Math.floor(subtotal * activeVoucher.value / 100);
-      }
-      if(activeVoucher.type === "fixed"){
-        return activeVoucher.value;
-      }
-      return 0;
-    }
-
-    function applyVoucher(){
-      const code = (el("voucherInput").value || "").trim().toUpperCase();
-      activeVoucher = null;
-
-      if(!code){
-        alert("Masukkan kode voucher.");
-        renderCart();
-        return;
-      }
-
-      if(code === "HEMAT10"){
-        activeVoucher = { code: code, type: "percent", value: 10 };
-        alert("Voucher HEMAT10 aktif. Diskon 10%.");
-      } else if(code === "ONGKIRFREE"){
-        activeVoucher = { code: code, type: "fixed", value: 10000 };
-        alert("Voucher ONGKIRFREE aktif. Potongan Rp 10.000.");
-      } else {
-        alert("Kode voucher tidak valid.");
-      }
-
-      renderCart();
-    }
-
-    function renderCart(){
-      if(!el("cartList")) return;
-
-      const cartList = el("cartList");
-      const cartEmpty = el("cartEmpty");
-      const subtotalEl = el("cartSubtotalValue");
-      const discountEl = el("discountValue");
-      const shippingEl = el("shippingValue");
-      const totalEl = el("cartTotalValue");
-      cartList.innerHTML = "";
-
-      if(!cartItems.length){
-        cartEmpty.classList.remove("hidden");
-        subtotalEl.textContent = "Rp 0";
-        discountEl.textContent = "Rp 0";
-        shippingEl.textContent = "Rp 0";
-        totalEl.textContent = "Rp 0";
-        return;
-      }
-
-      cartEmpty.classList.add("hidden");
-
-      let subtotal = 0;
-      cartItems.forEach(function(item, index){
-        subtotal += Number(item.subtotal || 0);
-
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML =
-          '<div class="toolbar">' +
-            '<strong>' + escapeHtml(item.name) + '</strong>' +
-            '<button type="button" class="btn-danger" onclick="removeCartItem(' + index + ')">Hapus</button>' +
-          '</div>' +
-          '<div class="small">Harga: ' + formatCurrency(item.price) + ' / ' + escapeHtml(item.unit) + '</div>' +
-          '<div class="small">Jumlah: ' + item.qty + ' ' + escapeHtml(item.unit) + '</div>' +
-          '<div style="margin-top:8px;font-weight:800;">Subtotal: ' + formatCurrency(item.subtotal) + '</div>';
-        cartList.appendChild(div);
-      });
-
-      const shipping = getShippingCost();
-      let discount = getDiscountAmount(subtotal);
-      if(discount > subtotal) discount = subtotal;
-      const total = subtotal - discount + shipping;
-
-      subtotalEl.textContent = formatCurrency(subtotal);
-      discountEl.textContent = formatCurrency(discount);
-      shippingEl.textContent = formatCurrency(shipping);
-      totalEl.textContent = formatCurrency(total);
-    }
-
-    function buildWhatsAppMessage(order){
-      let productLines = "";
-      if(order.products && order.products.length){
-        order.products.forEach(function(prod, i){
-          productLines +=
-            (i + 1) + ". " + prod.name +
-            " - " + prod.qty + " " + prod.unit +
-            " x " + formatCurrency(prod.price) +
-            " = " + formatCurrency(prod.subtotal) + "\n";
-        });
-      }
-
-      let shippingLabel = "Regular";
-      if(order.shipping_method === "express") shippingLabel = "Express";
-      if(order.shipping_method === "pickup") shippingLabel = "Ambil Sendiri";
-
-      return (
-        "Halo, saya ingin checkout pesanan berikut:\n\n" +
-        "Nama: " + (order.buyer_name || "-") + "\n" +
-        "No. WA Pembeli: " + (order.buyer_phone || "-") + "\n" +
-        "Alamat: " + (order.buyer_address || "-") + "\n\n" +
-        "Detail Pesanan:\n" +
-        productLines + "\n" +
-        "Subtotal: " + formatCurrency(order.subtotal_price || 0) + "\n" +
-        "Diskon: " + formatCurrency(order.discount_price || 0) + "\n" +
-        "Ongkir: " + formatCurrency(order.shipping_price || 0) + "\n" +
-        "Total Bayar: " + formatCurrency(order.total_price || 0) + "\n" +
-        "Metode Pembayaran: " + (order.payment_method || "-") + "\n" +
-        "Metode Pengiriman: " + shippingLabel + "\n" +
-        "Voucher: " + (order.voucher_code || "-") + "\n\n" +
-        "Mohon diproses ya. Terima kasih."
-      );
-    }
-
-    function openWhatsAppCheckout(order){
-      const store = getStore();
-      const waNumber = normalizeWhatsAppNumber(store.phone);
-
-      if(!waNumber){
-        alert("Nomor WhatsApp toko belum diatur. Silakan isi dulu di menu Admin.");
-        showPage("admin");
-        return false;
-      }
-
-      const message = buildWhatsAppMessage(order);
-      const url = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(message);
-      window.open(url, "_blank");
-      return true;
-    }
-
-    function checkoutCart(){
-      if(!cartItems.length){
-        alert("Keranjang masih kosong.");
-        return;
-      }
-
-      const latestCatalog = getProductCatalog();
-
-      for(let i = 0; i < cartItems.length; i++){
-        const cart = cartItems[i];
-        const currentProduct = latestCatalog.find(function(prod){
-          return prod.name === cart.name && prod.unit === cart.unit;
-        });
-
-        if(!currentProduct){
-          alert("Produk " + cart.name + " sudah tidak tersedia.");
-          renderProductCatalog();
-          return;
-        }
-
-        if(Number(cart.qty || 0) > Number(currentProduct.stock || 0)){
-          alert("Stok produk " + cart.name + " tidak mencukupi. Stok terbaru: " + currentProduct.stock + " " + currentProduct.unit);
-          renderProductCatalog();
-          return;
-        }
-      }
-
-      const buyer = el("buyerName").value.trim();
-      const phone = el("buyerPhone").value.trim();
-      const address = el("buyerAddress").value.trim();
-      const paymentMethod = el("paymentMethod").value;
-      const shippingMethod = el("shippingMethod").value;
-
-      if(!buyer || !phone || !address){
-        alert("Lengkapi data checkout terlebih dahulu.");
-        return;
-      }
-
-      const subtotal = cartItems.reduce(function(sum, item){
-        return sum + Number(item.subtotal || 0);
-      }, 0);
-
-      const shipping = getShippingCost();
-      let discount = getDiscountAmount(subtotal);
-      if(discount > subtotal) discount = subtotal;
-      const total = subtotal - discount + shipping;
-
-      const paymentStatus = paymentMethod === "COD" ? "Belum Bayar" : "Lunas";
 
       const order = {
-        buyer_name: buyer,
-        buyer_phone: phone,
-        buyer_address: address,
-        payment_method: paymentMethod,
-        shipping_method: shippingMethod,
-        voucher_code: activeVoucher ? activeVoucher.code : "",
-        products: cartItems.slice(),
-        product_name: cartItems.map(function(x){ return x.name; }).join(", "),
-        qty: cartItems.reduce(function(sum, item){ return sum + Number(item.qty || 0); }, 0),
-        unit: "Item",
-        subtotal_price: subtotal,
-        discount_price: discount,
-        shipping_price: shipping,
-        total_price: total,
-        payment_status: paymentStatus,
-        product_date: todayValue(),
-        created_at: new Date().toLocaleString("id-ID"),
-        invoice_no: "INV-" + Date.now(),
-        status: "Menunggu"
+        buyer_name: buyerName,
+        buyer_phone: buyerPhone,
+        buyer_address: buyerAddress,
+        products: [{
+          name: product.name,
+          unit: product.unit,
+          qty,
+          price: product.price,
+          subtotal: qty * product.price
+        }],
+        total_price: qty * product.price,
+        payment_status: "Belum Bayar",
+        status: "Menunggu",
+        created_at: dateTimeNow(),
+        invoice_no: "INV-" + Date.now()
       };
 
       const items = getOrders();
       items.unshift(order);
-      setOrders(items.slice(0, 100));
-
-      cartItems = [];
-      activeVoucher = null;
-      el("voucherInput").value = "";
-      renderCart();
-      renderOrders();
-      renderRecap();
-      renderSuggestions();
-      renderProductCatalog();
-
-      el("buyerName").value = "";
-      el("buyerPhone").value = "";
-      el("buyerAddress").value = "";
-      el("paymentMethod").value = "Transfer Bank";
-      el("shippingMethod").value = "regular";
-
-      alert("Checkout berhasil. WhatsApp akan dibuka.");
-      openWhatsAppCheckout(order);
-    }
-
-    function getStatusClass(status){
-      if(status === "Menunggu") return "status-menunggu";
-      if(status === "Diproses") return "status-diproses";
-      if(status === "Selesai") return "status-selesai";
-      if(status === "Dibatalkan") return "status-dibatalkan";
-      return "status-menunggu";
-    }
-
-    function getPaymentClass(status){
-      if(status === "Lunas") return "pay-lunas";
-      return "pay-belum";
-    }
-
-    function markOrderPaid(index){
-      const items = getOrders();
-      if(!items[index]) return;
-
-      items[index].payment_status = "Lunas";
-      items[index].paid_at = new Date().toLocaleString("id-ID");
       setOrders(items);
-
       renderOrders();
+      renderAdminOrders();
       renderRecap();
-      renderSuggestions();
-      renderProductCatalog();
 
-      alert("Pesanan ditandai Lunas. Stok otomatis sudah berkurang.");
+      const store = getStore();
+      const wa = normalizeWhatsAppNumber(store.phone);
+      if(wa){
+        const text =
+          "Halo, saya ingin pesan:\n" +
+          product.name + "\n" +
+          "Qty: " + qty + " " + product.unit + "\n" +
+          "Total: " + formatCurrency(order.total_price) + "\n" +
+          "Nama: " + buyerName + "\n" +
+          "Alamat: " + buyerAddress;
+        window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), "_blank");
+      }
+
+      alert("Pesanan dibuat.");
+      showPage("buyerOrders");
     }
 
     function updateOrderStatus(index, status){
+      if(!isAdmin()){
+        alert("Fitur ini hanya untuk admin.");
+        showPage("adminLogin");
+        return;
+      }
+
       const items = getOrders();
       if(!items[index]) return;
       items[index].status = status;
       setOrders(items);
       renderOrders();
+      renderAdminOrders();
+    }
+
+    function markOrderPaid(index){
+      if(!isAdmin()){
+        alert("Fitur ini hanya untuk admin.");
+        showPage("adminLogin");
+        return;
+      }
+
+      const items = getOrders();
+      if(!items[index]) return;
+      items[index].payment_status = "Lunas";
+      setOrders(items);
+      renderOrders();
+      renderAdminOrders();
+      renderProductCatalog();
+      renderRecap();
+      alert("Pesanan ditandai lunas. Stok otomatis berkurang.");
     }
 
     function deleteOrder(index){
+      if(!isAdmin()){
+        alert("Fitur ini hanya untuk admin.");
+        showPage("adminLogin");
+        return;
+      }
+
       if(!confirm("Hapus pesanan ini?")) return;
       const items = getOrders();
       items.splice(index, 1);
       setOrders(items);
       renderOrders();
-      renderRecap();
-      renderSuggestions();
+      renderAdminOrders();
       renderProductCatalog();
-    }
-
-    function renderInvoice(order){
-      const store = getStore();
-      let productsHtml = "";
-
-      if(order.products && order.products.length){
-        order.products.forEach(function(prod){
-          productsHtml +=
-            '<tr>' +
-              '<td>' + escapeHtml(prod.name) + '</td>' +
-              '<td>' + prod.qty + ' ' + escapeHtml(prod.unit) + '</td>' +
-              '<td>' + escapeHtml(formatCurrency(prod.price)) + '</td>' +
-              '<td>' + escapeHtml(formatCurrency(prod.subtotal)) + '</td>' +
-            '</tr>';
-        });
-      }
-
-      const html =
-        '<div class="invoice">' +
-          '<h2>' + escapeHtml(store.name) + '</h2>' +
-          '<p>' + escapeHtml(store.address) + '</p>' +
-          '<p>WA: ' + escapeHtml(store.phone || "-") + ' • Email: ' + escapeHtml(store.email) + '</p>' +
-          '<div class="line"></div>' +
-          '<h3>Invoice Pesanan</h3>' +
-          '<p><b>No Invoice:</b> ' + escapeHtml(order.invoice_no) + '</p>' +
-          '<p><b>Tanggal:</b> ' + escapeHtml(order.created_at) + '</p>' +
-          '<p><b>Pembeli:</b> ' + escapeHtml(order.buyer_name) + '</p>' +
-          '<p><b>Telepon:</b> ' + escapeHtml(order.buyer_phone || "-") + '</p>' +
-          '<p><b>Alamat:</b> ' + escapeHtml(order.buyer_address || "-") + '</p>' +
-          '<table>' +
-            '<thead>' +
-              '<tr><th>Produk</th><th>Qty</th><th>Harga</th><th>Subtotal</th></tr>' +
-            '</thead>' +
-            '<tbody>' + productsHtml + '</tbody>' +
-          '</table>' +
-          '<div class="line"></div>' +
-          '<p>Subtotal: <b>' + escapeHtml(formatCurrency(order.subtotal_price || 0)) + '</b></p>' +
-          '<p>Diskon: <b>' + escapeHtml(formatCurrency(order.discount_price || 0)) + '</b></p>' +
-          '<p>Ongkir: <b>' + escapeHtml(formatCurrency(order.shipping_price || 0)) + '</b></p>' +
-          '<p>Total Bayar: <b>' + escapeHtml(formatCurrency(order.total_price || 0)) + '</b></p>' +
-          '<p>Status Pesanan: <b>' + escapeHtml(order.status || "Menunggu") + '</b></p>' +
-          '<p>Status Pembayaran: <b>' + escapeHtml(order.payment_status || "Belum Bayar") + '</b></p>' +
-        '</div>';
-
-      el("invoiceArea").innerHTML = html;
-      el("invoiceArea").classList.remove("hidden");
-    }
-
-    function printInvoice(index){
-      const items = getOrders();
-      const order = items[index];
-      if(!order) return;
-      renderInvoice(order);
-      window.print();
+      renderRecap();
     }
 
     function renderOrders(){
-      if(!el("orderList")) return;
-
       const items = getOrders();
       el("orderList").innerHTML = "";
 
@@ -2438,59 +2149,168 @@
         el("orderEmpty").classList.remove("hidden");
         return;
       }
-
       el("orderEmpty").classList.add("hidden");
 
-      items.forEach(function(item, index){
+      items.forEach(item => {
         let productsHtml = "";
-        if(item.products && item.products.length){
-          item.products.forEach(function(prod){
-            productsHtml += '<div class="small">• ' + escapeHtml(prod.name) + ' — ' + prod.qty + ' ' + escapeHtml(prod.unit) + ' — ' + formatCurrency(prod.subtotal) + '</div>';
-          });
-        }
+        (item.products || []).forEach(prod => {
+          productsHtml += '<div class="small">• ' + escapeHtml(prod.name) + ' - ' + prod.qty + ' ' + escapeHtml(prod.unit) + ' - ' + formatCurrency(prod.subtotal) + '</div>';
+        });
 
-        const orderStatus = item.status || "Menunggu";
         const paymentStatus = item.payment_status || "Belum Bayar";
 
-        let paidButtonHtml = "";
-        if(paymentStatus !== "Lunas"){
-          paidButtonHtml = '<button type="button" class="btn-success" onclick="markOrderPaid(' + index + ')">Lunas</button>';
-        }
-
         const div = document.createElement("div");
-        div.className = "order-history-card";
+        div.className = "item";
         div.innerHTML =
-          '<div class="toolbar" style="margin-bottom:10px;">' +
-            '<div>' +
-              '<strong>' + escapeHtml(item.buyer_name) + '</strong><br>' +
-              '<span class="small">' + escapeHtml(item.created_at) + '</span>' +
-            '</div>' +
+          '<div class="toolbar">' +
+            '<strong>' + escapeHtml(item.buyer_name) + '</strong>' +
             '<div class="row">' +
-              '<span class="status-pill ' + getStatusClass(orderStatus) + '">' + escapeHtml(orderStatus) + '</span>' +
-              '<span class="status-pill ' + getPaymentClass(paymentStatus) + '">' + escapeHtml(paymentStatus) + '</span>' +
+              '<span class="status-pill ' + (item.status === "Selesai" ? "status-selesai" : item.status === "Diproses" ? "status-diproses" : item.status === "Dibatalkan" ? "status-dibatalkan" : "status-menunggu") + '">' + escapeHtml(item.status) + '</span>' +
+              '<span class="status-pill ' + (paymentStatus === "Lunas" ? "pay-lunas" : "pay-belum") + '">' + escapeHtml(paymentStatus) + '</span>' +
             '</div>' +
           '</div>' +
           '<div class="small">WA: ' + escapeHtml(item.buyer_phone || "-") + '</div>' +
           '<div class="small">Alamat: ' + escapeHtml(item.buyer_address || "-") + '</div>' +
-          '<div class="small">Pembayaran: ' + escapeHtml(item.payment_method || "-") + '</div>' +
-          '<div class="small">Pengiriman: ' + escapeHtml(item.shipping_method || "-") + '</div>' +
-          '<div class="small">Voucher: ' + escapeHtml(item.voucher_code || "-") + '</div>' +
           '<div style="margin-top:10px;">' + productsHtml + '</div>' +
-          '<div class="small" style="margin-top:8px;">Subtotal: ' + formatCurrency(item.subtotal_price || item.total_price || 0) + '</div>' +
-          '<div class="small">Diskon: ' + formatCurrency(item.discount_price || 0) + '</div>' +
-          '<div class="small">Ongkir: ' + formatCurrency(item.shipping_price || 0) + '</div>' +
-          '<div style="margin-top:10px;font-weight:800;">Total: ' + formatCurrency(item.total_price) + '</div>' +
-          '<div class="row" style="margin-top:12px;">' +
-            '<button type="button" class="btn-info" onclick="printInvoice(' + index + ')">🖨 Print Invoice</button>' +
-            '<button type="button" onclick="updateOrderStatus(' + index + ', \'Diproses\')">Diproses</button>' +
-            '<button type="button" onclick="updateOrderStatus(' + index + ', \'Selesai\')">Selesai</button>' +
-            paidButtonHtml +
-            '<button type="button" class="btn-danger" onclick="updateOrderStatus(' + index + ', \'Dibatalkan\')">Batalkan</button>' +
-            '<button type="button" class="btn-danger" onclick="deleteOrder(' + index + ')">🗑 Hapus</button>' +
-          '</div>';
-
+          '<div style="margin-top:10px;font-weight:800;">Total: ' + formatCurrency(item.total_price || 0) + '</div>';
         el("orderList").appendChild(div);
       });
+    }
+
+    function renderAdminOrders(){
+      const items = getOrders();
+      el("adminOrderList").innerHTML = "";
+
+      if(!items.length){
+        el("adminOrderList").innerHTML = '<div class="soft">Belum ada pesanan.</div>';
+        return;
+      }
+
+      items.forEach((item, index) => {
+        let productsHtml = "";
+        (item.products || []).forEach(prod => {
+          productsHtml += '<div class="small">• ' + escapeHtml(prod.name) + ' - ' + prod.qty + ' ' + escapeHtml(prod.unit) + ' - ' + formatCurrency(prod.subtotal) + '</div>';
+        });
+
+        const paymentStatus = item.payment_status || "Belum Bayar";
+        let paidButton = "";
+        if(paymentStatus !== "Lunas"){
+          paidButton = '<button type="button" class="btn-success" onclick="markOrderPaid(' + index + ')">Lunas</button>';
+        }
+
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML =
+          '<div class="toolbar">' +
+            '<strong>' + escapeHtml(item.buyer_name) + '</strong>' +
+            '<div class="row">' +
+              '<span class="status-pill ' + (item.status === "Selesai" ? "status-selesai" : item.status === "Diproses" ? "status-diproses" : item.status === "Dibatalkan" ? "status-dibatalkan" : "status-menunggu") + '">' + escapeHtml(item.status) + '</span>' +
+              '<span class="status-pill ' + (paymentStatus === "Lunas" ? "pay-lunas" : "pay-belum") + '">' + escapeHtml(paymentStatus) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="small">WA: ' + escapeHtml(item.buyer_phone || "-") + '</div>' +
+          '<div class="small">Alamat: ' + escapeHtml(item.buyer_address || "-") + '</div>' +
+          '<div style="margin-top:10px;">' + productsHtml + '</div>' +
+          '<div style="margin-top:10px;font-weight:800;">Total: ' + formatCurrency(item.total_price || 0) + '</div>' +
+          '<div class="row" style="margin-top:12px;">' +
+            '<button type="button" onclick="updateOrderStatus(' + index + ', \'Diproses\')">Diproses</button>' +
+            '<button type="button" onclick="updateOrderStatus(' + index + ', \'Selesai\')">Selesai</button>' +
+            paidButton +
+            '<button type="button" class="btn-danger" onclick="updateOrderStatus(' + index + ', \'Dibatalkan\')">Batalkan</button>' +
+            '<button type="button" class="btn-danger" onclick="deleteOrder(' + index + ')">Hapus</button>' +
+          '</div>';
+
+        el("adminOrderList").appendChild(div);
+      });
+    }
+
+    function renderAdminFeedbacks(){
+      const items = getFeedbacks();
+      const empty = el("adminFeedbackEmpty");
+      const list = el("adminFeedbackList");
+
+      list.innerHTML = "";
+
+      if(!items.length){
+        empty.classList.remove("hidden");
+        return;
+      }
+
+      empty.classList.add("hidden");
+
+      items.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML =
+          '<div class="toolbar">' +
+            '<strong>Kritik &amp; Saran</strong>' +
+            '<span class="small">' + escapeHtml(item.created_at || "-") + '</span>' +
+          '</div>' +
+          '<div style="margin-top:10px; white-space:pre-wrap;">' + escapeHtml(item.message || "-") + '</div>' +
+          '<div class="row" style="margin-top:12px;">' +
+            '<button type="button" class="btn-danger" onclick="deleteFeedback(' + index + ')">Hapus</button>' +
+          '</div>';
+        list.appendChild(div);
+      });
+    }
+
+    async function sendFeedback(){
+      clearFeedbackStatus();
+      clearFeedbackError();
+
+      const message = el("feedbackMessage").value.trim();
+
+      if(!message){
+        setFeedbackError("Isi kritik & saran wajib diisi.");
+        return;
+      }
+
+      try {
+        setFeedbackStatus("Mengirim kritik & saran...");
+        await saveFeedbackToCloud(message);
+        await fetchFeedbackCloud();
+        el("feedbackMessage").value = "";
+        setFeedbackStatus("Kritik & saran berhasil dikirim ke admin dan database pusat.");
+      } catch (err) {
+        console.error(err);
+        clearFeedbackStatus();
+        setFeedbackError("Gagal mengirim kritik & saran: " + err.message);
+      }
+    }
+
+    function resetFeedback(){
+      el("feedbackMessage").value = "";
+      clearFeedbackStatus();
+      clearFeedbackError();
+    }
+
+    async function deleteFeedback(index){
+      const items = getFeedbacks();
+      const item = items[index];
+      if(!item) return;
+      if(!confirm("Hapus kritik & saran ini?")) return;
+
+      try {
+        if(item.id){
+          await deleteFeedbackFromCloud(item.id);
+        }
+        await fetchFeedbackCloud();
+        renderAdminFeedbacks();
+      } catch (err) {
+        alert("Gagal menghapus kritik & saran: " + err.message);
+      }
+    }
+
+    async function clearAllFeedback(){
+      if(!confirm("Hapus semua kritik & saran?")) return;
+
+      try {
+        await clearFeedbackCloud();
+        await fetchFeedbackCloud();
+        renderAdminFeedbacks();
+      } catch (err) {
+        alert("Gagal menghapus semua kritik & saran: " + err.message);
+      }
     }
 
     function renderRecap(){
@@ -2498,217 +2318,202 @@
       const paidOrders = getPaidOrders();
       const saved = getSavedResults();
 
-      const totalSales = paidOrders.reduce(function(sum, item){
-        return sum + Number(item.total_price || 0);
+      const totalSales = paidOrders.reduce((sum, item) => sum + Number(item.total_price || 0), 0);
+      const stockIn = saved.reduce((sum, item) => sum + Number(item.qty || 0), 0);
+      const stockSold = paidOrders.reduce((sum, item) => {
+        return sum + (item.products || []).reduce((s, prod) => s + Number(prod.qty || 0), 0);
       }, 0);
-
-      const stockIn = saved.reduce(function(sum, item){
-        return sum + Number(item.qty || 0);
-      }, 0);
-
-      const stockSold = paidOrders.reduce(function(sum, item){
-        if(item.products && item.products.length){
-          return sum + item.products.reduce(function(s, prod){
-            return s + Number(prod.qty || 0);
-          }, 0);
-        }
-        return sum + Number(item.qty || 0);
-      }, 0);
-
       const stockLeft = Math.max(0, stockIn - stockSold);
-
-      const freshCount = saved.filter(function(item){
-        return Number(item.freshness_score || 0) >= 80;
-      }).reduce(function(sum, item){
-        return sum + Number(item.qty || 0);
-      }, 0);
-
-      const actionCount = saved.filter(function(item){
-        return Number(item.freshness_score || 0) < 80;
-      }).reduce(function(sum, item){
-        return sum + Number(item.qty || 0);
-      }, 0);
 
       el("totalOrdersValue").textContent = orders.length;
       el("totalSalesValue").textContent = totalSales.toLocaleString("id-ID");
-      el("stockInValue").textContent = stockIn;
       el("stockLeftValue").textContent = stockLeft;
-      el("freshCountValue").textContent = freshCount;
-      el("actionCountValue").textContent = actionCount;
-
-      if(!orders.length && !saved.length){
-        el("recapSummaryBox").textContent = "Belum ada data penjualan dan analisis untuk direkap.";
-      } else {
-        el("recapSummaryBox").textContent =
-          "Total pesanan " + orders.length +
-          ", pesanan lunas " + paidOrders.length +
-          ", stok masuk " + stockIn +
-          ", stok terjual (lunas) " + stockSold +
-          ", stok sisa " + stockLeft +
-          ", total penjualan lunas " + formatCurrency(totalSales) + ".";
-      }
-
-      const productMap = {};
-      saved.forEach(function(item){
-        const key = (item.product_name_real || item.vegetable_type || "Produk") + "__" + (item.unit || "KG");
-        if(!productMap[key]){
-          productMap[key] = {
-            product_name: item.product_name_real || item.vegetable_type || "Produk",
-            unit: item.unit || "KG",
-            stock_in: 0
-          };
-        }
-        productMap[key].stock_in += Number(item.qty || 0);
-      });
-
-      paidOrders.forEach(function(item){
-        if(item.products && item.products.length){
-          item.products.forEach(function(prod){
-            const key = (prod.name || "Produk") + "__" + (prod.unit || "KG");
-            if(!productMap[key]){
-              productMap[key] = {
-                product_name: prod.name || "Produk",
-                unit: prod.unit || "KG",
-                stock_in: 0
-              };
-            }
-            if(!productMap[key].stock_sold) productMap[key].stock_sold = 0;
-            productMap[key].stock_sold += Number(prod.qty || 0);
-          });
-        }
-      });
-
-      el("stockPerProductList").innerHTML = "";
-      const keys = Object.keys(productMap);
-
-      if(!keys.length){
-        el("stockPerProductList").innerHTML = '<div class="soft">Belum ada data stok per produk.</div>';
-      } else {
-        keys.forEach(function(key){
-          const item = productMap[key];
-          const sold = Number(item.stock_sold || 0);
-          const left = Math.max(0, Number(item.stock_in || 0) - sold);
-
-          const div = document.createElement("div");
-          div.className = "item";
-          div.innerHTML =
-            '<div class="toolbar">' +
-              '<strong>' + escapeHtml(item.product_name) + '</strong>' +
-              '<span class="small">Satuan: ' + escapeHtml(item.unit) + '</span>' +
-            '</div>' +
-            '<div class="small" style="margin-top:8px;">Stok masuk: ' + escapeHtml(String(item.stock_in || 0)) + ' ' + escapeHtml(item.unit) + '</div>' +
-            '<div class="small">Stok terjual (lunas): ' + escapeHtml(String(sold)) + ' ' + escapeHtml(item.unit) + '</div>' +
-            '<div style="margin-top:8px;font-weight:800;">Stok sisa: ' + escapeHtml(String(left)) + ' ' + escapeHtml(item.unit) + '</div>';
-          el("stockPerProductList").appendChild(div);
-        });
-      }
+      el("recapSummaryBox").textContent =
+        "Stok masuk " + stockIn +
+        ", stok terjual (lunas) " + stockSold +
+        ", stok sisa " + stockLeft +
+        ", total penjualan lunas " + formatCurrency(totalSales) + ".";
     }
 
-    function renderSuggestions(){
-      const orders = getOrders();
-      const paidOrders = getPaidOrders();
-      const saved = getSavedResults();
-      el("suggestionList").innerHTML = "";
+    function resetBuyerAnalysis(){
+      stopBuyerCamera();
+      buyerCurrentImageUrl = "";
+      el("buyerPreviewImage").src = "";
+      el("buyerPreviewImage").classList.add("hidden");
+      el("buyerPreviewVideo").classList.add("hidden");
+      el("buyerEmptyState").classList.remove("hidden");
+      el("buyerPreviewBox").classList.remove("has-media");
+      el("buyerAnalyzeBtn").classList.add("hidden");
+      el("buyerCaptureBtn").classList.add("hidden");
+      el("buyerStopCameraBtn").classList.add("hidden");
+      el("buyerStartCameraBtn").classList.remove("hidden");
+      el("buyerFileInput").value = "";
+      clearBuyerStatus();
+      clearBuyerError();
+      el("buyerResultEmpty").classList.remove("hidden");
+      el("buyerResultContent").classList.add("hidden");
+      el("buyerReasonList").innerHTML = "";
+    }
 
-      if(!saved.length && !orders.length){
-        el("suggestionSummaryBox").textContent = "Belum ada cukup data untuk memberi saran.";
-        el("suggestionList").innerHTML = '<div class="soft">Masukkan analisis atau pesanan terlebih dahulu.</div>';
+    function startBuyerCamera(){
+      clearBuyerError();
+      if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+        setBuyerError("Browser ini tidak mendukung kamera.");
         return;
       }
 
-      const freshItems = saved.filter(function(item){ return Number(item.freshness_score || 0) >= 80; }).length;
-      const fastItems = saved.filter(function(item){
-        const score = Number(item.freshness_score || 0);
-        return score >= 60 && score < 80;
-      }).length;
-      const sortItems = saved.filter(function(item){ return Number(item.freshness_score || 0) < 60; }).length;
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false })
+        .then(stream => {
+          buyerCurrentStream = stream;
+          el("buyerPreviewBox").classList.add("has-media");
+          el("buyerEmptyState").classList.add("hidden");
+          el("buyerPreviewImage").classList.add("hidden");
+          el("buyerPreviewVideo").classList.remove("hidden");
+          el("buyerPreviewVideo").srcObject = stream;
+          el("buyerStartCameraBtn").classList.add("hidden");
+          el("buyerStopCameraBtn").classList.remove("hidden");
+          el("buyerCaptureBtn").classList.remove("hidden");
+          el("buyerAnalyzeBtn").classList.add("hidden");
+        })
+        .catch(() => {
+          setBuyerError("Kamera tidak tersedia atau izin ditolak.");
+        });
+    }
 
-      const suggestions = [];
-      if(freshItems > 0) suggestions.push("Pertahankan stok segar untuk penjualan normal.");
-      if(fastItems > 0) suggestions.push("Jual cepat stok menengah dengan promo ringan.");
-      if(sortItems > 0) suggestions.push("Sortir stok yang kualitasnya menurun.");
-      if(orders.length > 0) suggestions.push("Pantau pembayaran. Stok baru berkurang saat pesanan lunas.");
-      if(paidOrders.length > 0) suggestions.push("Gunakan data pesanan lunas untuk prioritas restok.");
-      if(suggestions.length === 0) suggestions.push("Data masih terlalu sedikit untuk saran detail.");
+    function stopBuyerCamera(){
+      if(buyerCurrentStream){
+        buyerCurrentStream.getTracks().forEach(track => track.stop());
+        buyerCurrentStream = null;
+      }
+      el("buyerPreviewVideo").srcObject = null;
+      el("buyerPreviewVideo").classList.add("hidden");
+      el("buyerCaptureBtn").classList.add("hidden");
+      el("buyerStopCameraBtn").classList.add("hidden");
+      el("buyerStartCameraBtn").classList.remove("hidden");
+    }
 
-      if(sortItems > 0){
-        el("suggestionSummaryBox").textContent = "Prioritas utama: sortir stok berisiko dan percepat penjualan stok menengah.";
-      } else if(fastItems > 0){
-        el("suggestionSummaryBox").textContent = "Prioritas utama: jual cepat stok menengah dan atur restok.";
-      } else {
-        el("suggestionSummaryBox").textContent = "Mayoritas stok masih baik. Fokus pada penjualan normal.";
+    function captureBuyerPhoto(){
+      const video = el("buyerPreviewVideo");
+      if(!video.videoWidth || !video.videoHeight){
+        setBuyerError("Video belum siap.");
+        return;
       }
 
-      suggestions.forEach(function(text){
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob(async blob => {
+        const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
+        buyerCurrentImageUrl = await fileToDataURL(file);
+        el("buyerPreviewBox").classList.add("has-media");
+        el("buyerEmptyState").classList.add("hidden");
+        el("buyerPreviewImage").classList.remove("hidden");
+        el("buyerPreviewImage").src = buyerCurrentImageUrl;
+        el("buyerAnalyzeBtn").classList.remove("hidden");
+        stopBuyerCamera();
+      }, "image/jpeg", 0.92);
+    }
+
+    function analyzeBuyerImage(){
+      clearBuyerError();
+      clearBuyerStatus();
+
+      if(!buyerCurrentImageUrl){
+        setBuyerError("Pilih gambar atau ambil foto dulu.");
+        return;
+      }
+
+      setBuyerStatus("Menganalisis gambar...");
+      setTimeout(() => {
+        const result = buildSimulatedAnalysis(
+          buyerCurrentImageUrl,
+          "Produk",
+          1,
+          "KG",
+          0,
+          "Sayur"
+        );
+
+        renderBuyerAIResult(result);
+        clearBuyerStatus();
+      }, 650);
+    }
+
+    function renderBuyerAIResult(result){
+      const score = Number(result.freshness_score || 0);
+      const confidence = Number(result.confidence || 0);
+
+      let pillText = result.quality_label || "Baik";
+      let pillColor = "#16a34a";
+      if(score < 70) pillColor = "#f59e0b";
+      if(score < 50) pillColor = "#e11d48";
+
+      el("buyerVegType").textContent = result.detected_name || result.vegetable_type || "-";
+      el("buyerFreshnessPill").textContent = pillText;
+      el("buyerFreshnessPill").style.background = pillColor;
+      el("buyerFreshnessScoreText").textContent = score + "/100";
+      el("buyerConfidenceText").textContent = confidence + "%";
+      el("buyerFreshnessBar").style.width = score + "%";
+      el("buyerFreshnessBar").style.background = pillColor;
+      el("buyerConfidenceBar").style.width = confidence + "%";
+
+      el("buyerBasePriceValue").textContent = formatCurrency(result.base_price_per_unit || 0);
+      el("buyerSuggestedPriceValue").textContent = formatRange(result.price_min || 0, result.price_max || 0);
+      el("buyerQualityValue").textContent = result.quality_label || "-";
+      el("buyerRecommendationText").textContent = result.recommendation || "-";
+      el("buyerPricingReasonText").textContent = result.pricing_reason || "-";
+
+      el("buyerReasonList").innerHTML = "";
+      (result.reasons || []).forEach(reason => {
         const div = document.createElement("div");
-        div.className = "item";
-        div.textContent = text;
-        el("suggestionList").appendChild(div);
+        div.className = "soft";
+        div.textContent = reason;
+        el("buyerReasonList").appendChild(div);
       });
+
+      el("buyerResultEmpty").classList.add("hidden");
+      el("buyerResultContent").classList.remove("hidden");
     }
 
-    function renderAdmin(){
-      const admin = getAdmin();
-      const store = getStore();
-
-      el("adminStatus").textContent = "Status: " + (admin.loggedIn ? "Sudah login" : "Belum login");
-      el("adminLoginBox").classList.toggle("hidden", admin.loggedIn);
-      el("adminPanel").classList.toggle("hidden", !admin.loggedIn);
-
-      if(admin.loggedIn){
-        el("storeName").value = store.name || "";
-        el("storeOwner").value = store.owner || "";
-        el("storePhone").value = store.phone || "";
-        el("storeEmail").value = store.email || "";
-        el("storeAddress").value = store.address || "";
-        el("adminPinNew").value = "";
-      }
-    }
-
-    async function syncCloudSilently(){
-      if(isSyncingCloud) return;
-      if(!APP_SCRIPT_URL || APP_SCRIPT_URL.includes("YOUR_APPS_SCRIPT_WEB_APP_URL")) return;
-      if(document.hidden) return;
-
-      try {
-        isSyncingCloud = true;
-        await fetchCloudData();
-        renderSavedResults();
-        renderRecap();
-        renderSuggestions();
-        renderProductCatalog();
-      } catch (err) {
-        console.error("Auto sync gagal:", err);
-      } finally {
-        isSyncingCloud = false;
-      }
-    }
-
-    function startAutoSync(){
-      stopAutoSync();
-      autoSyncTimer = setInterval(syncCloudSilently, AUTO_SYNC_INTERVAL_MS);
-    }
-
-    function stopAutoSync(){
-      if(autoSyncTimer){
-        clearInterval(autoSyncTimer);
-        autoSyncTimer = null;
-      }
-    }
-
-    document.addEventListener("visibilitychange", function(){
-      if(!document.hidden){
-        syncCloudSilently();
-      }
+    document.querySelectorAll(".nav-btn[data-page]").forEach(btn => {
+      btn.addEventListener("click", () => showPage(btn.dataset.page));
     });
 
-    document.querySelectorAll(".nav-btn").forEach(function(btn){
-      btn.addEventListener("click", function(){
-        showPage(btn.getAttribute("data-page"));
-      });
+    document.querySelectorAll(".nav-btn[data-admin-tab]").forEach(btn => {
+      btn.addEventListener("click", () => showAdminTab(btn.dataset.adminTab));
     });
 
-    el("fileInput").addEventListener("change", function(e){
+    el("buyerFileInput").addEventListener("change", async (e) => {
+      clearBuyerError();
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
+      if(file.type.indexOf("image/") !== 0){
+        setBuyerError("File harus berupa gambar.");
+        return;
+      }
+
+      buyerCurrentImageUrl = await fileToDataURL(file);
+      el("buyerPreviewBox").classList.add("has-media");
+      el("buyerEmptyState").classList.add("hidden");
+      el("buyerPreviewImage").classList.remove("hidden");
+      el("buyerPreviewImage").src = buyerCurrentImageUrl;
+      el("buyerAnalyzeBtn").classList.remove("hidden");
+    });
+
+    el("buyerOpenCameraBtn").addEventListener("click", startBuyerCamera);
+    el("buyerStartCameraBtn").addEventListener("click", startBuyerCamera);
+    el("buyerStopCameraBtn").addEventListener("click", stopBuyerCamera);
+    el("buyerCaptureBtn").addEventListener("click", captureBuyerPhoto);
+    el("buyerAnalyzeBtn").addEventListener("click", analyzeBuyerImage);
+    el("buyerResetBtn").addEventListener("click", resetBuyerAnalysis);
+
+    el("sendFeedbackBtn").addEventListener("click", sendFeedback);
+    el("resetFeedbackBtn").addEventListener("click", resetFeedback);
+
+    el("fileInput").addEventListener("change", async (e) => {
       clearError();
       const file = e.target.files && e.target.files[0];
       if(!file) return;
@@ -2716,193 +2521,182 @@
         setError("File harus berupa gambar.");
         return;
       }
-      fileToDataURL(file).then(function(dataUrl){
-        showImage(dataUrl);
-      });
+
+      currentImageUrl = await fileToDataURL(file);
+      el("previewBox").classList.add("has-media");
+      el("emptyState").classList.add("hidden");
+      el("previewImage").classList.remove("hidden");
+      el("previewImage").src = currentImageUrl;
+      el("analyzeBtn").classList.remove("hidden");
     });
 
-    el("editImageFile").addEventListener("change", function(e){
-      const file = e.target.files && e.target.files[0];
-      if(!file) return;
-      if(file.type.indexOf("image/") !== 0){
-        alert("File edit harus berupa gambar.");
-        e.target.value = "";
-        return;
-      }
-      fileToDataURL(file).then(function(dataUrl){
-        editImageDataUrl = dataUrl;
-        el("editImagePreview").src = dataUrl;
-      });
-    });
-
-    el("openCameraFromEmpty").addEventListener("click", startCamera);
-    el("startCameraBtn").addEventListener("click", startCamera);
-    el("stopCameraBtn").addEventListener("click", stopCamera);
-    el("captureBtn").addEventListener("click", capturePhoto);
-
-    el("analyzeBtn").addEventListener("click", function(){
-      clearError();
-      clearStatus();
-
-      const img = el("previewImage");
-      if(!img.src){
-        setError("Pilih gambar terlebih dahulu.");
-        return;
-      }
-
-      try {
-        setStatus("Menganalisis gambar...");
-        const result = analyzeImageLocally(img);
-        renderResult(result);
-        clearStatus();
-        setStatus("Analisis selesai.");
-      } catch (e) {
-        console.error(e);
-        setError("Analisis gagal dijalankan.");
-      }
-    });
-
+    el("analyzeBtn").addEventListener("click", analyzeWithAI);
     el("saveAnalysisBtn").addEventListener("click", saveCurrentAnalysis);
     el("resetBtn").addEventListener("click", resetApp);
 
-    el("saveEditSavedBtn").addEventListener("click", saveEditSaved);
-    el("cancelEditSavedBtn").addEventListener("click", cancelEditSaved);
-
-    el("reloadCloudBtn").addEventListener("click", async function(){
+    el("reloadCloudBtn").addEventListener("click", async () => {
       try {
-        setStatus("Mengambil data dari pusat...");
         await fetchCloudData();
-        renderSavedResults();
-        renderRecap();
-        renderSuggestions();
         renderProductCatalog();
-        clearStatus();
-        alert("Data pusat berhasil dimuat ulang.");
       } catch (err) {
-        console.error(err);
-        clearStatus();
-        setError("Gagal memuat data pusat: " + err.message);
+        alert("Gagal memuat ulang: " + err.message);
       }
     });
 
-    el("reloadCatalogBtn").addEventListener("click", function(){
-      renderProductCatalog();
+    el("reloadCloudBtnAdmin").addEventListener("click", async () => {
+      try {
+        await fetchCloudData();
+        renderSavedResults();
+        renderProductCatalog();
+        renderRecap();
+      } catch (err) {
+        alert("Gagal memuat ulang: " + err.message);
+      }
     });
 
-    el("checkoutBtn").addEventListener("click", function(){
-      checkoutCart();
-    });
+    if (el("reloadFeedbackBtn")) {
+      el("reloadFeedbackBtn").addEventListener("click", async () => {
+        try {
+          await fetchFeedbackCloud();
+          renderAdminFeedbacks();
+        } catch (err) {
+          alert("Gagal memuat ulang kritik & saran: " + err.message);
+        }
+      });
+    }
 
-    el("applyVoucherBtn").addEventListener("click", function(){
-      applyVoucher();
-    });
-
-    el("shippingMethod").addEventListener("change", function(){
-      renderCart();
-    });
-
-    el("productSearchInput").addEventListener("input", function(){
-      renderProductCatalog();
-    });
-
-    el("productFilterSelect").addEventListener("change", function(){
-      renderProductCatalog();
-    });
-
-    el("clearOrdersBtn").addEventListener("click", function(){
+    el("clearOrdersBtn").addEventListener("click", () => {
+      if(!isAdmin()){
+        alert("Hapus semua pesanan hanya untuk admin.");
+        showPage("adminLogin");
+        return;
+      }
       if(!confirm("Hapus semua pesanan?")) return;
       setOrders([]);
       renderOrders();
-      renderRecap();
-      renderSuggestions();
+      renderAdminOrders();
       renderProductCatalog();
+      renderRecap();
     });
 
-    el("loginAdminBtn").addEventListener("click", function(){
-      const pin = el("adminPinInput").value;
-      const admin = getAdmin();
+    el("clearFeedbackBtn").addEventListener("click", clearAllFeedback);
 
-      if(pin !== admin.pin){
-        alert("PIN salah.");
+    el("loginAdminBtn").addEventListener("click", () => {
+      const auth = getAuth();
+      const password = el("adminPinInput").value;
+
+      if(password === auth.adminPassword){
+        auth.loggedIn = true;
+        auth.role = "admin";
+        setAuth(auth);
+        el("adminPinInput").value = "";
+        renderAdminLogin();
+        alert("Login berhasil.");
         return;
       }
 
-      admin.loggedIn = true;
-      setAdmin(admin);
-      el("adminPinInput").value = "";
-      renderAdmin();
-      alert("Login admin berhasil.");
+      alert("Kata sandi salah.");
     });
 
-    el("logoutAdminBtn").addEventListener("click", function(){
-      const admin = getAdmin();
-      admin.loggedIn = false;
-      setAdmin(admin);
-      renderAdmin();
+    el("logoutAdminBtn").addEventListener("click", () => {
+      const auth = getAuth();
+      auth.loggedIn = false;
+      auth.role = "guest";
+      setAuth(auth);
+      showPage("buyerHome");
     });
 
-    el("saveStoreProfileBtn").addEventListener("click", function(){
-      const admin = getAdmin();
-      if(!admin.loggedIn){
+    el("saveStoreProfileBtn").addEventListener("click", () => {
+      if(!isAdmin()){
         alert("Login admin dulu.");
         return;
       }
 
       setStore({
-        name: el("storeName").value.trim() || "Toko Sayur Segar",
+        name: el("storeName").value.trim() || "VeggieVision",
         owner: el("storeOwner").value.trim() || "Pemilik",
         phone: el("storePhone").value.trim() || "",
         email: el("storeEmail").value.trim() || "-",
-        address: el("storeAddress").value.trim() || "-"
+        address: el("storeAddress").value.trim() || "Alamat toko belum diatur."
       });
 
-      const newPin = el("adminPinNew").value.trim();
-      if(newPin){
-        admin.pin = newPin;
-        setAdmin(admin);
+      const auth = getAuth();
+      const newAdminPass = el("adminPasswordNew").value.trim();
+      if(newAdminPass){
+        auth.adminPassword = newAdminPass;
       }
 
-      alert("Profil toko berhasil disimpan.");
-      renderAdmin();
+      setAuth(auth);
+      renderStorePublicInfo();
+      alert("Pengaturan berhasil disimpan.");
     });
 
-    window.viewSaved = viewSaved;
-    window.downloadSaved = downloadSaved;
+    el("saveEditSavedBtn").addEventListener("click", saveEditSaved);
+    el("cancelEditSavedBtn").addEventListener("click", cancelEditSaved);
+
+    window.checkoutSingle = checkoutSingle;
+    window.markOrderPaid = markOrderPaid;
+    window.updateOrderStatus = updateOrderStatus;
+    window.deleteOrder = deleteOrder;
+    window.showPage = showPage;
     window.openEditSaved = openEditSaved;
     window.deleteSaved = deleteSaved;
-    window.deleteOrder = deleteOrder;
-    window.printInvoice = printInvoice;
-    window.addToCart = addToCart;
-    window.buyNowProduct = buyNowProduct;
-    window.removeCartItem = removeCartItem;
-    window.updateOrderStatus = updateOrderStatus;
-    window.markOrderPaid = markOrderPaid;
+    window.deleteFeedback = deleteFeedback;
+
+    async function syncCloudSilently(){
+      if(isSyncing) return;
+      if(!APP_SCRIPT_URL || APP_SCRIPT_URL.includes("YOUR_APPS_SCRIPT_WEB_APP_URL")) return;
+      if(document.hidden) return;
+
+      try {
+        isSyncing = true;
+        await fetchCloudData();
+        await fetchFeedbackCloud();
+        renderSavedResults();
+        renderProductCatalog();
+        renderRecap();
+        renderAdminFeedbacks();
+      } catch (err) {
+        console.error(err);
+      } finally {
+        isSyncing = false;
+      }
+    }
+
+    function startAutoSync(){
+      clearInterval(autoSyncTimer);
+      autoSyncTimer = setInterval(syncCloudSilently, AUTO_SYNC_INTERVAL_MS);
+    }
 
     async function init(){
       el("analysisDate").value = todayValue();
-      el("editAnalysisDate").value = todayValue();
+      el("editBeforeSaveDate").value = todayValue();
 
-      renderOrders();
-      renderAdmin();
-      renderCart();
+      renderAdminLogin();
+      renderStorePublicInfo();
 
       const localBackup = getLS(STORAGE_KEYS.saved, []);
       setSavedResults(localBackup);
 
+      const localFeedbackBackup = getLS(STORAGE_KEYS.feedback, []);
+      setFeedbacks(localFeedbackBackup);
+
       try {
         if(APP_SCRIPT_URL && !APP_SCRIPT_URL.includes("YOUR_APPS_SCRIPT_WEB_APP_URL")){
           await fetchCloudData();
+          await fetchFeedbackCloud();
         }
       } catch (err) {
         console.error(err);
       }
 
-      renderSavedResults();
-      renderRecap();
-      renderSuggestions();
       renderProductCatalog();
-
+      renderOrders();
+      renderAdminOrders();
+      renderAdminFeedbacks();
+      renderRecap();
       startAutoSync();
+      showPage("buyerHome");
     }
 
     init();
